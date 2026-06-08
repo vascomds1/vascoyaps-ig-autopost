@@ -1,0 +1,76 @@
+name: Tutorial Vasco Yaps IG carousel
+
+on:
+  schedule:
+    # 16:30 UTC Tue & Fri = 17:30 Lisbon (summer). Adjust for winter if needed.
+    - cron: "30 16 * * 2,5"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build but do not publish (1 = dry run)"
+        required: false
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: tutorial-carousel
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate today's tutorial
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ secrets.CLAUDE_MODEL }}
+        run: python generate_tutorial.py
+
+      - name: Render carousel slides
+        run: python build_carousel.py
+
+      - name: Commit slides + topic log to a dated folder
+        id: commit
+        run: |
+          DATE=$(date -u +%F)
+          DEST="images-tutorial/$DATE"
+          rm -rf "$DEST" && mkdir -p "$DEST"
+          cp output/slide_*.png "$DEST"/
+          cp content.json "$DEST"/content.json
+          git config user.name "vascoyaps-bot"
+          git config user.email "bot@vascoyaps.local"
+          git add "$DEST" posted_tutorials.md
+          git commit -m "tutorial $DATE [skip ci]" || echo "nothing to commit"
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to Instagram
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.commit.outputs.sha }}/images-tutorial/${{ steps.commit.outputs.date }}"
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: python post_to_instagram.py
+
+      - name: Prune old image folders (keep last 8)
+        run: |
+          cd images-tutorial || exit 0
+          ls -1d */ 2>/dev/null | sort | head -n -8 | xargs -r rm -rf
+          cd ..
+          if ! git diff --quiet; then
+            git add -A images-tutorial
+            git commit -m "prune old tutorials [skip ci]" || true
+            git push || true
+          fi
