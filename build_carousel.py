@@ -127,6 +127,21 @@ def footer(draw, page=None, total=8, swipe=False):
             r = dot//2 + (2 if on else 0); cx = x0+i*(dot+gap)+dot//2
             draw.ellipse([cx-r, cy-r, cx+r, cy+r], fill=col)
 
+def _bullets_height(draw, items, max_w, fsize, gap):
+    f = f_reg(fsize); total = 0
+    for it in items:
+        n = max(1, len(wrap(draw, it, f, max_w-46)))
+        total += n*int(fsize*1.28) + gap
+    return total
+
+def fit_bullets(draw, items, max_w, avail_h):
+    """Largest font/gap so all bullets fit in avail_h. Never overflows."""
+    for fsize in range(39, 25, -1):
+        gap = max(18, int(fsize*0.80))
+        if _bullets_height(draw, items, max_w, fsize, gap) <= avail_h:
+            return fsize, gap
+    return 26, 18
+
 def bullets(draw, items, x, y, max_w, fsize=39, gap=34):
     f = f_reg(fsize)
     for it in items:
@@ -160,7 +175,10 @@ def content(card, page):
     y = 250
     for ln in lines: d.text((MARGIN, y), ln, font=fnt, fill=WHITE); y += int(lh)
     y += 38; img.paste(grad_h(180, 6, AQUA, BLUE), (MARGIN, y)); d = ImageDraw.Draw(img); y += 46
-    bullets(d, card["bullets"], MARGIN, y, W-2*MARGIN); footer(d, page=page); return img
+    avail = (H - 150) - y  # keep clear of the footer/handle at H-86
+    fsize, gap = fit_bullets(d, card["bullets"], W-2*MARGIN, avail)
+    bullets(d, card["bullets"], MARGIN, y, W-2*MARGIN, fsize=fsize, gap=gap)
+    footer(d, page=page); return img
 
 def cta(c):
     img = background(cover=True); d = ImageDraw.Draw(img)

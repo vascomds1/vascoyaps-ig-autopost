@@ -51,8 +51,8 @@ Rules:
 - cover.title_lines: 3 to 4 short lines that read as one bold statement; the LAST element is the phrase that gets highlighted (keep it punchy, <= 4 words). Keep each line short enough to fit a big headline.
 - cover.kicker: keep exactly "AI NEWS  ·  {TODAY}".
 - Exactly 6 cards. index 1..6. label = 1-2 word uppercase category (e.g. APPLE, FUNDING, REGULATION).
-- headline: 4 to 7 words, concrete and specific, no period needed.
-- bullets: exactly 3 per card. Each a short sentence. Include at least one real number/stat per card where possible. Last bullet says why it matters.
+- headline: 4 to 6 words, concrete and specific, no period needed. Keep it short so it never wraps past 2 lines.
+- bullets: exactly 3 per card. Each ONE short sentence, max 110 characters (hard limit, aim for ~90). No semicolons, no multi-clause run-ons. Include at least one real number/stat per card where possible. Last bullet says why it matters.
 - caption: a strong hook line, a 1-2 sentence summary, a follow CTA for @vascoyaps, then 8-10 relevant hashtags. Emojis ok but sparing.
 - Absolutely no em or en dashes anywhere.
 
