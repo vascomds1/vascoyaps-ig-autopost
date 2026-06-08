@@ -1,0 +1,27 @@
+{
+  "cover": {
+    "kicker": "AI NEWS  ·  MON JUN 8, 2026",
+    "title_lines": ["AI just had", "its biggest", "day", "of the year."],
+    "subtitle": "Apple's last Cook keynote, Claude on your iPhone, and a $1.75T IPO. The 6 stories that actually matter."
+  },
+  "cards": [
+    {"label": "APPLE", "index": 1, "headline": "Siri got a new brain, and it's Google's",
+     "bullets": ["Tim Cook's final keynote as CEO went all-in on AI.", "Siri now runs on a custom 1.2-trillion-parameter Gemini model Apple licenses for ~$1B a year.", "Bigger twist: you can now pick ChatGPT, Gemini, or Claude to power your iPhone."]},
+    {"label": "ANTHROPIC", "index": 2, "headline": "Claude is now an iPhone option",
+     "bullets": ["For the first time, Claude lives natively inside Apple Intelligence.", "That's ~2.2 billion Apple devices as a potential front door.", "Even 5% choosing Claude = 100M+ new users. Its biggest consumer move ever."]},
+    {"label": "MARKET SHARE", "index": 3, "headline": "Claude just grew 306% in one quarter",
+     "bullets": ["Web visits jumped from 203M to 824M between January and April.", "It now holds 12.5% share in the US, ahead of its global average.", "ChatGPT still leads at 54.7%, Gemini 27.4%. But the gap is closing fast."]},
+    {"label": "MICROSOFT", "index": 4, "headline": "Claude can now run your spreadsheets",
+     "bullets": ["Microsoft's Foundry catalog hit 11,000+ models in one place.", "The headline: Claude landed in Excel Agent Mode.", "It writes formulas, cleans data, and builds workflows for ~750M Excel users."]},
+    {"label": "THE MONEY", "index": 5, "headline": "The largest IPO in history is 4 days away",
+     "bullets": ["SpaceX prices June 11 and trades June 12 at $1.75 trillion or more.", "Then Anthropic. Then OpenAI.", "Three near-trillion-dollar AI IPOs in a single quarter. That has never happened."]},
+    {"label": "REGULATION", "index": 6, "headline": "The AI compliance clock is ticking",
+     "bullets": ["Colorado's AI Act goes live in 22 days (June 30).", "The EU AI Act lands in 55 days (August 2), with fines up to 7% of global revenue.", "If your business ships AI, this stopped being theoretical today."]}
+  ],
+  "cta": {
+    "kicker": "THAT'S TODAY IN AI", "line1": "Follow", "handle": "@vascoyaps",
+    "subtitle": "AI news, decoded daily. No hype, just what actually matters.",
+    "pill": "Save this  ·  Send it to a friend"
+  },
+  "caption": "AI just had its biggest day of the year. Tim Cook's final keynote, Claude landing on the iPhone, and the largest IPO in history, all in one Monday. Here are the 6 stories that matter. Follow @vascoyaps for AI news decoded daily. #AInews #ArtificialIntelligence #Claude #Apple #WWDC2026 #Anthropic #AItools #techtok #AIexplained"
+}
