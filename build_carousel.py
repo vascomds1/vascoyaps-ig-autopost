@@ -21,6 +21,29 @@ def f_bold(s):  return ImageFont.truetype(os.path.join(SSP, "SourceSansPro-Bold.
 def f_semi(s):  return ImageFont.truetype(os.path.join(SSP, "SourceSansPro-Semibold.ttf"), s)
 def f_reg(s):   return ImageFont.truetype(os.path.join(SSP, "SourceSansPro-Regular.ttf"), s)
 
+# Font Awesome brand glyphs (pip: fontawesomefree)
+def _brands_path():
+    import fontawesomefree as fa
+    return os.path.join(os.path.dirname(fa.__file__),
+                        "static/fontawesomefree/webfonts/fa-brands-400.ttf")
+BRANDS = _brands_path()
+def f_brand(s): return ImageFont.truetype(BRANDS, s)
+
+# Social handles shown on the final slide. Edit handles here.
+SOCIALS = [
+    ("instagram", "", "@vascoyaps"),
+    ("tiktok",    "", "@vascoyaps"),
+    ("youtube",   "", "@vascoyaps"),
+    ("substack",  None,     "@vascoyaps"),  # drawn manually (not in FA free)
+]
+
+def draw_substack(d, x, y, s, fill=(255, 255, 255)):
+    """Draw the Substack mark inside an s-by-s box at (x, y)."""
+    bar = s * 0.205
+    d.rectangle([x, y, x + s, y + bar], fill=fill)
+    d.rectangle([x, y + bar * 1.55, x + s, y + bar * 2.55], fill=fill)
+    d.polygon([(x, y + bar * 3.1), (x + s, y + bar * 3.1), (x + s / 2, y + s)], fill=fill)
+
 # ---------- canvas / palette ----------
 W, H = 1080, 1350
 MARGIN = 96
@@ -182,20 +205,37 @@ def content(card, page):
 
 def cta(c):
     img = background(cover=True); d = ImageDraw.Draw(img)
-    kicker(d, c.get("kicker", "THAT'S TODAY IN AI"), 170)
-    y = 340; d.text((MARGIN, y), c.get("line1", "Follow"), font=f_black(120), fill=WHITE)
-    key = c.get("handle", "@vascoyaps"); f = f_black(120); kw = int(d.textlength(key, font=f))
-    gimg = grad_h(kw, 140, AQUA, VIOLET); mask = Image.new("L", (kw, 140), 0)
-    ImageDraw.Draw(mask).text((0, -10), key, font=f, fill=255)
-    img.paste(gimg, (MARGIN, y+120), mask); d = ImageDraw.Draw(img); y += 120+150
-    fs = f_reg(42)
-    for ln in wrap(d, c.get("subtitle", ""), fs, W-2*MARGIN-40):
-        d.text((MARGIN, y), ln, font=fs, fill=MUTE); y += int(42*1.34)
-    y += 40; pill = "  " + c.get("pill", "Save this  ·  Send it to a friend") + "  "
-    fp = f_bold(36); pw = int(d.textlength(pill, font=fp))+20; ph = 84
+    kicker(d, c.get("kicker", "THAT'S TODAY IN AI"), 150)
+    y = 250
+    d.text((MARGIN, y), c.get("line1", "Follow"), font=f_black(104), fill=WHITE)
+    key = c.get("handle", "@vascoyaps"); f = f_black(104); kw = int(d.textlength(key, font=f))
+    gimg = grad_h(kw, 120, AQUA, VIOLET); mask = Image.new("L", (kw, 120), 0)
+    ImageDraw.Draw(mask).text((0, -8), key, font=f, fill=255)
+    img.paste(gimg, (MARGIN, y + 104), mask); d = ImageDraw.Draw(img)
+    y += 104 + 130
+    fs = f_reg(40)
+    d.text((MARGIN, y), "AI news, decoded daily.", font=fs, fill=MUTE)
+    y += 92
+
+    # social handles, one row each: icon + @handle
+    isz = 50; row = 92; tx = MARGIN + 78
+    fh = f_semi(40)
+    glyphs = {"instagram": "", "tiktok": "", "youtube": ""}
+    for plat, _ic, handle in SOCIALS:
+        iy = y + (40 - isz) // 2
+        if plat == "substack":
+            draw_substack(d, MARGIN + 2, y - 4, isz - 4)
+        else:
+            d.text((MARGIN, y - 12), glyphs[plat], font=f_brand(isz), fill=WHITE)
+        d.text((tx, y - 4), handle, font=fh, fill=(214, 221, 230))
+        y += row
+
+    y += 20
+    pill = "  " + c.get("pill", "Save this  ·  Send it to a friend") + "  "
+    fp = f_bold(36); pw = int(d.textlength(pill, font=fp)) + 20; ph = 84
     rad = Image.new("L", (pw, ph), 0); ImageDraw.Draw(rad).rounded_rectangle([0, 0, pw, ph], ph//2, fill=255)
     img.paste(grad_h(pw, ph, AQUA, BLUE), (MARGIN, y), rad); d = ImageDraw.Draw(img)
-    d.text((MARGIN+pw/2, y+ph/2), pill.strip(), font=fp, fill=(8, 12, 20), anchor="mm")
+    d.text((MARGIN + pw/2, y + ph/2), pill.strip(), font=fp, fill=(8, 12, 20), anchor="mm")
     footer(d); return img
 
 def main():
