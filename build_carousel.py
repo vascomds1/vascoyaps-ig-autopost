@@ -222,12 +222,12 @@ def cta(c):
     fh = f_semi(40)
     glyphs = {"instagram": "", "tiktok": "", "youtube": ""}
     for plat, _ic, handle in SOCIALS:
-        iy = y + (40 - isz) // 2
+        cy = y + 24  # shared centerline for icon + handle
         if plat == "substack":
-            draw_substack(d, MARGIN + 2, y - 4, isz - 4)
+            draw_substack(d, MARGIN + 2, cy - (isz - 4) / 2, isz - 4)
         else:
-            d.text((MARGIN, y - 12), glyphs[plat], font=f_brand(isz), fill=WHITE)
-        d.text((tx, y - 4), handle, font=fh, fill=(214, 221, 230))
+            d.text((MARGIN, cy), glyphs[plat], font=f_brand(isz), fill=WHITE, anchor="lm")
+        d.text((tx, cy), handle, font=fh, fill=(214, 221, 230), anchor="lm")
         y += row
 
     y += 20
