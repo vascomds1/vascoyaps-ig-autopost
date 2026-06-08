@@ -1,0 +1,76 @@
+name: Daily Vasco Yaps IG carousel
+
+on:
+  schedule:
+    # 13:30 UTC = 14:30 Lisbon time during summer (WEST). Adjust for winter if needed.
+    - cron: "30 13 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Build but do not publish (1 = dry run)"
+        required: false
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-carousel
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate today's copy
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ secrets.CLAUDE_MODEL }}
+        run: python generate_copy.py
+
+      - name: Render carousel slides
+        run: python build_carousel.py
+
+      - name: Commit slides to a dated folder
+        id: commit
+        run: |
+          DATE=$(date -u +%F)
+          DEST="images/$DATE"
+          rm -rf "$DEST" && mkdir -p "$DEST"
+          cp output/slide_*.png "$DEST"/
+          cp content.json "$DEST"/content.json
+          git config user.name "vascoyaps-bot"
+          git config user.email "bot@vascoyaps.local"
+          git add "$DEST"
+          git commit -m "carousel $DATE [skip ci]" || echo "nothing to commit"
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to Instagram
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.commit.outputs.sha }}/images/${{ steps.commit.outputs.date }}"
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: python post_to_instagram.py
+
+      - name: Prune old image folders (keep last 7 days)
+        run: |
+          cd images || exit 0
+          ls -1d */ 2>/dev/null | sort | head -n -7 | xargs -r rm -rf
+          cd ..
+          if ! git diff --quiet; then
+            git add -A images
+            git commit -m "prune old carousels [skip ci]" || true
+            git push || true
+          fi
