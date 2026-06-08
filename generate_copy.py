@@ -10,7 +10,7 @@ Env:
 import os, sys, json, datetime, re
 import anthropic
 
-MODEL = os.environ.get("CLAUDE_MODEL", "claude-sonnet-4-6")
+MODEL = os.environ.get("CLAUDE_MODEL") or "claude-sonnet-4-6"
 HERE = os.path.dirname(os.path.abspath(__file__))
 TODAY = datetime.date.today().strftime("%a %b %-d, %Y").upper()
 
