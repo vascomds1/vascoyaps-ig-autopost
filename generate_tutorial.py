@@ -33,7 +33,7 @@ SCHEMA_EXAMPLE = {
     "topic": "Short internal title, e.g. 'Gmail connector daily digest'",
     "cover": {
         "kicker": "BUILD WITH CLAUDE",
-        "title_lines": ["Turn your inbox", "into a 6am", "digest"],
+        "title_lines": ["How to turn your", "inbox into a", "6am digest"],
         "subtitle": "Connect Gmail to Claude and have it summarize your morning email for you."
     },
     "cards": [
@@ -81,7 +81,7 @@ Output STRICT JSON only, matching exactly this shape:
 Rules:
 - topic: a short unique title for the log.
 - cover.kicker: keep exactly "BUILD WITH CLAUDE".
-- cover.title_lines: 3 short lines that read as one punchy promise naming what they build; the LAST element is the highlighted phrase (<= 4 words, keep each line short).
+- cover.title_lines: MUST begin with "How to" and read as one headline of what they build (e.g. "How to build a habit tracker with Claude"). 3 short lines, the LAST element is the highlighted phrase (<= 4 words, keep each line short).
 - cover.subtitle: name the concrete example they will have built by the end.
 - Use 3 to 6 cards (steps), whatever the build genuinely needs. No filler steps. index 1..N, labelled STEP 1, STEP 2, and so on. Make the final step the payoff ("now you have X").
 - headline: the step's action in 3 to 6 words, no period.
