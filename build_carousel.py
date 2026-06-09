@@ -83,6 +83,16 @@ def grad_h(w, h, c1, c2):
     for x in range(max(1, w)): g.putpixel((x, 0), lerp(c1, c2, x/max(1, w-1)))
     return g.resize((max(1, w), h))
 
+def grad_text(img, xy, text, font, c1, c2):
+    """Draw gradient-filled text without clipping descenders (g, p, y, q, j)."""
+    asc, desc = font.getmetrics()
+    th = asc + desc + 8
+    tw = max(1, int(ImageDraw.Draw(img).textlength(text, font=font)))
+    mask = Image.new("L", (tw, th), 0)
+    ImageDraw.Draw(mask).text((0, 0), text, font=font, fill=255)
+    img.paste(grad_h(tw, th, c1, c2), (int(xy[0]), int(xy[1])), mask)
+    return tw
+
 def glow(img, xy, r, color, alpha):
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     ImageDraw.Draw(layer).ellipse([xy[0]-r, xy[1]-r, xy[0]+r, xy[1]+r], fill=color+(alpha,))
@@ -207,9 +217,7 @@ def cover(c):
     for ln in c["title_lines"][:-1]:
         d.text((MARGIN, y), ln, font=f, fill=T["ink"]); y += int(120*1.0)
     key = c["title_lines"][-1]
-    kw = int(d.textlength(key, font=f)); gimg = grad_h(kw, 130, *T["grad_key"])
-    mask = Image.new("L", (kw, 130), 0); ImageDraw.Draw(mask).text((0, -8), key, font=f, fill=255)
-    img.paste(gimg, (MARGIN, y+4), mask); y += int(120*1.0)+40
+    grad_text(img, (MARGIN, y), key, f, *T["grad_key"]); y += int(120*1.0)+40
     fs = f_semi(40)
     for ln in wrap(d, c["subtitle"], fs, W-2*MARGIN-40):
         d.text((MARGIN, y), ln, font=fs, fill=T["mute"]); y += int(40*1.36)
@@ -232,10 +240,8 @@ def cta(c):
     kicker(d, c.get("kicker", "THAT'S TODAY IN AI"), 150)
     y = 250
     d.text((MARGIN, y), c.get("line1", "Follow"), font=f_black(104), fill=T["ink"])
-    key = c.get("handle", "@vascoyaps"); f = f_black(104); kw = int(d.textlength(key, font=f))
-    gimg = grad_h(kw, 120, *T["grad_key"]); mask = Image.new("L", (kw, 120), 0)
-    ImageDraw.Draw(mask).text((0, -8), key, font=f, fill=255)
-    img.paste(gimg, (MARGIN, y + 104), mask); d = ImageDraw.Draw(img)
+    key = c.get("handle", "@vascoyaps"); f = f_black(104)
+    grad_text(img, (MARGIN, y + 104), key, f, *T["grad_key"]); d = ImageDraw.Draw(img)
     y += 104 + 130
     d.text((MARGIN, y), "AI news, decoded daily.", font=f_reg(40), fill=T["mute"])
     y += 92
