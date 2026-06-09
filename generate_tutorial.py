@@ -30,7 +30,7 @@ SCHEMA_EXAMPLE = {
     "cover": {
         "kicker": "CLAUDE TUTORIAL",
         "title_lines": ["Summarize any", "PDF in", "30 seconds"],
-        "subtitle": "One-line promise of what they'll be able to do after these 3 steps."
+        "subtitle": "One-line promise of what they'll be able to do after the steps."
     },
     "cards": [
         {"label": "STEP 1", "index": 1, "headline": "Short action, 3-6 words",
@@ -53,7 +53,7 @@ SYSTEM = (
 
 def build_prompt(avoid):
     avoid_block = "\n".join(f"- {t}" for t in avoid) if avoid else "(none yet)"
-    return f"""Create ONE beginner-friendly Claude micro-tutorial: a single simple, useful task someone can do in exactly 3 steps.
+    return f"""Create ONE beginner-friendly Claude micro-tutorial: a single simple, useful task, broken into the right number of clear steps (use 3 to 6, whatever the task needs).
 
 Pick a fresh topic. Do NOT repeat or closely overlap any of these already-posted tutorials:
 {avoid_block}
@@ -67,7 +67,7 @@ Rules:
 - topic: a short unique title for the log.
 - cover.kicker: keep exactly "CLAUDE TUTORIAL".
 - cover.title_lines: 3 short lines that read as one punchy promise; the LAST element is the highlighted phrase (<= 4 words, keep each line short).
-- Exactly 3 cards (STEP 1, STEP 2, STEP 3), index 1..3.
+- Use 3 to 6 cards (steps), whatever the task genuinely needs. Do not pad with filler steps, but do not cram a multi-part task into too few. index 1..N, labelled STEP 1, STEP 2, and so on.
 - headline: the step's action in 3 to 6 words, no period.
 - bullets: 2 per card. Each ONE short sentence, max 110 characters. Concrete and do-this-now. Make them genuinely actionable, not vague.
 - cta: keep as shown.
@@ -92,7 +92,7 @@ def main():
     text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
     data = extract_json(text)
 
-    data["cards"] = data["cards"][:3]
+    data["cards"] = data["cards"][:6]
     for i, c in enumerate(data["cards"], 1):
         c["index"] = i
         c["label"] = f"STEP {i}"

@@ -215,7 +215,7 @@ def cover(c):
         d.text((MARGIN, y), ln, font=fs, fill=T["mute"]); y += int(40*1.36)
     footer(d, swipe=True); return img
 
-def content(card, page):
+def content(card, page, total=8):
     img = background(); img = ghost_index(img, card["index"]); d = ImageDraw.Draw(img)
     kicker(d, card["label"], 150)
     fnt, lines, lh = fit_headline(d, card["headline"], W-2*MARGIN, 360)
@@ -225,7 +225,7 @@ def content(card, page):
     avail = (H - 150) - y
     fsize, gap = fit_bullets(d, card["bullets"], W-2*MARGIN, avail)
     bullets(d, card["bullets"], MARGIN, y, W-2*MARGIN, fsize=fsize, gap=gap)
-    footer(d, page=page); return img
+    footer(d, page=page, total=total); return img
 
 def cta(c):
     img = background(cover=True); d = ImageDraw.Draw(img)
@@ -262,10 +262,11 @@ def main():
     out_dir = sys.argv[2] if len(sys.argv) > 2 else os.path.join(HERE, "output")
     os.makedirs(out_dir, exist_ok=True)
     data = json.load(open(content_path))
+    total = 2 + len(data["cards"])
     cover(data["cover"]).save(os.path.join(out_dir, "slide_01.png"))
     page = 2
     for card in data["cards"]:
-        content(card, page).save(os.path.join(out_dir, f"slide_{page:02d}.png")); page += 1
+        content(card, page, total).save(os.path.join(out_dir, f"slide_{page:02d}.png")); page += 1
     cta(data["cta"]).save(os.path.join(out_dir, f"slide_{page:02d}.png"))
     print(f"Rendered {page} slides to {out_dir} (theme={os.environ.get('CAROUSEL_THEME','warm')})")
 
