@@ -28,12 +28,7 @@ def _brands_path():
 BRANDS = _brands_path()
 def f_brand(s): return ImageFont.truetype(BRANDS, s)
 
-SOCIALS = [
-    ("instagram", "", "@vascoyaps"),
-    ("tiktok",    "", "@vascoyaps"),
-    ("youtube",   "", "@vascoyaps"),
-    ("substack",  None,     "@vascoyaps"),
-]
+SOCIALS = ["instagram", "tiktok", "youtube", "x-twitter", "substack"]
 
 # ---------- themes ----------
 THEMES = {
@@ -247,18 +242,17 @@ def cta(c):
     grad_text(img, (MARGIN, y + 104), key, f, *T["grad_key"]); d = ImageDraw.Draw(img)
     y += 104 + 130
     d.text((MARGIN, y), "AI news, decoded daily.", font=f_reg(40), fill=T["mute"])
-    y += 92
-    isz = 50; row = 92; tx = MARGIN + 78; fh = f_semi(40)
-    glyphs = {"instagram": "", "tiktok": "", "youtube": ""}
-    for plat, _ic, handle in SOCIALS:
-        cy = y + 24
+    y += 100
+    isz = 64; cell = 150; cy = y + isz / 2
+    glyphs = {"instagram": "", "tiktok": "", "youtube": "", "x-twitter": ""}
+    for i, plat in enumerate(SOCIALS):
+        cx = MARGIN + i * cell
         if plat == "substack":
-            draw_substack(d, MARGIN + 2, cy - (isz - 4) / 2, isz - 4, T["icon"])
+            s = isz - 8
+            draw_substack(d, cx + (isz - s) / 2, cy - s / 2, s, T["icon"])
         else:
-            d.text((MARGIN, cy), glyphs[plat], font=f_brand(isz), fill=T["icon"], anchor="lm")
-        d.text((tx, cy), handle, font=fh, fill=T["body"], anchor="lm")
-        y += row
-    y += 20
+            d.text((cx + isz / 2, cy), glyphs[plat], font=f_brand(isz), fill=T["icon"], anchor="mm")
+    y += isz + 64
     pill = "  " + c.get("pill", "Save this  ·  Send it to a friend") + "  "
     fp = f_bold(36); pw = int(d.textlength(pill, font=fp)) + 20; ph = 84
     rad = Image.new("L", (pw, ph), 0); ImageDraw.Draw(rad).rounded_rectangle([0, 0, pw, ph], ph//2, fill=255)
