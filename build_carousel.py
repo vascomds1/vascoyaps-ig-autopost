@@ -41,10 +41,10 @@ THEMES = {
         "bg_top": (10, 12, 20), "bg_bot": (16, 20, 31),
         "ink": (255, 255, 255), "body": (214, 221, 230), "mute": (150, 161, 178),
         "accent": (31, 224, 200),
-        "grad_bar": ((31, 224, 200), (59, 130, 246)),
-        "grad_key": ((31, 224, 200), (124, 92, 255)),
+        "grad_bar": ((31, 224, 200), (31, 224, 200)),
+        "grad_key": ((31, 224, 200), (31, 224, 200)),
         "ghost": ((31, 224, 200), 20), "dot_off": (60, 68, 82),
-        "pill_grad": ((31, 224, 200), (59, 130, 246)), "pill_text": (8, 12, 20),
+        "pill_grad": ((31, 224, 200), (31, 224, 200)), "pill_text": (8, 12, 20),
         "icon": (255, 255, 255),
         "cover_glows": [(0.18, 0.20, 520, (124, 92, 255), 70), (0.92, 0.30, 460, (59, 130, 246), 60), (0.70, 0.86, 520, (31, 224, 200), 55)],
         "cover_waves": [(0.86, 46, (31, 224, 200), 5, 55, 2.0, 0.4), (0.89, 38, (124, 92, 255), 4, 42, 2.4, 1.6)],
@@ -54,11 +54,11 @@ THEMES = {
     "warm": {
         "bg_top": (250, 246, 238), "bg_bot": (243, 235, 222),
         "ink": (33, 28, 22), "body": (74, 66, 55), "mute": (122, 112, 99),
-        "accent": (194, 78, 42),
-        "grad_bar": ((218, 117, 72), (232, 160, 107)),
-        "grad_key": ((232, 144, 90), (194, 62, 30)),
-        "ghost": ((218, 117, 72), 36), "dot_off": (216, 205, 186),
-        "pill_grad": ((218, 117, 72), (232, 160, 107)), "pill_text": (74, 27, 12),
+        "accent": (205, 88, 44),
+        "grad_bar": ((205, 88, 44), (205, 88, 44)),
+        "grad_key": ((205, 88, 44), (205, 88, 44)),
+        "ghost": ((205, 88, 44), 34), "dot_off": (216, 205, 186),
+        "pill_grad": ((205, 88, 44), (205, 88, 44)), "pill_text": (74, 27, 12),
         "icon": (33, 28, 22),
         "cover_glows": [(0.15, 0.18, 560, (232, 160, 107), 34), (0.92, 0.30, 460, (124, 138, 107), 26), (0.72, 0.88, 560, (218, 117, 72), 30)],
         "cover_waves": [(0.86, 46, (124, 138, 107), 5, 60, 2.0, 0.4), (0.89, 38, (218, 117, 72), 4, 60, 2.4, 1.6)],
@@ -213,14 +213,17 @@ def draw_substack(d, x, y, s, fill):
 def cover(c):
     img = background(cover=True); d = ImageDraw.Draw(img)
     kicker(d, c["kicker"], 150)
-    f = f_black(120); y = 300
+    maxw = W - 2 * MARGIN
+    hs = 120
+    while hs > 56 and max(d.textlength(ln, font=f_black(hs)) for ln in c["title_lines"]) > maxw:
+        hs -= 2
+    f = f_black(hs); lh = int(hs * 1.02); y = 300
     for ln in c["title_lines"][:-1]:
-        d.text((MARGIN, y), ln, font=f, fill=T["ink"]); y += int(120*1.0)
-    key = c["title_lines"][-1]
-    grad_text(img, (MARGIN, y), key, f, *T["grad_key"]); y += int(120*1.0)+40
-    fs = f_semi(40)
-    for ln in wrap(d, c["subtitle"], fs, W-2*MARGIN-40):
-        d.text((MARGIN, y), ln, font=fs, fill=T["mute"]); y += int(40*1.36)
+        d.text((MARGIN, y), ln, font=f, fill=T["ink"]); y += lh
+    grad_text(img, (MARGIN, y), c["title_lines"][-1], f, *T["grad_key"]); y += lh + 40
+    sf = f_semi(40)
+    for ln in wrap(d, c["subtitle"], sf, W-2*MARGIN-40):
+        d.text((MARGIN, y), ln, font=sf, fill=T["mute"]); y += int(40*1.36)
     footer(d, swipe=True); return img
 
 def content(card, page, total=8):
