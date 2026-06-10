@@ -5,3 +5,4 @@
 - Projects brand voice writing assistant — 2026-06-09
 - Artifacts job search tracker mini app — 2026-06-09
 - Artifacts weekly review dashboard — 2026-06-09
+- Artifacts reading list tracker mini app — 2026-06-10
