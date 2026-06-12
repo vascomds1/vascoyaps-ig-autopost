@@ -50,7 +50,7 @@ jobs:
           cp content.json "$DEST"/content.json
           git config user.name "vascoyaps-bot"
           git config user.email "bot@vascoyaps.local"
-          git add "$DEST"
+          git add "$DEST" posted_news.md
           git commit -m "carousel $DATE [skip ci]" || echo "nothing to commit"
           git push
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
