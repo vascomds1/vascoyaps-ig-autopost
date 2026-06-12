@@ -3,9 +3,12 @@
 Generate the daily @vascoyaps AI-news carousel copy with Claude (web search enabled).
 Writes content.json consumed by build_carousel.py.
 
+Keeps a rolling log (posted_news.md) of stories already covered so the same
+story is not re-featured day after day unless there is a NEW development.
+
 Env:
   ANTHROPIC_API_KEY  (required)
-  CLAUDE_MODEL       (optional, default below; set to a current model string)
+  CLAUDE_MODEL       (optional, default below)
 """
 import os, sys, json, datetime, re
 import anthropic
@@ -13,6 +16,31 @@ import anthropic
 MODEL = os.environ.get("CLAUDE_MODEL") or "claude-sonnet-4-6"
 HERE = os.path.dirname(os.path.abspath(__file__))
 TODAY = datetime.date.today().strftime("%a %b %-d, %Y").upper()
+LOG = os.path.join(HERE, "posted_news.md")
+RECENT_DAYS = 14  # how far back to treat a story as "already covered"
+
+def recent_slugs():
+    """Return story slugs covered in the last RECENT_DAYS days."""
+    if not os.path.exists(LOG):
+        return []
+    cutoff = datetime.date.today() - datetime.timedelta(days=RECENT_DAYS)
+    out = []
+    for line in open(LOG, encoding="utf-8"):
+        line = line.strip()
+        if not line.startswith("- "):
+            continue
+        try:
+            date_str, slug = line[2:].split(" | ", 1)
+            if datetime.date.fromisoformat(date_str.strip()) >= cutoff:
+                out.append(slug.strip())
+        except ValueError:
+            continue
+    # de-dup, keep order
+    seen, uniq = set(), []
+    for s in out:
+        if s not in seen:
+            seen.add(s); uniq.append(s)
+    return uniq
 
 SCHEMA_EXAMPLE = {
     "cover": {
@@ -21,12 +49,13 @@ SCHEMA_EXAMPLE = {
         "subtitle": "One-sentence promise of what the 6 stories cover. Concrete and specific."
     },
     "cards": [
-        {"label": "APPLE", "index": 1, "headline": "Punchy claim, 4-7 words",
+        {"label": "APPLE", "index": 1, "slug": "apple-wwdc-siri",
+         "headline": "Punchy claim, 4-7 words",
          "bullets": ["First supporting fact.", "Second fact with a number.", "Why it matters in one line."]}
     ],
     "cta": {
         "kicker": "THAT'S TODAY IN AI", "line1": "Follow", "handle": "@vascoyaps",
-        "subtitle": "AI news, decoded daily. No hype, just what matters.",
+        "subtitle": "AI news, decoded daily.",
         "pill": "Save this  ·  Send it to a friend"
     },
     "caption": "Instagram caption text with hashtags."
@@ -41,8 +70,15 @@ SYSTEM = (
     "Numbers and named entities must be accurate to what you found in search. Do not invent stats."
 )
 
-PROMPT = f"""Today is {TODAY}. Use web search to find the most important AI news from today (and the last 24 hours).
+def build_prompt(avoid):
+    avoid_block = "\n".join(f"- {s}" for s in avoid) if avoid else "(nothing yet)"
+    return f"""Today is {TODAY}. Use web search to find the most important AI news from today (and the last 24 hours).
 Pick the 6 strongest, most distinct stories (model launches, big company moves, funding/IPOs, regulation, research, product news). Rank by significance.
+
+ANTI-REPEAT RULE (important): you have already covered these stories in the last two weeks:
+{avoid_block}
+
+Do NOT feature any already-covered story again UNLESS there is a genuinely NEW, material development today (a new number, an actual launch or release, a ruling, a reversal, a price, a date confirmed). If you do revisit one, the headline and bullets MUST lead with the new development and not restate the old news. Otherwise, prefer fresh stories the brand has not posted. Aim for a carousel that feels new versus the last two weeks.
 
 Then output a single Instagram carousel as STRICT JSON, no prose, matching exactly this shape:
 {json.dumps(SCHEMA_EXAMPLE, indent=2)}
@@ -51,8 +87,9 @@ Rules:
 - cover.title_lines: 3 to 4 short lines that read as one bold statement; the LAST element is the phrase that gets highlighted (keep it punchy, <= 4 words). Keep each line short enough to fit a big headline.
 - cover.kicker: keep exactly "AI NEWS  ·  {TODAY}".
 - Exactly 6 cards. index 1..6. label = 1-2 word uppercase category (e.g. APPLE, FUNDING, REGULATION).
+- slug: a short stable lowercase-kebab id for the story (e.g. "anthropic-ipo", "gemini-3-5-pro", "eu-ai-act"). Reuse the SAME slug if you are revisiting a story with a new development, so the log stays consistent.
 - headline: 4 to 6 words, concrete and specific, no period needed. Keep it short so it never wraps past 2 lines.
-- bullets: exactly 3 per card. Each ONE short sentence, max 110 characters (hard limit, aim for ~90). No semicolons, no multi-clause run-ons. Include at least one real number/stat per card where possible. Last bullet says why it matters.
+- bullets: exactly 3 per card. Each ONE short sentence, max 110 characters (hard limit, aim for ~90). No semicolons. Include at least one real number/stat per card where possible. Last bullet says why it matters.
 - caption: a strong hook line, a 1-2 sentence summary, a follow CTA for @vascoyaps, then 8-10 relevant hashtags. Emojis ok but sparing.
 - Absolutely no em or en dashes anywhere.
 
@@ -65,13 +102,14 @@ def extract_json(text):
     return json.loads(text[a:b+1])
 
 def main():
+    avoid = recent_slugs()
     client = anthropic.Anthropic()
     resp = client.messages.create(
         model=MODEL,
         max_tokens=4000,
         system=SYSTEM,
         tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 6}],
-        messages=[{"role": "user", "content": PROMPT}],
+        messages=[{"role": "user", "content": build_prompt(avoid)}],
     )
     text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
     data = extract_json(text)
@@ -82,7 +120,6 @@ def main():
     for i, c in enumerate(data["cards"], 1):
         c["index"] = i
         c["bullets"] = c.get("bullets", [])[:3]
-    # strip any stray dashes per brand rule
     def clean(s): return s.replace("—", ", ").replace("–", "-") if isinstance(s, str) else s
     def walk(o):
         if isinstance(o, dict): return {k: walk(v) for k, v in o.items()}
@@ -92,7 +129,22 @@ def main():
 
     out = os.path.join(HERE, "content.json")
     json.dump(data, open(out, "w"), indent=2, ensure_ascii=False)
+
+    # ---- log today's story slugs so future runs avoid repeats ----
+    today_iso = datetime.date.today().isoformat()
+    def slugify(c):
+        s = c.get("slug") or c.get("headline", "")
+        s = re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+        return s or "story"
+    header_needed = not os.path.exists(LOG)
+    with open(LOG, "a", encoding="utf-8") as f:
+        if header_needed:
+            f.write("# Posted news stories (slug log; avoid repeats within 2 weeks)\n\n")
+        for c in data["cards"]:
+            f.write(f"- {today_iso} | {slugify(c)}\n")
+
     print("Wrote", out)
+    print("Avoided slugs:", ", ".join(avoid) or "(none)")
     print("Caption preview:\n", data["caption"][:300])
 
 if __name__ == "__main__":
