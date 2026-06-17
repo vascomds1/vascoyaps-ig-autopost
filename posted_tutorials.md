@@ -6,3 +6,4 @@
 - Artifacts job search tracker mini app — 2026-06-09
 - Artifacts weekly review dashboard — 2026-06-09
 - Artifacts reading list tracker mini app — 2026-06-10
+- Google Calendar connector auto meeting prep brief — 2026-06-17
