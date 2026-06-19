@@ -46,7 +46,7 @@ jobs:
           DATE=$(date -u +%F)
           DEST="images/$DATE"
           rm -rf "$DEST" && mkdir -p "$DEST"
-          cp output/slide_*.png "$DEST"/
+          cp output/slide_*.jpg "$DEST"/
           cp content.json "$DEST"/content.json
           git config user.name "vascoyaps-bot"
           git config user.email "bot@vascoyaps.local"
