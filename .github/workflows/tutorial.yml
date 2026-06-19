@@ -2,9 +2,9 @@ name: Tutorial Vasco Yaps IG carousel
 
 on:
   schedule:
-    # Tutorials post once a week on the peak-activity day.
-    # 16:30 UTC Wednesday = 17:30 Lisbon (summer). Adjust the day/time as analytics dictate.
-    - cron: "30 16 * * 3"
+    # Tips/tutorials: Tuesdays + Fridays.
+    # 16:30 UTC = 17:30 Lisbon (summer). Adjust the day/time as analytics dictate.
+    - cron: "30 16 * * 2,5"
   workflow_dispatch:
     inputs:
       dry_run:
