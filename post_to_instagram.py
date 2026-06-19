@@ -34,7 +34,7 @@ def api(method, path, **params):
 
 def main():
     out_dir = os.path.join(HERE, "output")
-    slides = sorted(glob.glob(os.path.join(out_dir, "slide_*.png")))
+    slides = sorted(glob.glob(os.path.join(out_dir, "slide_*.jpg")))
     if not slides:
         sys.exit("No slides found in output/. Run build_carousel.py first.")
     caption = json.load(open(os.path.join(HERE, "content.json"))).get("caption", "")
