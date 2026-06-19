@@ -2,8 +2,8 @@ name: Daily Vasco Yaps IG carousel
 
 on:
   schedule:
-    # 13:30 UTC = 14:30 Lisbon time during summer (WEST). Adjust for winter if needed.
-    - cron: "30 13 * * 0"
+    # News carousel: Sundays + Wednesdays. 13:30 UTC = 14:30 Lisbon (summer/WEST). Adjust for winter if needed.
+    - cron: "30 13 * * 0,3"
   workflow_dispatch:
     inputs:
       dry_run:
