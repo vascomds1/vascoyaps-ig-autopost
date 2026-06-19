@@ -333,11 +333,11 @@ def main():
     os.makedirs(out_dir, exist_ok=True)
     data = json.load(open(content_path))
     total = 2 + len(data["cards"])
-    cover(data["cover"]).save(os.path.join(out_dir, "slide_01.png"))
+    cover(data["cover"]).save(os.path.join(out_dir, "slide_01.jpg"), quality=92, subsampling=0)
     page = 2
     for card in data["cards"]:
-        content(card, page, total).save(os.path.join(out_dir, f"slide_{page:02d}.png")); page += 1
-    cta(data["cta"]).save(os.path.join(out_dir, f"slide_{page:02d}.png"))
+        content(card, page, total).save(os.path.join(out_dir, f"slide_{page:02d}.jpg"), quality=92, subsampling=0); page += 1
+    cta(data["cta"]).save(os.path.join(out_dir, f"slide_{page:02d}.jpg"), quality=92, subsampling=0)
     print(f"Rendered {page} slides to {out_dir} (theme={os.environ.get('CAROUSEL_THEME','brand')})")
 
 if __name__ == "__main__":
