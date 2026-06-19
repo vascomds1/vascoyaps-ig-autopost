@@ -3,7 +3,7 @@
 Vasco Yaps daily AI carousel renderer (news + tutorials).
 Reads content.json and renders 1080x1350 PNG slides.
 
-Theme: set env CAROUSEL_THEME = "dark" (default) or "warm".
+Theme: set env CAROUSEL_THEME = "brand" (default teal), "dark", or "warm".
 """
 import os, sys, json, math, importlib
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
@@ -28,10 +28,86 @@ def _brands_path():
 BRANDS = _brands_path()
 def f_brand(s): return ImageFont.truetype(BRANDS, s)
 
+# Anton = the brand "punch" display face (tall heavy condensed, ALL-CAPS).
+# Matches the PUNCH captions in the Vasco Yaps videos (STYLE.md: punch words in accent, connectors neutral).
+# Auto-downloaded on first run if not vendored in fonts/.
+FONTS_DIR = os.path.join(HERE, "fonts")
+ANTON_PATH = os.path.join(FONTS_DIR, "Anton-Regular.ttf")
+ANTON_URL = "https://github.com/google/fonts/raw/main/ofl/anton/Anton-Regular.ttf"
+def _ensure_anton():
+    # Use the vendored font if present; otherwise fetch it once (CI has network access).
+    if not os.path.exists(ANTON_PATH):
+        os.makedirs(FONTS_DIR, exist_ok=True)
+        import urllib.request
+        urllib.request.urlretrieve(ANTON_URL, ANTON_PATH)
+    return ANTON_PATH
+def f_anton(s): return ImageFont.truetype(_ensure_anton(), s)
+
+# Connectors stay neutral (white); everything else is a "punch" word rendered in the accent.
+CONNECTORS = {"A", "AN", "THE", "AND", "OR", "BUT", "OF", "TO", "IN", "ON", "AT", "BY",
+              "FOR", "FROM", "WITH", "AS", "IS", "ARE", "WAS", "WERE", "BE", "IT", "ITS",
+              "THAT", "THIS", "THESE", "THOSE", "JUST", "NOW", "SO", "NO", "NOT",
+              "YOUR", "MY", "OUR", "WE", "I", "YOU", "ON"}
+def _alnum(w): return "".join(ch for ch in w.upper() if ch.isalnum())
+def is_punch(w):
+    a = _alnum(w)
+    return bool(a) and a not in CONNECTORS
+
+def _wrap_words(draw, words, font, max_w):
+    lines, cur, w_cur = [], [], 0
+    sp = draw.textlength(" ", font=font)
+    for w in words:
+        ww = draw.textlength(w, font=font)
+        add = ww if not cur else w_cur + sp + ww
+        if cur and add > max_w:
+            lines.append(cur); cur, w_cur = [w], ww
+        else:
+            cur.append(w); w_cur = add
+    if cur: lines.append(cur)
+    return lines
+
+def punch_headline(img, x, y, text, max_w, accent, ink, start=130, lh=0.95, mins=58, color=True):
+    """Draw an ALL-CAPS Anton headline, wrapped, with punch words in `accent`."""
+    d = ImageDraw.Draw(img)
+    words = text.upper().split()
+    s = start
+    while s > mins:
+        fnt = f_anton(s)
+        if max(d.textlength(w, font=fnt) for w in words) <= max_w:
+            break
+        s -= 2
+    fnt = f_anton(max(s, mins)); sp = d.textlength(" ", font=fnt)
+    for line in _wrap_words(d, words, fnt, max_w):
+        cx = x
+        for w in line:
+            col = accent if (color and is_punch(w)) else ink
+            d.text((cx, y), w, font=fnt, fill=col)
+            cx += d.textlength(w, font=fnt) + sp
+        y += int(fnt.size * lh)
+    return y
+
 SOCIALS = ["instagram", "tiktok", "youtube", "x-twitter", "substack"]
 
 # ---------- themes ----------
+# Brand palette (BRAND.md "wave-*" teal tokens):
+#   wave-950 #041E28 (4,30,40)   wave-900 #062A38 (6,42,56)    wave-800 #0A4D68 (10,77,104)
+#   wave-700 #0C5D7D (12,93,125) wave-600 #088395 (8,131,149)  wave-500 #05BFDB (5,191,219) accent
+#   wave-400 #3DD0E5 (61,208,229) wave-300 #7AE1EF (122,225,239) wave-100 #E0F9FC (224,249,252)
 THEMES = {
+    "brand": {
+        "bg_top": (4, 30, 40), "bg_bot": (8, 58, 78),          # wave-950 -> deep teal
+        "ink": (255, 255, 255), "body": (201, 230, 238), "mute": (118, 165, 181),
+        "accent": (5, 191, 219),                                # wave-500
+        "grad_bar": ((5, 191, 219), (61, 208, 229)),            # wave-500 -> wave-400
+        "grad_key": ((61, 208, 229), (5, 191, 219)),            # wave-400 -> wave-500
+        "ghost": ((5, 191, 219), 20), "dot_off": (28, 70, 88),
+        "pill_grad": ((5, 191, 219), (61, 208, 229)), "pill_text": (4, 30, 40),
+        "icon": (255, 255, 255),
+        "cover_glows": [(0.18, 0.20, 520, (8, 131, 149), 62), (0.92, 0.30, 460, (5, 191, 219), 46), (0.70, 0.86, 520, (12, 93, 125), 58)],
+        "cover_waves": [(0.86, 46, (5, 191, 219), 5, 55, 2.0, 0.4), (0.89, 38, (61, 208, 229), 4, 42, 2.4, 1.6)],
+        "content_glows": [(0.90, 0.08, 420, (8, 131, 149), 44), (0.05, 0.96, 460, (12, 93, 125), 40)],
+        "content_wave": (0.945, 26, (5, 191, 219), 4, 70, 2.2, 0.6),
+    },
     "dark": {
         "bg_top": (10, 12, 20), "bg_bot": (16, 20, 31),
         "ink": (255, 255, 255), "body": (214, 221, 230), "mute": (150, 161, 178),
@@ -61,7 +137,7 @@ THEMES = {
         "content_wave": (0.945, 26, (218, 117, 72), 4, 80, 2.2, 0.6),
     },
 }
-T = THEMES.get(os.environ.get("CAROUSEL_THEME", "warm"), THEMES["warm"])
+T = THEMES.get(os.environ.get("CAROUSEL_THEME", "brand"), THEMES["brand"])
 
 W, H = 1080, 1350
 MARGIN = 96
@@ -208,15 +284,10 @@ def draw_substack(d, x, y, s, fill):
 def cover(c):
     img = background(cover=True); d = ImageDraw.Draw(img)
     kicker(d, c["kicker"], 150)
-    maxw = W - 2 * MARGIN
-    hs = 120
-    while hs > 56 and max(d.textlength(ln, font=f_black(hs)) for ln in c["title_lines"]) > maxw:
-        hs -= 2
-    f = f_black(hs); lh = int(hs * 1.02); y = 300
-    for ln in c["title_lines"][:-1]:
-        d.text((MARGIN, y), ln, font=f, fill=T["ink"]); y += lh
-    grad_text(img, (MARGIN, y), c["title_lines"][-1], f, *T["grad_key"]); y += lh + 40
-    sf = f_semi(40)
+    title = " ".join(c["title_lines"])
+    y = punch_headline(img, MARGIN, 300, title, W-2*MARGIN, T["accent"], T["ink"], start=140, lh=0.95, mins=72)
+    y += 46
+    d = ImageDraw.Draw(img); sf = f_semi(40)
     for ln in wrap(d, c["subtitle"], sf, W-2*MARGIN-40):
         d.text((MARGIN, y), ln, font=sf, fill=T["mute"]); y += int(40*1.36)
     footer(d, swipe=True); return img
@@ -224,10 +295,8 @@ def cover(c):
 def content(card, page, total=8):
     img = background(); img = ghost_index(img, card["index"]); d = ImageDraw.Draw(img)
     kicker(d, card["label"], 150)
-    fnt, lines, lh = fit_headline(d, card["headline"], W-2*MARGIN, 360)
-    y = 250
-    for ln in lines: d.text((MARGIN, y), ln, font=fnt, fill=T["ink"]); y += int(lh)
-    y += 38; img.paste(grad_h(180, 6, *T["grad_bar"]), (MARGIN, y)); d = ImageDraw.Draw(img); y += 46
+    y = punch_headline(img, MARGIN, 250, card["headline"], W-2*MARGIN, T["accent"], T["ink"], start=104, lh=0.95, mins=58)
+    y += 66; d = ImageDraw.Draw(img)
     avail = (H - 150) - y
     fsize, gap = fit_bullets(d, card["bullets"], W-2*MARGIN, avail)
     bullets(d, card["bullets"], MARGIN, y, W-2*MARGIN, fsize=fsize, gap=gap)
@@ -236,15 +305,13 @@ def content(card, page, total=8):
 def cta(c):
     img = background(cover=True); d = ImageDraw.Draw(img)
     kicker(d, c.get("kicker", "THAT'S TODAY IN AI"), 150)
-    y = 250
-    d.text((MARGIN, y), c.get("line1", "Follow"), font=f_black(104), fill=T["ink"])
-    key = c.get("handle", "@vascoyaps"); f = f_black(104)
-    grad_text(img, (MARGIN, y + 104), key, f, *T["grad_key"]); d = ImageDraw.Draw(img)
-    y += 104 + 130
+    y = 250; fa = f_anton(118); lh = int(118 * 0.95)
+    d.text((MARGIN, y), c.get("line1", "Follow").upper(), font=fa, fill=T["ink"]); y += lh
+    d.text((MARGIN, y), c.get("handle", "@vascoyaps").upper(), font=fa, fill=T["accent"]); y += lh + 56
     d.text((MARGIN, y), "AI news, decoded daily.", font=f_reg(40), fill=T["mute"])
     y += 100
     isz = 64; cell = 150; cy = y + isz / 2
-    glyphs = {"instagram": "", "tiktok": "", "youtube": "", "x-twitter": ""}
+    glyphs = {"instagram": "\uf16d", "tiktok": "\ue07b", "youtube": "\uf16a", "x-twitter": "\ue61b"}
     for i, plat in enumerate(SOCIALS):
         cx = MARGIN + i * cell
         if plat == "substack":
@@ -253,7 +320,7 @@ def cta(c):
         else:
             d.text((cx + isz / 2, cy), glyphs[plat], font=f_brand(isz), fill=T["icon"], anchor="mm")
     y += isz + 64
-    pill = "  " + c.get("pill", "Save this  ·  Send it to a friend") + "  "
+    pill = "  " + c.get("pill", "Save this  \u00b7  Send it to a friend") + "  "
     fp = f_bold(36); pw = int(d.textlength(pill, font=fp)) + 20; ph = 84
     rad = Image.new("L", (pw, ph), 0); ImageDraw.Draw(rad).rounded_rectangle([0, 0, pw, ph], ph//2, fill=255)
     img.paste(grad_h(pw, ph, *T["pill_grad"]), (MARGIN, y), rad); d = ImageDraw.Draw(img)
@@ -271,7 +338,7 @@ def main():
     for card in data["cards"]:
         content(card, page, total).save(os.path.join(out_dir, f"slide_{page:02d}.png")); page += 1
     cta(data["cta"]).save(os.path.join(out_dir, f"slide_{page:02d}.png"))
-    print(f"Rendered {page} slides to {out_dir} (theme={os.environ.get('CAROUSEL_THEME','warm')})")
+    print(f"Rendered {page} slides to {out_dir} (theme={os.environ.get('CAROUSEL_THEME','brand')})")
 
 if __name__ == "__main__":
     main()
