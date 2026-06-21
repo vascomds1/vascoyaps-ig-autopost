@@ -26,7 +26,7 @@ def past_topics():
     for line in open(LOG, encoding="utf-8"):
         line = line.strip()
         if line.startswith("- "):
-            out.append(line[2:].split(" — ")[0].strip())
+            out.append(line[2:].split(" \u2014 ")[0].strip())
     return out
 
 SCHEMA_EXAMPLE = {
@@ -41,7 +41,7 @@ SCHEMA_EXAMPLE = {
          "bullets": ["What to do, one short sentence.", "A concrete detail or tip."]}
     ],
     "cta": {"kicker": "SAVE THIS FOR LATER", "line1": "Follow", "handle": "@vascoyaps",
-            "pill": "Save this  ·  Build it today"},
+            "pill": "Save this  \u00b7  Build it today"},
     "caption": "Instagram caption with a save-prompt and hashtags."
 }
 
@@ -93,21 +93,39 @@ Rules:
 Return ONLY the JSON object."""
 
 def extract_json(text):
-    a, b = text.find("{"), text.rfind("}")
+    t = text.strip()
+    if "```" in t:
+        import re as _re
+        m = _re.search(r"```(?:json)?\s*(.*?)```", t, _re.S)
+        if m:
+            t = m.group(1).strip()
+    a, b = t.find("{"), t.rfind("}")
     if a == -1 or b == -1:
         raise ValueError("No JSON found in model output")
-    return json.loads(text[a:b+1])
+    chunk = t[a:b+1]
+    try:
+        return json.loads(chunk)
+    except json.JSONDecodeError:
+        import re as _re
+        return json.loads(_re.sub(r",(\s*[}\]])", r"\1", chunk))
 
 def main():
     avoid = past_topics()
     client = anthropic.Anthropic()
-    resp = client.messages.create(
-        model=MODEL, max_tokens=3500, system=SYSTEM,
-        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
-        messages=[{"role": "user", "content": build_prompt(avoid)}],
-    )
-    text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
-    data = extract_json(text)
+    data = None
+    for _attempt in range(3):
+        resp = client.messages.create(
+            model=MODEL, max_tokens=3500, system=SYSTEM,
+            tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 5}],
+            messages=[{"role": "user", "content": build_prompt(avoid)}],
+        )
+        text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
+        try:
+            data = extract_json(text); break
+        except (ValueError, json.JSONDecodeError) as _e:
+            print(f"[generate] JSON parse failed (attempt {_attempt+1}/3): {_e}")
+            if _attempt == 2:
+                raise
 
     data["cards"] = data["cards"][:6]
     for i, c in enumerate(data["cards"], 1):
@@ -115,7 +133,7 @@ def main():
         c["label"] = f"STEP {i}"
         c["bullets"] = c.get("bullets", [])[:2]
 
-    def clean(s): return s.replace("—", ", ").replace("–", "-") if isinstance(s, str) else s
+    def clean(s): return s.replace("\u2014", ", ").replace("\u2013", "-") if isinstance(s, str) else s
     def walk(o):
         if isinstance(o, dict): return {k: walk(v) for k, v in o.items()}
         if isinstance(o, list): return [walk(v) for v in o]
@@ -130,7 +148,7 @@ def main():
     with open(LOG, "a", encoding="utf-8") as f:
         if header_needed:
             f.write("# Posted tutorials (do not repeat)\n\n")
-        f.write(f"- {topic} — {today}\n")
+        f.write(f"- {topic} \u2014 {today}\n")
 
     print("Tutorial:", topic)
     print("Caption preview:\n", data.get("caption", "")[:300])
