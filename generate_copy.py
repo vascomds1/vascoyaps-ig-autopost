@@ -44,7 +44,7 @@ def recent_slugs():
 
 SCHEMA_EXAMPLE = {
     "cover": {
-        "kicker": "AI NEWS  ·  " + TODAY,
+        "kicker": "AI NEWS  \u00b7  " + TODAY,
         "title_lines": ["AI just had", "its biggest", "day", "of the year."],
         "subtitle": "One-sentence promise of what the 6 stories cover. Concrete and specific."
     },
@@ -56,7 +56,7 @@ SCHEMA_EXAMPLE = {
     "cta": {
         "kicker": "THAT'S TODAY IN AI", "line1": "Follow", "handle": "@vascoyaps",
         "subtitle": "AI news, decoded daily.",
-        "pill": "Save this  ·  Send it to a friend"
+        "pill": "Save this  \u00b7  Send it to a friend"
     },
     "caption": "Instagram caption text with hashtags."
 }
@@ -85,7 +85,7 @@ Then output a single Instagram carousel as STRICT JSON, no prose, matching exact
 
 Rules:
 - cover.title_lines: 3 to 4 short lines that read as one bold statement; the LAST element is the phrase that gets highlighted (keep it punchy, <= 4 words). Keep each line short enough to fit a big headline.
-- cover.kicker: keep exactly "AI NEWS  ·  {TODAY}".
+- cover.kicker: keep exactly "AI NEWS  \u00b7  {TODAY}".
 - Exactly 6 cards. index 1..6. label = 1-2 word uppercase category (e.g. APPLE, FUNDING, REGULATION).
 - slug: a short stable lowercase-kebab id for the story (e.g. "anthropic-ipo", "gemini-3-5-pro", "eu-ai-act"). Reuse the SAME slug if you are revisiting a story with a new development, so the log stays consistent.
 - headline: 4 to 6 words, concrete and specific, no period needed. Keep it short so it never wraps past 2 lines.
@@ -96,23 +96,41 @@ Rules:
 Return ONLY the JSON object."""
 
 def extract_json(text):
-    a, b = text.find("{"), text.rfind("}")
+    t = text.strip()
+    if "```" in t:
+        import re as _re
+        m = _re.search(r"```(?:json)?\s*(.*?)```", t, _re.S)
+        if m:
+            t = m.group(1).strip()
+    a, b = t.find("{"), t.rfind("}")
     if a == -1 or b == -1:
         raise ValueError("No JSON found in model output")
-    return json.loads(text[a:b+1])
+    chunk = t[a:b+1]
+    try:
+        return json.loads(chunk)
+    except json.JSONDecodeError:
+        import re as _re
+        return json.loads(_re.sub(r",(\s*[}\]])", r"\1", chunk))
 
 def main():
     avoid = recent_slugs()
     client = anthropic.Anthropic()
-    resp = client.messages.create(
-        model=MODEL,
-        max_tokens=4000,
-        system=SYSTEM,
-        tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 6}],
-        messages=[{"role": "user", "content": build_prompt(avoid)}],
-    )
-    text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
-    data = extract_json(text)
+    data = None
+    for _attempt in range(3):
+        resp = client.messages.create(
+            model=MODEL,
+            max_tokens=4000,
+            system=SYSTEM,
+            tools=[{"type": "web_search_20250305", "name": "web_search", "max_uses": 6}],
+            messages=[{"role": "user", "content": build_prompt(avoid)}],
+        )
+        text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
+        try:
+            data = extract_json(text); break
+        except (ValueError, json.JSONDecodeError) as _e:
+            print(f"[generate] JSON parse failed (attempt {_attempt+1}/3): {_e}")
+            if _attempt == 2:
+                raise
 
     # ---- validate / sanitize ----
     assert "cover" in data and "cards" in data and "cta" in data and "caption" in data, "missing top-level keys"
@@ -120,7 +138,7 @@ def main():
     for i, c in enumerate(data["cards"], 1):
         c["index"] = i
         c["bullets"] = c.get("bullets", [])[:3]
-    def clean(s): return s.replace("—", ", ").replace("–", "-") if isinstance(s, str) else s
+    def clean(s): return s.replace("\u2014", ", ").replace("\u2013", "-") if isinstance(s, str) else s
     def walk(o):
         if isinstance(o, dict): return {k: walk(v) for k, v in o.items()}
         if isinstance(o, list): return [walk(v) for v in o]
