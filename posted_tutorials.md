@@ -8,3 +8,4 @@
 - Artifacts reading list tracker mini app — 2026-06-10
 - Google Calendar connector auto meeting prep brief — 2026-06-17
 - Slack connector daily standup digest — 2026-06-19
+- #538 Mindtrip travel planning - 2026-06-23
