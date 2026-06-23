@@ -1,0 +1,1411 @@
+{
+ "part": 3,
+ "range": [
+  401,
+  600
+ ],
+ "source_doc": "17YD0BYKOLO31588QQWoqXejYgzOtCSKABtC_579fEdU",
+ "count": 200,
+ "ideas": [
+  {
+   "id": 401,
+   "title": "Obsidian Smart Connections",
+   "hook": "This free plugin finds notes you forgot you wrote, automatically.",
+   "script": "Install the Smart Connections plugin in Obsidian's community plugins. Open any note. A sidebar appears showing your most related notes ranked by meaning, not keywords. Click one and jump straight to a forgotten idea. Open the Smart Chat panel and ask a question about your entire vault. It answers using your own notes as sources. Your second brain just got a search engine that thinks.",
+   "publisher": "https://github.com/brianpetro/obsidian-smart-connections"
+  },
+  {
+   "id": 402,
+   "title": "Stack AI internal tool builder",
+   "hook": "I built an AI workflow that answers company questions from our docs, dragging boxes.",
+   "script": "Go to stack-ai.com and create a new project. Drag an Input node, an LLM node, and an Output node onto the canvas. Upload your PDFs to the knowledge base node. Wire the knowledge base into the LLM so it answers from your docs. Hit Save and Export as an API or a chatbot. Test it by asking a question only your docs would know. It answers with citations. You just built a RAG tool with no code.",
+   "publisher": "https://www.stack-ai.com"
+  },
+  {
+   "id": 403,
+   "title": "OnlyOffice (free Office with better compatibility)",
+   "hook": "This free Office clone looks exactly like the paid one, files match perfectly.",
+   "script": "Download OnlyOffice Desktop Editors from onlyoffice.com. Install and open the app. Edit documents, sheets, and slides in a familiar ribbon layout. It keeps Microsoft formatting near perfectly when you save. Work fully offline with no account needed. Connect cloud storage if you want sync. Collaborate in real time on the free community version. Free, open source, and pixel-faithful to Office.",
+   "publisher": "https://www.onlyoffice.com"
+  },
+  {
+   "id": 404,
+   "title": "Qodo (AI test and PR review)",
+   "hook": "This free tool writes tests for your code and catches bugs in your pull requests.",
+   "script": "Install the Qodo Gen extension in VS Code from the marketplace. Open a function, right click, and pick Generate Tests. Qodo analyzes the code paths and writes real test cases. Review them and click to add them to your test file. For pull requests, add the Qodo Merge bot to your GitHub repo. Comment /review on any PR and it posts findings inline. It flags edge cases you would miss at 2am. Free tier covers solo devs.",
+   "publisher": "https://github.com/qodo-ai"
+  },
+  {
+   "id": 405,
+   "title": "Homepage",
+   "hook": "This free GitHub dashboard turns all your self-hosted apps into one clean homescreen.",
+   "script": "A wall of bookmarks is no way to run a homelab. Homepage is a free open-source dashboard. Run docker run -d -p 3000:3000 ghcr.io/gethomepage/homepage. Edit the simple YAML config files it creates. Add tiles for every service you run. It shows live stats pulled from each app's API. Add weather, search, and system widgets. One gorgeous page that controls your entire setup.",
+   "publisher": "github.com/gethomepage/homepage"
+  },
+  {
+   "id": 406,
+   "title": "onefetch",
+   "hook": "Turn any git repo into a gorgeous stats card.",
+   "script": "onefetch shows a beautiful summary of any git repository. It prints the language logo with commit and contributor stats. Install it with winget install o2sh.onefetch on Windows. On Mac run brew install onefetch. Cd into any repo and type onefetch. It shows top languages, authors, and lines of code. The logo is colored ASCII art. Instant repo bragging rights.",
+   "publisher": "winget install o2sh.onefetch / brew install onefetch"
+  },
+  {
+   "id": 407,
+   "title": "ngrok",
+   "hook": "Demo your local app to a client in 30 seconds.",
+   "script": "ngrok exposes your localhost with a public URL and HTTPS. Great for webhooks and quick demos. Install it with winget install ngrok.ngrok on Windows. On Mac run brew install ngrok. Run ngrok http 3000 to tunnel your dev server. It prints a live URL plus a request inspector. Watch every incoming request in real time. Your local app is now shareable anywhere.",
+   "publisher": "winget install ngrok.ngrok / brew install ngrok"
+  },
+  {
+   "id": 408,
+   "title": "Habit Builder",
+   "hook": "This prompt designs a habit so easy you can't fail.",
+   "script": "Open ChatGPT. Type this: \"I want to build the habit of \\[habit\\]. Use the tiny habits method: give me a 2 minute version, a trigger to attach it to, and how to track it.\" It shrinks the habit until it's effortless. Then it ties it to something you already do. Tracking keeps you honest. Tiny starts beat big plans. This is how habits actually stick.",
+   "publisher": "\"I want to build the habit of \\[habit\\]. Use the tiny habits method: give me a 2 minute version, a trigger to attach it to, and how to track it.\""
+  },
+  {
+   "id": 409,
+   "title": "Luma Dream Machine image-to-video",
+   "hook": "Here's how I turned a still photo into a moving video for free.",
+   "script": "Go to lumalabs.ai/dream-machine and sign in. Click the upload icon and drop in any image. Type a short motion prompt like \"camera slowly pushes in, hair blowing in wind.\" Hit the arrow to generate. Wait around 90 seconds for the clip. Download the result. Your flat photo is now a living shot you can use anywhere.",
+   "publisher": "https://lumalabs.ai/dream-machine"
+  },
+  {
+   "id": 410,
+   "title": "Speechify",
+   "hook": "This app reads any article, email, or PDF out loud while you do other things.",
+   "script": "Install Speechify and import a long PDF or paste an article. Pick a natural-sounding voice. Hit play and listen while you walk or cook. Speed it up to two or three times without losing clarity. Use the browser extension to listen to any web page. Highlight follows along as it reads. Turn dead time into reading time.",
+   "publisher": "https://speechify.com"
+  },
+  {
+   "id": 411,
+   "title": "Code Spell Checker",
+   "hook": "This catches typos in your variable names before code review does.",
+   "script": "Open Extensions with Ctrl Shift X. Search Code Spell Checker and install. It underlines misspelled words in your code and comments with a squiggle. Press Ctrl Dot on the word for correct suggestions. Add project-specific words to the dictionary so it stops flagging them. It understands camelCase and snake\\_case. No more recieve or lenght shipping to production. Quiet, fast, and saves you embarrassment.",
+   "publisher": "streetsidesoftware.code-spell-checker"
+  },
+  {
+   "id": 412,
+   "title": "AI poster with PosterMyWall",
+   "hook": "Make an event poster from a prompt and animate it too.",
+   "script": "Open PosterMyWall and click the AI poster maker. Type your event details in one line. It generates several finished poster designs. Pick one and edit the text on the canvas. Swap the background image from the library. Turn it into an animated video poster in one click. Download for print or social. A buzz-worthy poster done in minutes.",
+   "publisher": "https://postermywall.com"
+  },
+  {
+   "id": 413,
+   "title": "Write better emails fast",
+   "hook": "Claude turns a one-line note into a professional email instantly.",
+   "script": "Open Claude and type: \"Write a polite email declining this meeting but offering two alternative times next week.\" Claude drafts it in a clean, professional tone. Say \"make it shorter and warmer\" to adjust the vibe. Paste an email you received and ask \"draft a reply that sets a firm deadline without sounding rude.\" It nails the balance. Copy it straight into your inbox. Inbox zero, faster.",
+   "publisher": "\"Write a polite email declining this meeting but offering two alternative times next week.\""
+  },
+  {
+   "id": 414,
+   "title": "Ente Auth (cross-platform 2FA)",
+   "hook": "A free authenticator that syncs your codes everywhere and end-to-end encrypts them.",
+   "script": "Download Ente Auth from ente.io/auth on any device. Create an account or use it offline. Scan a QR code to add a two-factor login. Your codes sync encrypted across phone, desktop, and web. Search by name to find any code fast. Import existing codes from other authenticators easily. Even the developers cannot read your secrets. Free, open source, and works on every platform.",
+   "publisher": "https://ente.io/auth"
+  },
+  {
+   "id": 415,
+   "title": "Logseq",
+   "hook": "This free, private notes app links every idea you write automatically.",
+   "script": "Open Logseq and start in the daily journal. Write thoughts as bullets and link any term with double brackets. Click a linked page to see every place you mentioned it. Add a tag and watch a live list build itself. Everything stays in local plain-text files you own. Add a plugin for AI summaries. A networked brain that lives on your machine.",
+   "publisher": "https://logseq.com"
+  },
+  {
+   "id": 416,
+   "title": "Cursor rules files",
+   "hook": "Cursor ignores your style until you add this one file, here's how.",
+   "script": "In Cursor, create a folder called .cursor and inside it a folder called rules. Add a file like style.mdc and write your rules in plain English. Say things like \"always use TypeScript, never use any, prefer named exports.\" Add a frontmatter line with globs so it only applies to matching files. Now every Cursor edit follows your standards automatically. Test it by asking for a new component and watch it match your code. One file and the AI finally writes like you do.",
+   "publisher": "https://docs.cursor.com/context/rules"
+  },
+  {
+   "id": 417,
+   "title": "ChatGPT custom instructions",
+   "hook": "Stop telling ChatGPT the same thing in every chat.",
+   "script": "Click your name in the bottom left and open Settings. Go to Personalization, then Custom Instructions. In the first box, tell it who you are and what you do. In the second box, tell it exactly how to respond, like \"be direct, no fluff, use bullet points.\" Save it once and it applies to every new chat forever. You never have to repeat your preferences again. This is the single fastest way to make ChatGPT sound like it actually knows you.",
+   "publisher": "https://chatgpt.com"
+  },
+  {
+   "id": 418,
+   "title": "ChatGPT Canvas",
+   "hook": "ChatGPT has a hidden writing and coding editor most people never open.",
+   "script": "Start a chat and type \"open this in canvas\" with any draft or code. A side panel opens that you can edit directly like a document. Highlight any sentence and ChatGPT will rewrite just that part. Use the bottom right buttons to adjust length, reading level, or add polish in one click. For code, it shows inline fixes and can add comments automatically. You edit and it edits, side by side. It feels like Google Docs and an AI editor had a baby.",
+   "publisher": "https://chatgpt.com"
+  },
+  {
+   "id": 419,
+   "title": "Build a habit tracker",
+   "hook": "Claude built me a habit tracker with streaks in one prompt.",
+   "script": "New chat on Claude, pick Sonnet. Type: \"Build a habit tracker artifact with a 7-day grid, checkboxes per day, and a streak counter that saves to local storage.\" The tracker renders and you can tick days right in the chat. It remembers your checkmarks because it uses local storage. Ask \"add three default habits and a button to add new ones.\" Claude updates the artifact in place. Publish it and use it on your phone.",
+   "publisher": "\"Build a habit tracker artifact with a 7-day grid, checkboxes per day, and a streak counter that saves to local storage.\""
+  },
+  {
+   "id": 420,
+   "title": "Clay data enrichment",
+   "hook": "Clay enriches a messy lead list into a goldmine automatically.",
+   "script": "Open Clay and import your raw lead list. Add enrichment columns for email and company data. Pull in funding, headcount, and tech stack. Use AI to write a custom line for each lead. Score every lead by fit. Push the finished list to your outreach tool. Watch your reply rate jump. Spreadsheet to pipeline on autopilot.",
+   "publisher": "https://clay.com"
+  },
+  {
+   "id": 421,
+   "title": "OpenCode (open-source terminal agent)",
+   "hook": "This free open-source coding agent runs in your terminal and works with any model.",
+   "script": "Install it with curl -fsSL https://opencode.ai/install | bash. Cd into your project and run opencode. Press the model picker and choose Claude, GPT, or a local model. Type your task in the chat box at the bottom. It plans, edits files, and shows a live diff in the terminal UI. Use the keyboard to approve or reject each change. It has a clean TUI so you never leave the keyboard. Fully open source and provider agnostic.",
+   "publisher": "https://github.com/sst/opencode"
+  },
+  {
+   "id": 422,
+   "title": "Full short with Sora plus Submagic",
+   "hook": "Here's how to make a finished short with two AI tools.",
+   "script": "Open sora.com and generate a vertical clip from your idea. Download it to your computer. Go to submagic.co and upload the clip. Let it add animated captions automatically. Highlight your keywords and add a trending sound. Export in 1080p. A scroll-stopping short built entirely with AI.",
+   "publisher": "https://submagic.co"
+  },
+  {
+   "id": 423,
+   "title": "AppFlowy",
+   "hook": "This free open-source app is a Notion replacement that keeps your data on your machine.",
+   "script": "Notion holds your entire workspace hostage in their cloud. AppFlowy is free and self-hosted. Clone it with git clone https://github.com/AppFlowy-IO/AppFlowy. Or grab the desktop build from the releases page. Build docs, boards, and databases like Notion. Everything saves locally with no account required. The data stays in formats you fully control. A real Notion alternative that you actually own.",
+   "publisher": "github.com/AppFlowy-IO/AppFlowy"
+  },
+  {
+   "id": 424,
+   "title": "Diffit (reading-level adapter for teachers)",
+   "hook": "Turn any article into a worksheet at the exact reading level your class needs.",
+   "script": "Go to diffit.me and log in with Google for free. Paste any article URL, a YouTube link, or just a topic. Pick your grade level from the dropdown, say 4th grade. It rewrites the text at that level and generates summary, vocabulary, and questions. Click Export and choose Google Docs or a printable PDF. Change the grade and it instantly re-levels the same content for your struggling readers. One source, five versions, zero extra prep.",
+   "publisher": ""
+  },
+  {
+   "id": 425,
+   "title": "WhatsApp message yourself",
+   "hook": "WhatsApp has a secret chat just for you.",
+   "script": "Open WhatsApp and start a new chat. At the very top, tap Message Yourself. Now you have a private notepad inside WhatsApp. Send yourself links, voice notes, and reminders. Pin it to the top so it is always there. It syncs across all your devices. It is the fastest note and reminder tool you already have.",
+   "publisher": "https://whatsapp.com"
+  },
+  {
+   "id": 426,
+   "title": "Domo AI video-to-video",
+   "hook": "Turn your real video into an anime version with one tool.",
+   "script": "Go to domoai.app and open their app or Discord. Upload your real video clip. Pick an art style like anime or 3D. Type a short prompt to guide it. Submit and wait for the render. It restyles every frame consistently. Download your transformed clip.",
+   "publisher": "https://domoai.app"
+  },
+  {
+   "id": 427,
+   "title": "Hugging Face Spaces (free demos)",
+   "hook": "This site has hundreds of free AI image tools you can use without signing up.",
+   "script": "Go to huggingface.co/spaces and search for what you need, like upscaler or face restore. Click a Space with lots of likes to open the live demo. Upload your image into the input box. Click Submit and wait for the result. No account or payment for most demos. Download the output directly. A free testing ground for almost any AI image task.",
+   "publisher": "https://huggingface.co/spaces"
+  },
+  {
+   "id": 428,
+   "title": "Attio modern CRM",
+   "hook": "This CRM feels like a spreadsheet but thinks like an AI.",
+   "script": "Open Attio and connect your email and calendar. It auto-builds contacts from your inbox. Create a custom pipeline in seconds. Use AI to enrich company records. Set automations to move deals forward. Get a research summary on any lead. Track everything in clean views. The CRM founders actually enjoy using.",
+   "publisher": "https://attio.com"
+  },
+  {
+   "id": 429,
+   "title": "Figma Make",
+   "hook": "Describe an app screen and Figma builds a working prototype.",
+   "script": "Open Figma and start a new Make file. Type the screen you want in plain English. It generates a real, interactive design instantly. Click through the prototype to test the flow. Ask it to change the color scheme with a prompt. Refine any component by describing the edit. Hand it off to your team in Figma. From idea to clickable prototype in minutes.",
+   "publisher": "https://figma.com/make"
+  },
+  {
+   "id": 430,
+   "title": "Snapwic AI store creator",
+   "hook": "This tool spins up a finished online store in minutes with AI.",
+   "script": "Open Snapwic and choose what you want to sell. AI generates the store layout and theme. It fills in product copy automatically. Add or edit products in a clean dashboard. Use AI to write your about page. Connect payments and shipping. Launch your storefront live. A full shop built before lunch.",
+   "publisher": "https://snapwic.com"
+  },
+  {
+   "id": 431,
+   "title": "Vibe local transcription",
+   "hook": "This free app transcribes audio offline on any computer.",
+   "script": "Download Vibe for Windows, Mac, or Linux. Open it and drag in your audio file. Pick your language and the Whisper model. Hit transcribe and it runs fully offline. Watch the text fill in as it works. Export to SRT, VTT, or plain text. Private transcription that never leaves your machine.",
+   "publisher": "https://thewh1teagle.github.io/vibe"
+  },
+  {
+   "id": 432,
+   "title": "LangGraph stateful agent",
+   "hook": "I built an AI agent with real memory and branching logic using a graph.",
+   "script": "Run pip install langgraph in your terminal. Define a state object that holds your messages. Add a node for the model and a node for the tools. Draw edges so the graph loops back when a tool is called. Compile the graph and invoke it with a question. Watch it call a tool, read the result, and decide the next step. The graph controls the whole flow with full state. This is production-grade agent control.",
+   "publisher": "https://github.com/langchain-ai/langgraph"
+  },
+  {
+   "id": 433,
+   "title": "Merlin AI",
+   "hook": "I replaced five AI subscriptions with this one free extension.",
+   "script": "Open the Chrome Web Store and search Merlin AI. Click Add to Chrome and sign in with Google. Press Ctrl plus M on any page to open the Merlin box. Ask it anything and it answers right there without leaving the tab. Highlight an email or comment and click Reply to draft a response instantly. Open a YouTube video and hit Summarize to get the whole thing in seconds. It works on Google searches too, showing AI answers next to your results. Free daily credits, no card needed.",
+   "publisher": ""
+  },
+  {
+   "id": 434,
+   "title": "Run a local AI agent with browser-use",
+   "hook": "I gave a free local AI control of my browser and it does tasks by itself.",
+   "script": "Install Ollama from ollama.com and pull a capable model like qwen2.5. Open a terminal and run pip install browser-use. Set the model to your local Ollama endpoint in the script. Write a task like \"search for flights to Tokyo and list the cheapest.\" Run the script and watch it click through the browser. The AI plans and acts using your local model. No OpenAI key, no cloud cost. A free local agent that actually does things.",
+   "publisher": "https://github.com/browser-use/browser-use"
+  },
+  {
+   "id": 435,
+   "title": "Tabby (self-hosted Copilot)",
+   "hook": "I run my own private Copilot on my machine for free, zero cloud, here's how.",
+   "script": "Make sure Docker is installed, then run docker run -it -p 8080:8080 tabbyml/tabby serve --model StarCoder-1B. Open localhost:8080 and create your admin account. Install the Tabby extension in VS Code and point it at localhost:8080. Now you get tab autocomplete that never leaves your computer. Pick a bigger model like CodeLlama if you have a GPU. Your code stays private and you pay nothing monthly. Self-hosted Copilot in about five minutes.",
+   "publisher": "https://github.com/TabbyML/tabby"
+  },
+  {
+   "id": 436,
+   "title": "AI pixel art",
+   "hook": "Generate clean retro pixel art game sprites with one prompt.",
+   "script": "Go to leonardo.ai and pick the Pixel Art model or style preset. Type \"pixel art knight character sprite, side view, 8-bit.\" Set a square aspect ratio and Generate. Pick the cleanest sprite from the batch. Download it and open it in a free editor like Piskel to tidy pixels. Use it in your game or as an icon. Retro art without drawing every dot.",
+   "publisher": "https://leonardo.ai"
+  },
+  {
+   "id": 437,
+   "title": "MetaGPT (a whole AI software team)",
+   "hook": "I ran one command and a team of AI agents built my app like a real company.",
+   "script": "Install it with pip install metagpt, then run metagpt --init-config and add your key. Run metagpt \"build a CLI todo app with priorities.\" It spins up agents for PM, architect, engineer, and QA. The PM writes requirements, the architect designs, the engineer codes. You get docs, diagrams, and working code in one folder. Each role hands off to the next automatically. Open the output and run the generated app. One prompt, a full software team.",
+   "publisher": "https://github.com/FoundationAgents/MetaGPT"
+  },
+  {
+   "id": 438,
+   "title": "AI consulting offer",
+   "hook": "I packaged a consulting offer with AI and booked calls the same week.",
+   "script": "Use ChatGPT to define your niche and dream client. Have it write your core offer and promise. Generate three pricing tiers. Build a one-page sales site in Carrd. Write the booking page copy with AI. Add a Calendly link. Send AI cold emails with Instantly. A signature offer ready to sell in a day.",
+   "publisher": "https://carrd.co"
+  },
+  {
+   "id": 439,
+   "title": "Predis.ai",
+   "hook": "Type one line and get a finished carousel post with captions.",
+   "script": "Open Predis.ai and type your idea. Choose carousel or single post. The AI builds slides, text, and a caption together. Edit any slide in the drag and drop editor. Swap colors to match your brand. Download or schedule directly. A full carousel from one sentence.",
+   "publisher": "https://predis.ai"
+  },
+  {
+   "id": 440,
+   "title": "Semantic Scholar",
+   "hook": "This free academic search ranks papers by how much they actually matter.",
+   "script": "Go to semanticscholar.org and search your topic. It surfaces peer-reviewed papers with AI-generated TLDR summaries. Read the one-line TLDR before opening anything. Filter by year, field, or citation count to find the heavy hitters. Save papers to your library and get recommendations. Follow authors to track new work automatically. Real research, ranked by impact, completely free.",
+   "publisher": "https://www.semanticscholar.org"
+  },
+  {
+   "id": 441,
+   "title": "bottom (btm)",
+   "hook": "A system monitor written in Rust that runs everywhere.",
+   "script": "bottom is a cross platform system monitor with the command btm. It graphs CPU, memory, temps, and processes. Install it with winget install Clement.bottom on Windows. On Mac run brew install bottom. Run btm and resize widgets with your keyboard. Search and sort processes live. It works the same on Windows, Mac, and Linux. One monitor for every machine you touch.",
+   "publisher": "winget install Clement.bottom / brew install bottom"
+  },
+  {
+   "id": 442,
+   "title": "Format on Save",
+   "hook": "This one setting cleans up your code every single time you hit save.",
+   "script": "Open settings with Ctrl Comma. Search for format on save. Check the box to turn it on. Make sure you have a formatter like Prettier set as default. Now write messy code with bad spacing. Hit Ctrl S to save. Watch it instantly snap into clean formatting. You stop wasting time fixing indentation by hand. Set it once and your code is always tidy.",
+   "publisher": "built in, search settings for editor.formatOnSave"
+  },
+  {
+   "id": 443,
+   "title": "LLaVA local vision model",
+   "hook": "This free local AI can actually look at your screenshots and describe them.",
+   "script": "Install Ollama from ollama.com first. Run \"ollama run llava\" in your terminal. It downloads a vision model that understands images. Drag an image path right into the prompt or use the API. Ask \"what's in this picture\" and it describes it in detail. It works on charts, photos, and UI screenshots. Everything processes locally, your images never upload. A free offline AI that can see.",
+   "publisher": "https://ollama.com/library/llava"
+  },
+  {
+   "id": 444,
+   "title": "Klap shorts generator",
+   "hook": "Turn a YouTube video into shorts without touching an editor.",
+   "script": "Go to klap.app and sign in. Paste your YouTube link into the box. Wait while it analyzes the whole video. Pick from the auto-generated short clips. Tweak the captions and layout if you want. Hit export on your favorites. Long-form to short-form in two clicks.",
+   "publisher": "https://klap.app"
+  },
+  {
+   "id": 445,
+   "title": "fd (better find)",
+   "hook": "find has the worst syntax in computing. Delete it.",
+   "script": "fd is a simpler, faster find. The syntax is just fd and your search word. Install it with winget install sharkdp.fd on Windows. On Mac run brew install fd. Type fd config and it finds every matching file instantly. It respects your gitignore by default. Add fd -e png to filter by extension. Searching files should be this easy.",
+   "publisher": "winget install sharkdp.fd / brew install fd"
+  },
+  {
+   "id": 446,
+   "title": "Xmind AI",
+   "hook": "Brainstorm a project and let AI build the mind map for you.",
+   "script": "Open Xmind and start a new map. Type your central topic in the middle. Click the AI button and describe what to expand. It branches out subtopics automatically. Keep prompting to grow any branch deeper. Switch the structure to a fishbone or tree layout. Export the finished map as an image. A full project map built from a single idea.",
+   "publisher": "https://xmind.app"
+  },
+  {
+   "id": 447,
+   "title": "Math AI solver",
+   "hook": "This AI solves your math problem and shows every single step.",
+   "script": "Open Mathful and type or snap a photo of your problem. It identifies the type and solves it instantly. Read the full step-by-step breakdown, not just the answer. Tap any step you don't understand for an explanation. Works for algebra, calculus, and word problems. Check your own work before you submit. Homework that actually teaches you while it solves.",
+   "publisher": "https://www.mathful.com"
+  },
+  {
+   "id": 448,
+   "title": "entr",
+   "hook": "A tiny tool that runs commands when files change.",
+   "script": "entr reruns any command whenever watched files update. It is small, simple, and rock solid. Install it with brew install entr on Mac. On Linux or WSL use sudo apt install entr. Pipe a file list into entr and give it a command. Save a file and the command fires again. Use it for tests, builds, or restarts. One pipe gives you instant automation.",
+   "publisher": "brew install entr / apt install entr"
+  },
+  {
+   "id": 449,
+   "title": "Polacode",
+   "hook": "Another way to turn code into a shareable image, Polaroid style.",
+   "script": "Open Extensions with Ctrl Shift X. Search Polacode and install. Select the code you want to capture. Hit Ctrl Shift P and run Polacode. A side panel shows your snippet on a clean card. Drag the edges to size it just right. Click the camera icon to save the image. It keeps your exact theme and font. Great for thumbnails and quick shares. Free and dead simple.",
+   "publisher": "pnp.polacode"
+  },
+  {
+   "id": 450,
+   "title": "LlamaIndex data agent",
+   "hook": "I gave an AI agent access to my private files and it answers anything in them.",
+   "script": "Run pip install llama-index in your terminal. Drop your documents into a folder called data. Load them with SimpleDirectoryReader in three lines of Python. Build an index with VectorStoreIndex.from\\_documents. Wrap it as a query engine tool and hand it to an agent. Ask a question that only your files could answer. It retrieves the exact passage and answers with sources. Your own data, now an agent.",
+   "publisher": "https://github.com/run-llama/llama\\_index"
+  },
+  {
+   "id": 451,
+   "title": "Pika effects on your video",
+   "hook": "Add wild AI effects to your real footage in seconds.",
+   "script": "Go to Krea or Domo and upload your real clip. Browse the effects, like inflate, melt, or explode. Pick one and apply it to your video. Set the strength and generate. The effect transforms your footage convincingly. Download and post the wild result.",
+   "publisher": "https://domoai.app"
+  },
+  {
+   "id": 452,
+   "title": "Cline with a free model via OpenRouter",
+   "hook": "I run this powerful VS Code agent for free using OpenRouter's free models.",
+   "script": "Install Cline in VS Code from the extensions tab. Make a free account at openrouter.ai and copy an API key. In Cline settings, pick OpenRouter as the provider and paste the key. In the model field, search for a model tagged free, like a free DeepSeek or Llama. Now give Cline a task and it runs at zero cost. Watch it edit files and run commands as usual. Swap to a paid model only when you need more power. A capable agent for free.",
+   "publisher": "https://openrouter.ai"
+  },
+  {
+   "id": 453,
+   "title": "Copysmith",
+   "hook": "This tool writes a thousand product descriptions in one upload.",
+   "script": "Open Copysmith and choose Bulk Generate. Upload a spreadsheet of your products. Map the columns to name and features. Pick the description template. Click Generate and watch it fill every row. Download the finished file. An entire catalog written while you wait.",
+   "publisher": "https://copysmith.ai"
+  },
+  {
+   "id": 454,
+   "title": "Build a Custom GPT",
+   "hook": "This prompt writes the instructions for your own custom GPT.",
+   "script": "Open ChatGPT. Type this: \"Write custom instructions for a GPT that acts as \\[role, like my brutally honest copywriting editor\\]. Include its personality, rules, and what it should always do.\" It writes a full instruction set. Personality and rules are clear. You paste it into a new custom GPT and it just works. Build your own AI assistant in 2 minutes. No coding.",
+   "publisher": "\"Write custom instructions for a GPT that acts as \\[role\\]. Include its personality, rules, and what it should always do.\""
+  },
+  {
+   "id": 455,
+   "title": "Socratic by Google",
+   "hook": "Snap a photo of any homework question and get the answer explained for free.",
+   "script": "Download the Socratic app and open the camera. Point it at any homework question across subjects. It reads the question and pulls the best explanations. Get video lessons and step-by-step guides instantly. Works for math, science, history, and literature. Tap through to learn the concept behind it. Free homework help in one photo.",
+   "publisher": "https://socratic.org"
+  },
+  {
+   "id": 456,
+   "title": "LM Studio",
+   "hook": "I run ChatGPT-level AI on my laptop with zero internet and zero cost, here's the 2-minute setup.",
+   "script": "Go to lmstudio.ai and download the app for Windows, Mac, or Linux. Open it and click the search icon on the left. Type \"Llama 3.1 8B\" and hit download. When it finishes, click the chat bubble icon at the top. Pick the model from the dropdown at the top of the screen. Start typing in the chat box like it's ChatGPT. Everything runs on your own machine, fully offline. That's it. A real AI on your PC. Free. Forever.",
+   "publisher": "https://lmstudio.ai"
+  },
+  {
+   "id": 457,
+   "title": "MaxAI.me",
+   "hook": "This free extension lets you rewrite, translate, or explain anything with one shortcut.",
+   "script": "Go to the Chrome Web Store and search MaxAI. Click Add to Chrome and pin the icon. Highlight any text on any site to bring up the quick menu. Click Explain to break down something complicated. Click Translate to flip it into another language instantly. Use Rewrite to make an awkward sentence sound clean. Press the shortcut to open a full AI chat on top of any page. Free one-click AI for the whole internet.",
+   "publisher": ""
+  },
+  {
+   "id": 458,
+   "title": "Ghost",
+   "hook": "This free GitHub platform runs a pro blog and newsletter with no platform cut.",
+   "script": "Substack takes a slice of every dollar you earn. Ghost is free when you self-host it. Run docker run -d -p 2368:2368 ghost. Open the admin page and set up your site. Write in a clean distraction-free editor. Send posts as email newsletters to subscribers. Charge for memberships and keep 100 percent. A real publishing business that you own outright.",
+   "publisher": "github.com/TryGhost/Ghost"
+  },
+  {
+   "id": 459,
+   "title": "Local AI with Docker Model Runner",
+   "hook": "Docker now runs AI models with one command and most devs haven't tried it.",
+   "script": "Update Docker Desktop to the latest version. Open a terminal and run \"docker model pull ai/llama3.2\". Then run \"docker model run ai/llama3.2\" to chat in the terminal. It runs the model natively using your GPU. Use \"docker model list\" to see what you've pulled. It exposes an OpenAI-compatible endpoint automatically. No extra tools, just Docker you already have. Local AI baked right into Docker.",
+   "publisher": "https://docs.docker.com/desktop/features/model-runner/"
+  },
+  {
+   "id": 460,
+   "title": "Resemble AI clone",
+   "hook": "Build a custom AI voice and put it in your app.",
+   "script": "Sign up for Resemble AI and click Create Voice. Record or upload samples of the target voice. Let it train the voice model. Open the editor and type your script. Generate speech in that exact voice. Use the API to call it from your product. A branded voice you control end to end.",
+   "publisher": "https://www.resemble.ai"
+  },
+  {
+   "id": 461,
+   "title": "Aider (terminal pair programmer)",
+   "hook": "This free terminal tool edits your whole codebase from one sentence, here's the 40-second setup.",
+   "script": "Open your terminal and run pip install aider-install, then aider-install. Set your key with export OPENAI\\_API\\_KEY or ANTHROPIC\\_API\\_KEY. Cd into your project and just type aider. Tell it \"add input validation to the signup form\" in plain English. It reads your files, writes the diff, and shows you exactly what changed. Type /diff to review before it commits. It even makes the git commit for you with a real message. Free, open source, and it works on any repo you already have.",
+   "publisher": "https://github.com/Aider-AI/aider"
+  },
+  {
+   "id": 462,
+   "title": "OpenHands coding agent",
+   "hook": "This open-source Devin alternative builds whole features while you watch.",
+   "script": "Pull the OpenHands docker image from the readme. Run the docker command to launch it. Open localhost:3000 in your browser. Add your model API key in the settings. Type a task like add a dark mode toggle to my app. It opens a terminal, edits files, and runs tests itself. You see every command in the live workspace. A full autonomous software engineer, open source and free.",
+   "publisher": "https://github.com/All-Hands-AI/OpenHands"
+  },
+  {
+   "id": 463,
+   "title": "lazydocker",
+   "hook": "Managing Docker by command is pain. This is the fix.",
+   "script": "lazydocker is a terminal dashboard for Docker. See every container, image, and log in one screen. Install it with winget install JesseDuffield.lazydocker on Windows. On Mac run brew install lazydocker. Just type lazydocker and it launches. Click into any container to view live logs and stats. Restart or kill containers with one key. Docker just got a control panel.",
+   "publisher": "winget install JesseDuffield.lazydocker / brew install lazydocker"
+  },
+  {
+   "id": 464,
+   "title": "Notion synced blocks",
+   "hook": "Notion can show the same content in two places at once.",
+   "script": "Select any block of content and right-click it. Choose Copy and synced block. Paste it onto a different page. Now editing it in one spot updates it everywhere automatically. Use it for a shared to-do list or a policy that lives on many pages. Change it once and it changes everywhere. This stops you from updating the same thing five times.",
+   "publisher": "https://notion.so"
+  },
+  {
+   "id": 465,
+   "title": "Build a color palette generator",
+   "hook": "Claude builds a live color palette tool you can use for any project.",
+   "script": "Open Claude and paste: \"Build a color palette generator artifact that creates a 5-color palette from a base color with hex codes and a copy button.\" The tool renders with a color picker. Pick a base color and it generates a matching palette live. Click a hex code and it copies to your clipboard. Ask \"add a button to generate a random palette.\" Claude adds it. Design tokens, on tap.",
+   "publisher": "\"Build a color palette generator artifact that creates a 5-color palette from a base color with hex codes and a copy button.\""
+  },
+  {
+   "id": 466,
+   "title": "Rask AI video dubbing",
+   "hook": "Dub your video into 30 languages keeping your own voice.",
+   "script": "Open rask.ai and sign in. Upload your video or paste a link. Pick the target language, like Spanish. It transcribes, translates, and clones your voice. Turn on lip sync for a natural look. Export the dubbed video. Reach a whole new audience in one click.",
+   "publisher": "https://rask.ai"
+  },
+  {
+   "id": 467,
+   "title": "Consistent character (same face every time)",
+   "hook": "Here is how to keep the exact same AI character across every image.",
+   "script": "Go to leonardo.ai and generate one good character portrait. Click the image, then choose Use as Image Guidance. Set the guidance type to Character Reference. Write a new prompt putting that character in a different scene. Generate, and the face stays consistent. Repeat to build a whole storyboard with the same person. This is the trick for AI comics and brand mascots.",
+   "publisher": "https://leonardo.ai"
+  },
+  {
+   "id": 468,
+   "title": "Freepik AI (all-in-one suite)",
+   "hook": "This site bundles an image generator, upscaler, and background remover for free.",
+   "script": "Go to freepik.com and click the AI image generator. Type \"cozy bookstore cafe, warm light, illustration style.\" Pick a style and aspect ratio, then Generate. Use the daily free credits to make a batch. Click an image to upscale or remove its background in the same tool. Download the finished asset. One login for a whole creative toolkit.",
+   "publisher": "https://freepik.com/ai/image-generator"
+  },
+  {
+   "id": 469,
+   "title": "WhisperX word timestamps",
+   "hook": "Get word-perfect subtitles with exact timing for free.",
+   "script": "Install WhisperX on your machine with pip. Run it on your audio file from the terminal. It transcribes and aligns every word to the millisecond. You even get speaker labels for each line. Export the SRT with tight, accurate timing. Drop it into your video editor. Captions that snap to every single word.",
+   "publisher": "https://github.com/m-bain/whisperX"
+  },
+  {
+   "id": 470,
+   "title": "Refactor messy code with Claude Code",
+   "hook": "Point Claude Code at ugly code and tell it to clean it up.",
+   "script": "Launch Claude Code in your project. Type: \"Refactor this file to use clear function names, add comments, and split the long function into smaller ones.\" Claude shows you a diff of every change before touching anything. Review it, then approve. Run your tests with \"run the test suite and confirm nothing broke.\" It runs them and confirms. Clean code without rewriting it yourself.",
+   "publisher": "\"Refactor this file to use clear function names, add comments, and split the long function into smaller ones.\""
+  },
+  {
+   "id": 471,
+   "title": "Storm research writer",
+   "hook": "Stanford built an AI that writes Wikipedia-style articles from scratch, free.",
+   "script": "Clone the storm repo from Stanford on GitHub. Run pip install knowledge-storm. Add your OpenAI and search API keys to the secrets file. Run the example script with your topic as the argument. It generates outlines, asks itself questions, and researches each one. Then it writes a full long-form article with sources. Open the markdown file it saved. A complete researched piece with no manual work.",
+   "publisher": "https://github.com/stanford-oval/storm"
+  },
+  {
+   "id": 472,
+   "title": "AI brand kit with Looka",
+   "hook": "Generate your full brand kit colors, fonts, and logo at once.",
+   "script": "Open Looka and create your logo first. Once it is set, open Brand Kit. It pulls your colors and fonts into one place. Generate matching social templates instantly. Download brand guidelines as a PDF. Grab a favicon and email signature too. Apply the kit across all your designs. A complete brand identity packaged in one click.",
+   "publisher": "https://looka.com"
+  },
+  {
+   "id": 473,
+   "title": "AI customer-support agent in Python",
+   "hook": "I built a support agent that answers from our help docs and escalates hard cases.",
+   "script": "Run pip install langchain openai chromadb. Load your help docs and embed them into a vector store. Build an agent with a retrieval tool over those docs. Add an escalate tool that creates a support ticket. The agent answers easy questions from the docs directly. When it cannot answer, it calls the escalate tool. Wrap it in a simple chat endpoint. A support agent that knows its limits.",
+   "publisher": "https://github.com/langchain-ai/langchain"
+  },
+  {
+   "id": 474,
+   "title": "Mathpix (handwriting and PDF OCR)",
+   "hook": "Snap a photo of handwritten math and get clean digital equations.",
+   "script": "Download the Mathpix Snip app or use the desktop tool. Take a screenshot of any equation, even handwritten on paper. It instantly converts it to LaTeX and clean text. Copy the LaTeX straight into your Overleaf or Word doc. Drop in a full PDF of a textbook page and it extracts the equations and tables. Export the whole thing to Markdown or DOCX. Retyping math by hand is over.",
+   "publisher": ""
+  },
+  {
+   "id": 475,
+   "title": "Jenni AI citations",
+   "hook": "This AI writes your paper and drops in the citations automatically.",
+   "script": "Go to jenni.ai and start a new document. Type a sentence and hit the autocomplete to extend your argument. When you make a claim, click cite and pick the source. It inserts the citation in your chosen format instantly. Build your reference list as you write, not after. Keep the AI on a leash so it matches your voice. Writing and citing in one smooth flow.",
+   "publisher": "https://jenni.ai"
+  },
+  {
+   "id": 476,
+   "title": "Bracket Pair Colorization (built in)",
+   "hook": "You do not need an extension for rainbow brackets anymore.",
+   "script": "This is built right into VS Code now, no install. Open settings with Ctrl Comma. Search for bracket pair colorization. Check the box to enable it. Now every matching pair of brackets gets its own color. Nested parens and braces are easy to follow. Click next to a bracket and its partner highlights too. It used to be an extension and now it is native and faster. Turn it on in ten seconds.",
+   "publisher": "built in, search settings for bracketPairColorization.enabled"
+  },
+  {
+   "id": 477,
+   "title": "Photoroom product photos",
+   "hook": "This app turns a phone photo into a studio product shot instantly.",
+   "script": "Open Photoroom and snap your product. It removes the background automatically. Pick an AI scene like marble or sunlight. Drop your product into the new backdrop. Add a shadow so it looks real. Batch-edit a whole catalog at once. Export in the right size for your store. Studio photos from your couch.",
+   "publisher": "https://photoroom.com"
+  },
+  {
+   "id": 478,
+   "title": "Claude in Chrome for web tasks",
+   "hook": "Claude can now control your Chrome tab and do tasks for you.",
+   "script": "Install the Claude in Chrome extension and grant it permission. Open the site you want to work on. Tell Claude: \"Read this page and pull out every product name and price into a table.\" It reads the live page and builds the table. Ask it to fill a form or click through steps and it acts in the browser. You watch it work in real time. Your browser just got an assistant.",
+   "publisher": "Claude in Chrome extension, available to eligible plans."
+  },
+  {
+   "id": 479,
+   "title": "Soundraw custom track",
+   "hook": "Build a custom song by dragging energy levels up and down.",
+   "script": "Open Soundraw and pick a mood and genre. It generates a full song instantly. Drag the energy slider to shape the build. Cut, extend, or rearrange any section. Swap instruments with one click. Download the finished track royalty-free. Music tailored to your exact edit, in minutes.",
+   "publisher": "https://soundraw.io"
+  },
+  {
+   "id": 480,
+   "title": "Auto Rename Tag",
+   "hook": "This renames your closing HTML tag the instant you change the opening one.",
+   "script": "Open Extensions with Ctrl Shift X. Search Auto Rename Tag and install. Open any HTML or JSX file. Click into an opening tag and change div to section. Watch the closing tag update on its own. No more mismatched tags breaking your layout. It works in React, Vue, and plain HTML. Such a small thing but it saves a hundred tiny edits a day. Install it and forget it exists.",
+   "publisher": "formulahendry.auto-rename-tag"
+  },
+  {
+   "id": 481,
+   "title": "AI agent that books appointments",
+   "hook": "I built an agent that checks my calendar and books the meeting itself.",
+   "script": "In n8n add the AI Agent node as your core. Give it a Google Calendar tool to read free slots. Add a second Calendar tool to create events. Feed it a request like book a 30 minute call next week. The agent checks availability then creates the event. Wire an email node to send the confirmation. Scheduling now happens without you touching it.",
+   "publisher": "https://github.com/n8n-io/n8n"
+  },
+  {
+   "id": 482,
+   "title": "Perplexity Spaces",
+   "hook": "I built a private research assistant that only knows my own files.",
+   "script": "In Perplexity, create a new Space from the left sidebar. Upload your PDFs, notes, or reports into it. Add custom instructions so it always answers in your style. Now every question searches your files plus the web together. Invite teammates so everyone shares the same brain. Ask it anything and it cites your documents directly. This is your own research hub, walled off from the noise.",
+   "publisher": "https://www.perplexity.ai"
+  },
+  {
+   "id": 483,
+   "title": "Obsidian Text Generator",
+   "hook": "This free plugin lets you write with AI without ever leaving your notes.",
+   "script": "Install the Text Generator plugin in Obsidian community plugins. Add your API key in the settings. Write a heading and a few bullet points. Hit the generate hotkey to expand them into full paragraphs. Use a template to summarize the current note. Tweak the prompt to match your voice. AI writing built right into your second brain.",
+   "publisher": "https://github.com/nhaouari/obsidian-textgenerator-plugin"
+  },
+  {
+   "id": 484,
+   "title": "Grammarly",
+   "hook": "This free extension fixes your spelling and grammar on every site you type on.",
+   "script": "Search Grammarly in the Chrome Web Store and click Add to Chrome. Sign in with Google to turn it on. Start typing an email and watch the red underlines appear. Click a suggestion to fix the mistake instantly. Hover over the green G icon to see a quick writing score. Use it in Gmail, LinkedIn, and any comment box. It catches the typos you would have missed. Free proofreader running everywhere you write.",
+   "publisher": ""
+  },
+  {
+   "id": 485,
+   "title": "llamafile",
+   "hook": "This is a single file that turns into a full AI chatbot when you double-click it.",
+   "script": "Go to the Mozilla llamafile GitHub page and download one of the prebuilt llamafiles. On Windows, rename it to add .exe at the end. Double-click it to run, no install required. Your browser opens to a local chat interface automatically. Type a message and the model answers, running entirely from that one file. On Mac or Linux just chmod +x the file and run it. One file, one AI, fully offline.",
+   "publisher": "https://github.com/Mozilla-Ocho/llamafile"
+  },
+  {
+   "id": 486,
+   "title": "CodeSnap",
+   "hook": "This takes gorgeous screenshots of your code for social media.",
+   "script": "Open Extensions with Ctrl Shift X. Search CodeSnap and install. Select the lines of code you want to share. Hit Ctrl Shift P and run CodeSnap. A clean panel opens with your code on a nice background. Adjust the padding and window style. Click the save button to export a polished PNG. Way better than a messy phone photo of your screen. Perfect for posts and tutorials.",
+   "publisher": "adpyke.codesnap"
+  },
+  {
+   "id": 487,
+   "title": "Bear plus Shortcuts AI",
+   "hook": "Capture a thought to your notes by talking to your phone, hands free.",
+   "script": "Open the Shortcuts app on iPhone and create a new shortcut. Add a dictate text action. Add an action to append that text to a Bear note. Add it to Siri with a phrase like log a thought. Now say the phrase and speak your idea. Watch it land in your notes automatically. Capture ideas the second they happen.",
+   "publisher": "https://bear.app"
+  },
+  {
+   "id": 488,
+   "title": "Code Debugger",
+   "hook": "Paste broken code here and ChatGPT finds the bug instantly.",
+   "script": "Open ChatGPT. Paste your code and the error, then type: \"Find the bug, explain why it's happening in plain English, and give me the fixed code.\" It spots the problem line. Then it tells you why it broke, not just what to change. You get working code back. You actually learn instead of guessing. Free senior dev on call.",
+   "publisher": "\"Find the bug, explain why it's happening in plain English, and give me the fixed code. \\[paste code and error\\]\""
+  },
+  {
+   "id": 489,
+   "title": "AI org chart with Lucidchart AI",
+   "hook": "Generate an org chart from a list of names automatically.",
+   "script": "Open Lucidchart and start a new document. Open the AI feature from the toolbar. Paste your list of people and their managers. It builds the full org chart for you. Drag any box to adjust the hierarchy. Recolor by department in one click. Export as PNG for your deck. A clean org chart without manual layout.",
+   "publisher": "https://lucidchart.com"
+  },
+  {
+   "id": 490,
+   "title": "Speechify read anything",
+   "hook": "Listen to any article, PDF, or email in a natural voice.",
+   "script": "Install the Speechify browser extension or app. Open any article or PDF you need to read. Click the Speechify button to start listening. Pick a voice and crank the speed up to 2x. It highlights each word as it reads. Save articles to a listening queue. Burn through your reading list while you walk.",
+   "publisher": "https://speechify.com"
+  },
+  {
+   "id": 491,
+   "title": "Signal (private messaging)",
+   "hook": "Delete the messaging app that scans your chats and use this instead.",
+   "script": "Download Signal from signal.org on your phone. Verify your number and set a registration lock PIN. Tap a contact who also has Signal to start an encrypted chat. Turn on disappearing messages in the chat settings. Link the desktop app by scanning a QR code. Voice and video calls are encrypted too. It is run by a nonprofit, not an ad firm. Free, open source, and trusted by security experts worldwide.",
+   "publisher": "https://signal.org"
+  },
+  {
+   "id": 492,
+   "title": "Dify AI app platform",
+   "hook": "Dify lets you ship an AI app with a backend and UI in one place.",
+   "script": "Dify is open source and self-hostable with docker compose. Open the studio and click Create from blank. Choose a chatbot or a workflow app type. Drop your prompt, pick a model, and add a knowledge base for RAG. Test it in the right-hand preview pane. Publish to get a hosted web app and an API endpoint. One platform takes you from idea to live product.",
+   "publisher": "https://github.com/langgenius/dify"
+  },
+  {
+   "id": 493,
+   "title": "Regex Generator",
+   "hook": "Never struggle with regex again with this one prompt.",
+   "script": "Open ChatGPT. Type this: \"Write a regex that matches \\[what you want, like all email addresses\\], explain each part, and give me 2 test examples.\" It writes the pattern for you. Then it breaks down every symbol so you understand it. Test examples prove it works. Regex stops being a nightmare. Copy, paste, done.",
+   "publisher": "\"Write a regex that matches \\[pattern you want\\], explain each part, and give me 2 test examples.\""
+  },
+  {
+   "id": 494,
+   "title": "Plausible",
+   "hook": "This free open-source analytics tool gives you clean website stats with no cookies.",
+   "script": "Heavy analytics scripts kill your page speed and privacy. Plausible is free when you self-host it. Clone it with git clone https://github.com/plausible/community-edition. Run docker compose up -d from the directory. Open it and set up your site. Add the lightweight script to your pages. One simple dashboard shows everything that matters. GDPR-friendly stats with zero tracking and zero fees.",
+   "publisher": "github.com/plausible/community-edition"
+  },
+  {
+   "id": 495,
+   "title": "Local image generation with Fooocus via Pinokio",
+   "hook": "I generate unlimited AI images on my own PC for free, no Midjourney subscription.",
+   "script": "Open Pinokio from pinokio.computer and go to Discover. Find \"Fooocus\" in the catalog and click Install. Pinokio downloads Stable Diffusion and all dependencies for you. When it's ready, click Start and it opens in your browser. Type a prompt like \"a neon city at night\" and hit Generate. The image renders on your own GPU in seconds. Make as many as you want with zero cost. Unlimited free image generation, fully local.",
+   "publisher": "https://pinokio.computer"
+  },
+  {
+   "id": 496,
+   "title": "Raycast AI",
+   "hook": "This Mac launcher answers any question without opening a browser.",
+   "script": "Hit the Raycast hotkey from anywhere on your Mac. Type AI and ask a quick question right in the bar. Highlight text in any app and run an AI command to rewrite it. Build a custom quick command for summarizing. Search your files, run scripts, and launch apps from the same box. Your whole Mac, one keystroke away.",
+   "publisher": "https://www.raycast.com"
+  },
+  {
+   "id": 497,
+   "title": "ColorZilla",
+   "hook": "This free extension grabs the exact color of anything on a webpage.",
+   "script": "Search ColorZilla in the Chrome Web Store and click Add to Chrome. Pin the eyedropper icon next to your address bar. Click it and choose the color picker. Hover over any element and click to grab its color. Copy the hex code straight to your clipboard. Use the gradient generator to build CSS gradients. Check the page palette to see every color used. Free design tool for instant color theft.",
+   "publisher": ""
+  },
+  {
+   "id": 498,
+   "title": "Play.ht audiobook",
+   "hook": "Turn a whole document into an audiobook with one upload.",
+   "script": "Go to Play.ht and create a project. Paste your text or upload a document. Choose an ultra-realistic voice. Set the reading speed and tone. Generate the full audio in one pass. Download the MP3 for your listeners. A finished audiobook from a text file in minutes.",
+   "publisher": "https://play.ht"
+  },
+  {
+   "id": 499,
+   "title": "Krisp",
+   "hook": "This app kills background noise and writes your meeting notes too.",
+   "script": "Install Krisp and set it as your microphone. Join any call and toggle noise cancellation on. Hear the dog and traffic disappear instantly. Let Krisp record the meeting in the background. After the call, open the AI summary and action items. Copy the recap to share. Crystal clear audio and free notes in one tool.",
+   "publisher": "https://krisp.ai"
+  },
+  {
+   "id": 500,
+   "title": "Daily Journaling Prompt",
+   "hook": "This prompt gives you a journaling question that actually makes you think.",
+   "script": "Open ChatGPT. Type this: \"Give me one deep journaling prompt for today based on \\[how I'm feeling, like stuck and unmotivated\\]. Then ask me a follow up after I answer.\" It hands you one focused question. You write your answer. Then it digs deeper with a follow up. Five minutes of this clears your head. A free therapist's warm up, in your pocket.",
+   "publisher": "\"Give me one deep journaling prompt for today based on \\[how I'm feeling\\]. Then ask me a follow up after I answer.\""
+  },
+  {
+   "id": 501,
+   "title": "Local AI memory with a system prompt",
+   "hook": "Make your local AI remember who you are with one setting it never forgets.",
+   "script": "Open LM Studio and load your favorite model. Click the model panel on the right side. Find the \"System Prompt\" box near the top. Type something like \"You are my coding tutor. Always answer in short steps.\" Save it and start a new chat. The model now follows that personality every time. Set different presets for writing, coding, or research. A custom assistant that remembers its job, locally.",
+   "publisher": "https://lmstudio.ai"
+  },
+  {
+   "id": 502,
+   "title": "AI podcast from an article",
+   "hook": "Turn any blog post into a two-host podcast episode.",
+   "script": "Copy the article text you want to turn into audio. Open Podcastle and go to the text-to-speech tool. Paste the content and assign two different voices. Split the script into a host and a guest. Generate the audio for each part. Stitch them into one episode. A finished podcast from an article in minutes.",
+   "publisher": "https://podcastle.ai"
+  },
+  {
+   "id": 503,
+   "title": "Udio music generation",
+   "hook": "This AI makes radio-quality music that sounds shockingly real.",
+   "script": "Open Udio and create a free account. Type a prompt like \"90s R\\&B love song with smooth vocals.\" Add tags for mood and instruments. Press Create and it builds a 30-second clip. Click Extend to grow it into a full track. Use Remix to change the vibe instantly. Download it and drop it straight into your video.",
+   "publisher": "https://udio.com"
+  },
+  {
+   "id": 504,
+   "title": "OpenAI Swarm routing",
+   "hook": "I built a customer support router with AI agents that pass tickets to each other.",
+   "script": "Clone the Swarm repo and run pip install git+the-repo-url. Create a triage agent that decides where a request goes. Make a sales agent and a refunds agent as targets. Give the triage agent functions that return the other agents. Run the client with your message. It reads the request and routes to the right specialist. Each agent handles its own job cleanly. This is the simplest multi-agent pattern there is.",
+   "publisher": "https://github.com/openai/swarm"
+  },
+  {
+   "id": 505,
+   "title": "Pitch",
+   "hook": "Build a startup deck fast with a tool teams actually present from.",
+   "script": "Open Pitch and pick a fundraising template. Use the AI assistant to draft slide copy from a prompt. Drop your logo and brand colors into the theme. Add a live chart linked to your numbers. Invite a teammate to edit the same deck in real time. Record a video voiceover right on the slide. Send a tracked link and see who viewed it. A modern deck built and shared in one place.",
+   "publisher": "https://pitch.com"
+  },
+  {
+   "id": 506,
+   "title": "Langflow flows",
+   "hook": "Langflow is the visual canvas for building real LLM pipelines.",
+   "script": "Install with pip install langflow then run langflow run. Open the UI and start a blank flow. Drag a Prompt node and an OpenAI node onto the canvas. Connect them and add a Chat Input and Chat Output. Press the play button to test the flow live in the panel. Export it as JSON or call it through the API. Prototyping an agent has never been this fast.",
+   "publisher": "https://github.com/langflow-ai/langflow"
+  },
+  {
+   "id": 507,
+   "title": "Run Mistral locally",
+   "hook": "Mistral 7B punches way above its size and runs free on a normal PC.",
+   "script": "Install Ollama from ollama.com. Run \"ollama run mistral\" in your terminal. It downloads the 7B model in a couple of minutes. Start typing questions right away in the terminal. It's fast and great at following instructions. Try \"ollama run mistral-nemo\" for a stronger 12B version. Everything stays local with no API key. A European open model on your own hardware, free.",
+   "publisher": "https://ollama.com/library/mistral"
+  },
+  {
+   "id": 508,
+   "title": "Turn a CSV into a chart",
+   "hook": "Drop a CSV into Claude and get an interactive chart back instantly.",
+   "script": "Open Claude and click the attach button. Upload your CSV file. Then type: \"Read this CSV and build an interactive chart artifact showing the trend, pick the best chart type.\" Claude reads the columns and renders a live chart in the Artifacts panel. Hover any point and the tooltip shows the exact value. Say \"switch to a stacked bar and group by month.\" It redraws on the spot. Your spreadsheet just became a dashboard.",
+   "publisher": "\"Read this CSV and build an interactive chart artifact showing the trend, pick the best chart type.\""
+  },
+  {
+   "id": 509,
+   "title": "Momentum",
+   "hook": "This free extension turns your new tab into a calm personal dashboard.",
+   "script": "Go to the Chrome Web Store and search Momentum. Click Add to Chrome and open a new tab. See a beautiful photo, the time, and a greeting. Set your main focus for the day in one line. Add your to-do list right on the page. Check the weather and an inspiring quote at a glance. It replaces the blank new tab forever. Free daily reset every time you open a tab.",
+   "publisher": ""
+  },
+  {
+   "id": 510,
+   "title": "Project Manager",
+   "hook": "Switch between all your projects without ever opening a folder dialog.",
+   "script": "Open Extensions with Ctrl Shift X. Search Project Manager and install. Open a project, hit Ctrl Shift P, and run Save Project. Give it a name. Do this for each repo you work in. Now click the Project Manager icon in the sidebar. Click any project to jump straight into it. No more digging through folders every morning. Your whole workspace is one click away.",
+   "publisher": "alefragnani.project-manager"
+  },
+  {
+   "id": 511,
+   "title": "Browser-use AI controls browser",
+   "hook": "I told an AI to book a flight and watched it click through the site.",
+   "script": "Browser-use lets an AI agent drive a real browser. Install it with pip install browser-use. Add your API key for the model you want to use. Write a short script with an Agent and a task in plain English. Run the script and a Chrome window pops open. The agent reads the page, clicks, and types on its own. You just narrated a goal and it did the clicking.",
+   "publisher": "https://github.com/browser-use/browser-use"
+  },
+  {
+   "id": 512,
+   "title": "Video Speed Controller",
+   "hook": "This free extension lets you speed up any video on any site, not just YouTube.",
+   "script": "Open the Chrome Web Store and search Video Speed Controller. Click Add to Chrome and open any video. See the speed control appear in the top corner. Press D to speed up and S to slow down. Watch lectures and courses at double speed easily. Rewind ten seconds with one key when you miss something. It works on course sites and Netflix too. Free speed control for the whole web.",
+   "publisher": ""
+  },
+  {
+   "id": 513,
+   "title": "zellij",
+   "hook": "Run many terminals in one window with zero config.",
+   "script": "zellij is a terminal workspace with panes and tabs. It shows keybindings on screen so you never get lost. Install it with cargo install zellij or on Mac brew install zellij. Just type zellij to start a session. Split panes with simple key combos shown at the bottom. Detach and reattach to keep work running. It is tmux that you can actually learn in a minute.",
+   "publisher": "brew install zellij / cargo install zellij"
+  },
+  {
+   "id": 514,
+   "title": "Akiflow",
+   "hook": "This app pulls every task from every app into one command bar.",
+   "script": "Open Akiflow and connect your email, Slack, and task tools. Hit the global shortcut to capture a task from anywhere. Watch tasks from Gmail and Slack flow into one inbox. Drag a task onto your calendar to time-block it. Plan your day in the unified view and start a focus timer. Everything you owe, in one place, finally.",
+   "publisher": "https://akiflow.com"
+  },
+  {
+   "id": 515,
+   "title": "Local embeddings model",
+   "hook": "This tiny free model powers search and RAG on your PC without any cloud.",
+   "script": "Install Ollama from ollama.com. Run \"ollama pull nomic-embed-text\" to get a top embedding model. It turns any text into vectors locally. Call it from the API at localhost port 11434 to embed your docs. Store those vectors and search by meaning, not keywords. It's what makes local RAG actually work. Tiny, fast, and completely offline. The hidden engine behind private document search.",
+   "publisher": "https://ollama.com/library/nomic-embed-text"
+  },
+  {
+   "id": 516,
+   "title": "GIMP (free Photoshop)",
+   "hook": "Photoshop costs hundreds a year, this does the same job for zero.",
+   "script": "Download GIMP from gimp.org. Install and open it. Use layers, masks, and filters just like the paid app. Open and edit PSD files from Photoshop directly. Remove backgrounds with the select and delete tools. Export to PNG, JPG, or whatever you need. Add free brushes and plugins to extend it. Free, open source, and powerful enough for pros.",
+   "publisher": "https://www.gimp.org"
+  },
+  {
+   "id": 517,
+   "title": "pipx",
+   "hook": "Install Python CLI tools without breaking your system.",
+   "script": "pipx installs Python command line apps in isolated environments. No more dependency conflicts polluting your setup. Install it with pip install pipx then pipx ensurepath. On Mac you can run brew install pipx instead. Then pipx install any Python CLI tool you want. Each one gets its own clean environment. Upgrade or remove them cleanly anytime. Python tools without the mess.",
+   "publisher": "pip install pipx / brew install pipx"
+  },
+  {
+   "id": 518,
+   "title": "Framer AI",
+   "hook": "Type a prompt and publish a live website in minutes.",
+   "script": "Open Framer and choose start with AI. Describe the site you want to build. It generates a styled landing page instantly. Edit any text and image right on the page. Use the AI to restyle a whole section by prompt. Add a contact form from the components panel. Hit publish to put it live on the web. A real, hosted site from one sentence.",
+   "publisher": "https://framer.com"
+  },
+  {
+   "id": 519,
+   "title": "AI commit messages with Claude Code",
+   "hook": "My coding agent writes my commit messages and they're better than mine.",
+   "script": "Stage your changes with git add in the terminal. Open Claude Code with the claude command in the repo. Type \"commit my staged changes with a clear conventional commit message.\" It reads the diff and writes a real summary plus body. It runs git commit for you with that message. Ask it to follow your team's format and it adapts. Tell it to split unrelated changes into separate commits. Clean git history without the writing chore.",
+   "publisher": "https://docs.anthropic.com/claude-code"
+  },
+  {
+   "id": 520,
+   "title": "Zed AI (fast Rust editor with agent)",
+   "hook": "This editor opens instantly and has a built-in AI agent, both free.",
+   "script": "Download Zed from zed.dev, it launches in under a second. Open the assistant with Cmd or Ctrl plus question mark. Connect your own API key or use the free hosted models. Type / to add files, terminal output, or the whole project as context. Ask it to write a function and hit Enter to apply the edit. Use the Agent panel to let it edit multiple files in a loop. It is written in Rust so even big repos stay smooth. Free, fast, and open source.",
+   "publisher": "https://zed.dev"
+  },
+  {
+   "id": 521,
+   "title": "Ideogram logo generator",
+   "hook": "Make a clean text logo with perfect lettering for free.",
+   "script": "Go to ideogram.ai and open the prompt box. Type \"minimalist logo for a bakery called RISE, simple, two colors.\" Set the aspect ratio to 1:1 and Generate. Because Ideogram nails text, the name reads perfectly. Pick your favorite and try a Remix for variations. Download the logo full size. A free starting logo without a design tool.",
+   "publisher": "https://ideogram.ai"
+  },
+  {
+   "id": 522,
+   "title": "Recall",
+   "hook": "This AI turns any article or video into a permanent, connected note.",
+   "script": "Install the Recall extension. Open a long article or YouTube video. Click Save to Recall and watch it auto-summarize the content. See it auto-categorize into your knowledge base. Open the note and view AI-generated connections to your other saves. Ask the AI a question across everything you saved. Build a second brain without typing.",
+   "publisher": "https://www.getrecall.ai"
+  },
+  {
+   "id": 523,
+   "title": "Trilium Notes",
+   "hook": "This free open-source app builds a personal knowledge base that scales to a million notes.",
+   "script": "Most note apps choke when your collection grows. Trilium Notes is free and self-hosted. Run docker run -d -p 8080:8080 triliumnext/notes:latest. Open it and set your password. Build a tree of notes nested as deep as you want. Link, clone, and script your notes like a database. It syncs to a server you control. A power-user knowledge base with no subscription.",
+   "publisher": "github.com/TriliumNext/Notes"
+  },
+  {
+   "id": 524,
+   "title": "Letta (MemGPT) self-editing memory",
+   "hook": "This agent edits its own memory to remember things forever, here is how.",
+   "script": "Run pip install letta in your terminal. Start the server with letta server. Open the web UI at localhost:8283. Create an agent and chat with it normally. Tell it a fact about yourself and end the session. The agent writes that fact into its own core memory. Start a new chat and it still knows it. Self-editing memory beyond the context limit.",
+   "publisher": "https://github.com/letta-ai/letta"
+  },
+  {
+   "id": 525,
+   "title": "Revo Uninstaller (remove software completely)",
+   "hook": "Windows uninstall leaves junk behind, this free tool scrubs every trace.",
+   "script": "Download Revo Uninstaller Free from revouninstaller.com. Install and open the program list. Pick the app you want gone and click Uninstall. Let the built-in uninstaller run first. Then Revo scans for leftover files and registry keys. Select the leftovers and delete them all. Your system stays clean and fast. Free version handles standard programs with no payment.",
+   "publisher": "https://www.revouninstaller.com"
+  },
+  {
+   "id": 526,
+   "title": "Nextcloud",
+   "hook": "This free GitHub platform replaces Dropbox, Google Drive, and Office in one install.",
+   "script": "Cloud storage rent never stops climbing. Nextcloud is a free open-source file cloud you own. The fastest start is docker run -d -p 8080:8080 nextcloud. Open it and create your admin account. Sync files from desktop and mobile clients. Add apps for calendar, contacts, and document editing. Share links without a third party in the middle. Terabytes of storage with no recurring bill.",
+   "publisher": "github.com/nextcloud/server"
+  },
+  {
+   "id": 527,
+   "title": "Buffer AI Assistant",
+   "hook": "Buffer now writes and repurposes your posts inside the scheduler.",
+   "script": "Open Buffer and start a new post. Click the AI Assistant button. Type your idea and pick Generate. Choose Repurpose to make versions for each platform. Tap Rephrase to fix the tone. Add it to your queue with one click. Plan a full week without leaving the dashboard.",
+   "publisher": "https://buffer.com/ai-assistant"
+  },
+  {
+   "id": 528,
+   "title": "AI b-roll generator",
+   "hook": "Never search for stock footage again, generate your b-roll.",
+   "script": "Open Runway or Luma and sign in. Type the exact b-roll shot you need, like \"hands typing on a laptop, close up.\" Set it to 5 seconds and generate. Make a few variations to get the right angle. Download the clips. Drop them over your voiceover. Custom b-roll that fits your script perfectly.",
+   "publisher": "https://runwayml.com"
+  },
+  {
+   "id": 529,
+   "title": "REST Client",
+   "hook": "Test any API by writing one line in a plain text file.",
+   "script": "Open Extensions with Ctrl Shift X. Search REST Client and install. Create a file ending in dot http. Type GET then your URL on one line. A small Send Request link appears above it. Click it and the response opens in a side panel. Add headers and a body right below for POST requests. You can commit these files to git so the whole team shares them. API testing as code, no GUI required.",
+   "publisher": "humao.rest-client"
+  },
+  {
+   "id": 530,
+   "title": "AI that fixes failing tests",
+   "hook": "My tests were red, I told the AI to fix them, and it did, here's how.",
+   "script": "Open your terminal in the project and start Claude Code or Aider. Type \"run the test suite and fix every failing test.\" It runs npm test or pytest and reads the output. It opens the failing files, finds the cause, and edits the code. Then it re-runs the suite automatically. It keeps looping until everything is green. Review the final diff before you commit. You go from red to green without touching the keyboard.",
+   "publisher": "https://aider.chat"
+  },
+  {
+   "id": 531,
+   "title": "Meal Plan From Your Goals",
+   "hook": "This prompt builds a full week of meals around your exact goals.",
+   "script": "Open ChatGPT. Type this: \"Make me a 7 day meal plan for \\[goal, like fat loss\\], \\[calories\\] per day, with a grocery list. Cheap ingredients, 30 minute recipes.\" It plans every meal for the week. You get a grocery list ready to shop. Recipes are fast and affordable. No more deciding what's for dinner. A nutritionist would charge for this.",
+   "publisher": "\"Make me a 7 day meal plan for \\[goal\\], \\[calories\\] per day, with a grocery list. Cheap ingredients, 30 minute recipes.\""
+  },
+  {
+   "id": 532,
+   "title": "Hostinger AI website builder",
+   "hook": "This AI builds your whole website and hosts it for the price of a coffee.",
+   "script": "Open Hostinger and pick the AI builder. Describe your business in one sentence. It generates pages, copy, and a logo automatically. Drag sections around to rearrange. Use the built-in AI to rewrite any block. Hit publish and it goes live on real hosting. Add a custom email to look professional. Cheap hosting plus AI design is the fastest launch combo right now.",
+   "publisher": "https://hostinger.com"
+  },
+  {
+   "id": 533,
+   "title": "AI PDF editor with Sejda",
+   "hook": "Edit text directly inside a PDF for free, no signup.",
+   "script": "Open Sejda PDF editor in your browser. Upload the PDF you need to change. Click any text and start typing to edit it. Add a new text box or image anywhere. Use the AI assistant to summarize a long PDF. White out a mistake with the eraser tool. Download the edited PDF when done. Fix a PDF in seconds without buying Acrobat.",
+   "publisher": "https://sejda.com"
+  },
+  {
+   "id": 534,
+   "title": "Stable Diffusion ControlNet (pose control)",
+   "hook": "Force your AI character into the exact pose you want every time.",
+   "script": "Open Automatic1111 or ComfyUI with the ControlNet extension installed. Upload a reference photo or a stick figure pose. Pick the OpenPose preprocessor in the ControlNet panel. Type your character prompt as normal. Generate, and the output matches the exact pose. Swap the reference to change poses instantly. This is how artists direct AI like a photographer.",
+   "publisher": "https://github.com/Mikubill/sd-webui-controlnet"
+  },
+  {
+   "id": 535,
+   "title": "Supernormal",
+   "hook": "This AI writes your meeting notes in your own template, automatically.",
+   "script": "Connect Supernormal to your calendar. It joins your call and transcribes everything. After the meeting, open the notes built in your chosen format. Customize a template so every recap matches your style. Let it auto-share notes to the right channel. Push action items to Notion or your task tool. Consistent notes without lifting a finger.",
+   "publisher": "https://supernormal.com"
+  },
+  {
+   "id": 536,
+   "title": "Local AI with AMD GPU",
+   "hook": "People say you need NVIDIA for local AI, that's wrong, here's how on AMD.",
+   "script": "Open LM Studio on your AMD machine. Go to settings and switch the runtime to the Vulkan or ROCm option. Download any GGUF model from the search tab. Load it and open the model settings gear. Push the GPU Offload slider all the way up. Your Radeon card now does the heavy lifting. Watch tokens per second climb in the stats. AMD runs local AI just fine, no NVIDIA needed.",
+   "publisher": "https://lmstudio.ai"
+  },
+  {
+   "id": 537,
+   "title": "SlidesAI",
+   "hook": "Paste raw text and turn it into slides in Google Slides.",
+   "script": "Add the SlidesAI add-on to Google Slides. Open Extensions and launch it on a new file. Paste any block of text or type a topic. Pick how many slides you want. Choose a color preset and hit create. It splits your content into clean, titled slides. Tweak any slide directly in Slides afterward. Notes and articles become a deck in under a minute.",
+   "publisher": "https://slidesai.io"
+  },
+  {
+   "id": 538,
+   "title": "Mindtrip (travel planning)",
+   "hook": "Plan a full 7-day trip with maps and bookings in one chat.",
+   "script": "Go to mindtrip.ai and sign up free. Type \"5 days in Lisbon, food and history, mid budget.\" It builds a day-by-day itinerary with a live map of every stop. Click any place to see photos, hours, and reviews pulled in. Drag activities between days to rearrange and the map updates. Ask \"make day 3 more relaxed\" and it rewrites just that day. Save the trip and share the link with your group. A travel agent in your browser, free.",
+   "publisher": ""
+  },
+  {
+   "id": 539,
+   "title": "Shortwave AI email",
+   "hook": "This AI assistant reads your whole inbox and answers questions about it.",
+   "script": "Open Shortwave and connect your Gmail. Hit the AI assistant and ask it to summarize this thread. Tell it to draft a reply and pick the tone. Ask \"what emails need a response today\" and watch it pull the list. Use AI search to find that attachment from months ago. Bundle and batch the rest. Your inbox finally has a brain.",
+   "publisher": "https://www.shortwave.com"
+  },
+  {
+   "id": 540,
+   "title": "Recraft mockup generator",
+   "hook": "Put your design on a real product mockup with AI in seconds.",
+   "script": "Go to recraft.ai and generate or upload your logo or pattern. Open the Mockup feature in the tools menu. Pick a product like a t-shirt, mug, or tote bag. Drop your design onto it and the AI wraps it realistically. Adjust placement and lighting. Download the mockup for your shop or pitch. Skip the expensive mockup templates.",
+   "publisher": "https://recraft.ai"
+  },
+  {
+   "id": 541,
+   "title": "AI QR code art",
+   "hook": "Make a scannable QR code that looks like a piece of art.",
+   "script": "Search for the QR Code AI Art generator on Hugging Face Spaces. Paste your link in the QR content field. Type a prompt like \"mountain landscape, soft watercolor.\" Adjust the strength slider so it still scans. Click Run and check the result with your phone camera. Lower the strength if it does not scan, raise it for more art. Download the QR that doubles as wall art.",
+   "publisher": "https://huggingface.co/spaces/huggingface-projects/QR-code-AI-art-generator"
+  },
+  {
+   "id": 542,
+   "title": "Devika (open-source AI engineer)",
+   "hook": "This free AI engineer plans, researches, and codes your feature on its own.",
+   "script": "Clone the Devika repo and run the backend and frontend setup from the readme. Open the web UI and add your model key in settings. Create a project and type your goal in the chat. Devika breaks it into a plan you can watch step by step. It browses the web for docs when it needs them. It writes code and shows its reasoning as it goes. You guide it with follow-up messages anytime. An open agent that thinks out loud.",
+   "publisher": "https://github.com/stitionai/devika"
+  },
+  {
+   "id": 543,
+   "title": "AI brand voice with Writer",
+   "hook": "This tool keeps every post sounding like your brand.",
+   "script": "Open Writer and set up your brand voice guide. Add your banned words and tone rules. Paste a draft into the editor. It flags anything off brand. Click to fix each suggestion. Generate new copy that already matches your style. Consistent voice across the whole team.",
+   "publisher": "https://writer.com"
+  },
+  {
+   "id": 544,
+   "title": "Continue (AI assistant)",
+   "hook": "This is a free open source AI coding assistant for VS Code.",
+   "script": "Open Extensions with Ctrl Shift X. Search Continue and install. A chat icon appears in the sidebar. Connect your own model or a local one through the config. Select code and press Ctrl I to ask for an edit inline. Or open the chat to ask questions about your codebase. It pulls in your open files for context. Free, open source, and you control the model. A solid Copilot alternative.",
+   "publisher": "continue.continue"
+  },
+  {
+   "id": 545,
+   "title": "Adobe Express AI (social graphics)",
+   "hook": "Make a finished social post with AI images and text in one place.",
+   "script": "Go to express.adobe.com and start a new project at the right size. Click Text to Image in the left panel. Type your scene and drop the generated image onto the canvas. Add headline text and pick a font from the menu. Use the AI background remover on any photo you add. Click Download and post it. Generator and editor in one free tool.",
+   "publisher": "https://express.adobe.com"
+  },
+  {
+   "id": 546,
+   "title": "Local Whisper transcription",
+   "hook": "This free local AI transcribes any audio file in minutes with no upload.",
+   "script": "Install Ollama, or grab the standalone Whisper desktop app from the buzz or whisper.cpp project. Drag an audio or video file into the window. Pick a model size, \"base\" is fast and accurate enough. Click transcribe and it runs on your own machine. Watch the text appear with timestamps. Export to SRT for subtitles in one click. Nothing ever uploads to a server. Free, private transcription on your PC.",
+   "publisher": "https://github.com/ggerganov/whisper.cpp"
+  },
+  {
+   "id": 547,
+   "title": "HTTPie",
+   "hook": "curl is cryptic. This API tool reads like English.",
+   "script": "HTTPie is a human friendly HTTP client. Commands are short and the output is colored JSON. Install it with pipx install httpie on any machine. On Mac you can also run brew install httpie. Try http GET example.com to hit an endpoint. Add key equals value pairs to send JSON automatically. Headers and auth are simple flags. Testing APIs feels natural now.",
+   "publisher": "pipx install httpie / brew install httpie"
+  },
+  {
+   "id": 548,
+   "title": "Immich",
+   "hook": "This free GitHub app replaces Google Photos and runs entirely on your own machine.",
+   "script": "Google Photos sells your storage back to you every month. Immich is free and open source. You need Docker installed first. Grab the compose file with curl from the Immich docs. Run docker compose up -d and it pulls the whole stack. Open localhost on port 2283 and make your account. The mobile app auto-backs up every photo and video. Face recognition and search work fully offline. Your memories, your server, zero subscription.",
+   "publisher": "github.com/immich-app/immich"
+  },
+  {
+   "id": 549,
+   "title": "Feynman Learn-Anything",
+   "hook": "This one prompt makes ChatGPT teach you any topic faster than a tutor.",
+   "script": "Open ChatGPT right now. Paste this: \"Teach me \\[topic\\] using the Feynman technique. Explain it like I'm 12, then quiz me with 3 questions, then point out exactly what I got wrong.\" Watch it break the subject down into plain words. Then it tests you on the spot. Every wrong answer gets corrected instantly. You learn in 5 minutes what takes an hour of reading. Free private tutor that never gets tired.",
+   "publisher": "\"Teach me \\[topic\\] using the Feynman technique. Explain it like I'm 12, then quiz me with 3 questions, then point out exactly what I got wrong.\""
+  },
+  {
+   "id": 550,
+   "title": "Sunsama",
+   "hook": "This app forces you to plan a realistic day, not an impossible one.",
+   "script": "Open Sunsama each morning for the guided daily planning ritual. Pull tasks from your tools into today. Assign a time estimate to each one. Watch it warn you when you have over-planned the day. Drag tasks onto your calendar to block time. End the day with a quick shutdown review. Plan less, finish more.",
+   "publisher": "https://sunsama.com"
+  },
+  {
+   "id": 551,
+   "title": "Pencil AI ads",
+   "hook": "Pencil predicts which ad will win before you spend a dollar.",
+   "script": "Open Pencil and connect your ad account. Upload your product and brand. It generates fresh ad concepts with copy and video. Each creative gets a performance forecast. Filter to the top predicted winners. Edit the hook text right inside. Export straight to your ad platform. Test smarter, not harder.",
+   "publisher": "https://trypencil.com"
+  },
+  {
+   "id": 552,
+   "title": "Mealie",
+   "hook": "This free self-hosted app saves every recipe and plans your meals for nothing.",
+   "script": "Recipe apps lock meal planning behind a subscription. Mealie is free and open source. Run docker run -d -p 9925:9000 ghcr.io/mealie-recipes/mealie. Open it and create your account. Paste any recipe URL and it scrapes the ingredients and steps. Build a weekly meal plan in a few clicks. It generates a shopping list automatically. Your cookbook lives on your server forever.",
+   "publisher": "github.com/mealie-recipes/mealie"
+  },
+  {
+   "id": 553,
+   "title": "Duolingo Max",
+   "hook": "Duolingo's AI now explains why your answer was wrong and roleplays with you.",
+   "script": "Open Duolingo and upgrade to the Max tier. Tap Explain My Answer after a mistake. The AI breaks down exactly why it was wrong. Start a Roleplay to chat with an AI character in your language. Speak naturally and get feedback on what you said. Keep your streak while actually learning the rules. The owl finally explains itself.",
+   "publisher": "https://www.duolingo.com"
+  },
+  {
+   "id": 554,
+   "title": "SponsorBlock",
+   "hook": "This free extension skips every sponsor segment in YouTube videos automatically.",
+   "script": "Search SponsorBlock in the Chrome Web Store and click Add to Chrome. Open any YouTube video and start watching. Watch it skip right past the sponsor read on its own. See the colored bars on the timeline marking each segment. It also skips intros, outros, and self-promos. Submit your own segments to help others. Toggle which categories you want skipped. Free way to never hear a sponsor again.",
+   "publisher": ""
+  },
+  {
+   "id": 555,
+   "title": "Supermaven (fastest autocomplete)",
+   "hook": "This autocomplete sees your whole repo and responds before you finish the keystroke.",
+   "script": "Search Supermaven in the VS Code extensions tab and install it. Sign in and pick the free plan to start. It reads up to a million tokens of context, so it knows your other files. Type and the suggestions appear almost instantly, faster than Copilot. Press Tab to accept multi-line completions. It learns your naming and patterns as you go. Upgrade only if you want the chat features. The free tier alone is worth the install.",
+   "publisher": "https://supermaven.com"
+  },
+  {
+   "id": 556,
+   "title": "Claude Artifacts",
+   "hook": "Claude can build a working app right inside the chat.",
+   "script": "Ask Claude to make a calculator, a game, or a webpage. A panel opens on the right showing the live, working result. You can click and use it instantly, no setup. Ask for changes and it updates the artifact in place. Hit the share button to send anyone a link to your creation. You can even publish it for others to use. People pay for tools that Claude builds in thirty seconds.",
+   "publisher": "https://claude.ai"
+  },
+  {
+   "id": 557,
+   "title": "Writesonic SEO articles",
+   "hook": "This AI writes a fully optimized blog post that ranks.",
+   "script": "Open Writesonic and pick the SEO article writer. Enter your keyword and title. It researches and builds an outline. Generate the full draft with real facts. Tweak the tone to match your brand. Run the built-in SEO check. Publish straight to WordPress. Fresh ranking content on demand.",
+   "publisher": "https://writesonic.com"
+  },
+  {
+   "id": 558,
+   "title": "AI Discord bot agent",
+   "hook": "I put an AI agent in my Discord server and it answers like a teammate.",
+   "script": "Create an application in the Discord developer portal. Add a bot, copy the token, and enable message intents. Run pip install discord.py and openai. Write an on\\_message handler that calls the model. Invite the bot to your server with the OAuth link. Run the script to bring it online. Mention the bot and it replies in the channel. Give it tools and it becomes a real server agent.",
+   "publisher": "https://github.com/Rapptz/discord.py"
+  },
+  {
+   "id": 559,
+   "title": "NocoDB",
+   "hook": "This free open-source app turns any database into an Airtable-style spreadsheet.",
+   "script": "Airtable charges per seat and caps your records. NocoDB is free and self-hosted. Run docker run -d -p 8080:8080 nocodb/nocodb. Open it and create your project. Connect a database or start a fresh one. Edit data in grid, kanban, or gallery views. Build forms and share them with a link. A no-code database with no row limits or fees.",
+   "publisher": "github.com/nocodb/nocodb"
+  },
+  {
+   "id": 560,
+   "title": "Runway Gen-3 text-to-video",
+   "hook": "Want to make a cinematic video clip from one sentence? Here's how.",
+   "script": "Go to runwayml.com and sign in for free. Click Try Gen-3 Alpha. Pick text to video at the top. Type a prompt like \"drone shot flying over snowy mountains at sunrise.\" Set the duration to 5 seconds and hit generate. Wait about a minute. Download the clip and drop it straight into your edit. You just made a stock-quality shot with zero footage.",
+   "publisher": "https://runwayml.com"
+  },
+  {
+   "id": 561,
+   "title": "Quizgecko",
+   "hook": "This AI turns any text or PDF into a quiz in seconds.",
+   "script": "Go to quizgecko.com and paste text, a link, or a PDF. Pick the question type like multiple choice or short answer. It generates a full quiz from the content instantly. Take it yourself or share the link with classmates. Adjust the difficulty to match your level. Export the questions to study offline. Test yourself on anything you just read.",
+   "publisher": "https://quizgecko.com"
+  },
+  {
+   "id": 562,
+   "title": "Brand Name Generator",
+   "hook": "This prompt names your brand in 20 seconds.",
+   "script": "Open ChatGPT. Type this: \"Give me 20 brand name ideas for \\[what you do\\]. Mix short, brandable, and descriptive names, and check that each is easy to spell and say.\" It rapid fires names at you. Each is easy to remember. You pick a favorite and check if the domain is free. Naming used to take weeks. Now it takes a coffee break.",
+   "publisher": "\"Give me 20 brand name ideas for \\[what you do\\]. Mix short, brandable, and descriptive names, and check that each is easy to spell and say.\""
+  },
+  {
+   "id": 563,
+   "title": "Free stock-style clips with Hailuo",
+   "hook": "Generate stock footage that does not exist anywhere else.",
+   "script": "Open hailuoai.video and sign in. Click Text to Video. Type the exact stock shot you need, like \"coffee being poured in slow motion.\" Generate it on the free tier. Make a few angles. Download the clips. Custom stock footage no one else has, for free.",
+   "publisher": "https://hailuoai.video"
+  },
+  {
+   "id": 564,
+   "title": "Chrome flags",
+   "hook": "Chrome has an experimental settings page hidden from normal users.",
+   "script": "In the address bar, type chrome colon slash slash flags and hit Enter. You will see hundreds of experimental features you can turn on. Search for \"tab groups\" or \"reading list\" to enable hidden tools. Toggle one to Enabled and relaunch the browser. Try one at a time so you know what changed. These are features Google is still testing. Power users unlock them early here.",
+   "publisher": "https://google.com/chrome"
+  },
+  {
+   "id": 565,
+   "title": "Speechify for studying",
+   "hook": "This AI reads my textbooks out loud so I can study while walking.",
+   "script": "Install Speechify and import a PDF, article, or scanned page. Pick a natural-sounding voice you actually like. Hit play and it reads the whole document aloud. Speed it up to 2x to power through readings. Snap a photo of a physical page to listen to it. Study with your eyes off the screen. Turn dead time into study time.",
+   "publisher": "https://speechify.com"
+  },
+  {
+   "id": 566,
+   "title": "Tana",
+   "hook": "This is the AI notes app that thinks in objects, not pages.",
+   "script": "Open Tana and create a node for a meeting. Tag it with a supertag so it inherits fields automatically. Type your notes underneath as bullet nodes. Trigger an AI command to extract tasks into their own nodes. Build a live view that pulls every task tagged this week. Now your notes are a database that organizes itself.",
+   "publisher": "https://tana.inc"
+  },
+  {
+   "id": 567,
+   "title": "Connect Claude to your tools with MCP",
+   "hook": "Here is the one config file that turns Claude into a power user.",
+   "script": "Open claude\\_desktop\\_config.json from your app settings. Add an mcpServers object at the top level. Each tool is one entry with a command and arguments. Use npx servers for filesystem, GitHub, and more. Save the file and fully restart Claude Desktop. Look for the plug icon to confirm the servers connected. One file unlocks every integration at once.",
+   "publisher": "https://modelcontextprotocol.io"
+  },
+  {
+   "id": 568,
+   "title": "Capacities",
+   "hook": "This free notes app gives every idea its own profile, like a social network for your brain.",
+   "script": "Open Capacities and create a new object for a book you are reading. Notice it has its own type with custom fields. Link it to a person object and a note object. Use the AI assistant to summarize a long highlight. Open the daily note and drop quick thoughts that link automatically. Your knowledge finally has structure without the busywork.",
+   "publisher": "https://capacities.io"
+  },
+  {
+   "id": 569,
+   "title": "Notion AI writing",
+   "hook": "Hit space in Notion and it writes the doc for you.",
+   "script": "Open any Notion page and press the space bar. Type what you want like a project brief or weekly update. Notion AI drafts it inside the page. Highlight a messy paragraph and choose Improve writing. Use Summarize on long notes to get the key points. Ask it to turn bullet points into a full paragraph. Your notes become finished docs without leaving the page.",
+   "publisher": "https://www.notion.so/product/ai"
+  },
+  {
+   "id": 570,
+   "title": "Surfer SEO",
+   "hook": "This tool tells you exactly which words Google wants in your article.",
+   "script": "Open Surfer and start a Content Editor. Enter your target keyword. It pulls the top ranking pages and builds a term list. Write in the editor and watch your score climb. Add the green checklist terms as you go. Hit the recommended word count. Publish a post built to rank.",
+   "publisher": "https://surferseo.com"
+  },
+  {
+   "id": 571,
+   "title": "Suno AI full song",
+   "hook": "Make a full song with vocals from one line of text.",
+   "script": "Go to Suno and sign up for free credits. Click Create and turn on Custom mode. Type your lyrics in the box, or let Suno write them. Add a style like \"lofi hip hop, mellow, female vocals.\" Hit Create and wait 30 seconds. It returns two full tracks with vocals and instruments. Download the MP3 and you have an original song nobody else owns.",
+   "publisher": "https://suno.com"
+  },
+  {
+   "id": 572,
+   "title": "Notion AI",
+   "hook": "Your messy meeting notes can turn into action items in one click, for free.",
+   "script": "Open any Notion page with rough notes. Highlight the whole block. Hit space to bring up Notion AI. Type \"summarize and pull out action items.\" Watch it rewrite the wall of text into a clean summary with a checklist. Now type \"draft a follow-up email from this.\" It writes the email in seconds. Stop typing things twice and let your notes do the work.",
+   "publisher": "https://www.notion.so/product/ai"
+  },
+  {
+   "id": 573,
+   "title": "Make Claude your meeting note taker",
+   "hook": "Paste a messy meeting transcript and Claude returns clean action items.",
+   "script": "Open Claude and paste your raw meeting transcript or notes. Type: \"Turn this into a summary, a list of decisions, and action items with owners and due dates.\" Claude sorts the chaos into clear sections. The action items come tagged with who owns what. Ask \"draft a follow-up email to the team from this.\" It writes it ready to send. Meeting done, paperwork done.",
+   "publisher": "\"Turn this into a summary, a list of decisions, and action items with owners and due dates.\""
+  },
+  {
+   "id": 574,
+   "title": "Vaultwarden",
+   "hook": "This free GitHub project runs a full Bitwarden password server in 30 seconds.",
+   "script": "Password managers want a yearly fee for family sharing and 2FA. Vaultwarden is a free Bitwarden-compatible server you host yourself. Run docker run -d --name vaultwarden -p 80:80 vaultwarden/server. The official Bitwarden apps connect straight to your server. You get premium vault features unlocked for nothing. All your logins stay on hardware you control. Sync across every device with zero subscription. The cloud company never sees a single password.",
+   "publisher": "github.com/dani-garcia/vaultwarden"
+  },
+  {
+   "id": 575,
+   "title": "Jasper",
+   "hook": "I wrote a full marketing campaign in four minutes with one tool.",
+   "script": "Open Jasper and click Create then pick the Campaign workflow. Type your product name and one sentence about who it is for. Choose your tone like bold or friendly. Jasper writes the landing page, three emails, and five ads at once. Edit any line by highlighting it and clicking Rephrase. Drop the ads straight into your ad manager. Hit export and you have a launch kit in minutes.",
+   "publisher": "https://www.jasper.ai"
+  },
+  {
+   "id": 576,
+   "title": "watchexec",
+   "hook": "Run any command automatically when your files change.",
+   "script": "watchexec watches your folder and reruns a command on every save. Perfect for tests, builds, and live reload. Install it with winget install watchexec.watchexec on Windows. On Mac run brew install watchexec. Run watchexec then your test command. Edit a file and it reruns instantly. It respects gitignore and debounces rapid changes. Your feedback loop just got automatic.",
+   "publisher": "winget install watchexec.watchexec / brew install watchexec"
+  },
+  {
+   "id": 577,
+   "title": "Phidata agent with a UI",
+   "hook": "I built an AI agent with a chat interface in under twenty lines.",
+   "script": "Run pip install phidata openai. Create an Agent with a model and a description. Add the DuckDuckGo and YFinance tools for live data. Wrap it in a Playground app from phi.playground. Run the script and open the local URL. Chat with your agent in a clean web UI. Ask for a stock summary and it pulls real numbers. A polished agent demo in minutes.",
+   "publisher": "https://github.com/agno-agi/phidata"
+  },
+  {
+   "id": 578,
+   "title": "Pipedream scheduled scraper to Notion",
+   "hook": "This runs a scraper every morning and dumps it into Notion for free.",
+   "script": "In Pipedream create a workflow with a Schedule trigger. Set it to run daily at your chosen time. Add a custom code step that fetches and parses a page. Add the Notion Create Page action below it. Map the scraped fields into the Notion properties. Deploy and it runs on its own every day. Your research database fills itself overnight.",
+   "publisher": "https://pipedream.com"
+  },
+  {
+   "id": 579,
+   "title": "Smartlead outreach at scale",
+   "hook": "I ran a 1,000-lead cold email campaign from one dashboard.",
+   "script": "Open Smartlead and add multiple sending mailboxes. Import your leads with a CSV. Spin out personalization with AI variables. Set up automatic follow-ups. Enable warmup to protect deliverability. Rotate inboxes so volume stays safe. Track opens and replies in real time. Enterprise outreach on a startup budget.",
+   "publisher": "https://smartlead.ai"
+  },
+  {
+   "id": 580,
+   "title": "Postwise",
+   "hook": "This tool writes tweets designed to get followers, not just likes.",
+   "script": "Open Postwise and click Write. Pick a goal like growth or engagement. Type your topic and generate options. Use the Viral Tweet Generator for proven hooks. Build a thread with the thread tool. Schedule it with the Magic Schedule feature. Grow your account while you sleep.",
+   "publisher": "https://postwise.ai"
+  },
+  {
+   "id": 581,
+   "title": "gh CLI",
+   "hook": "Manage GitHub without ever opening a browser.",
+   "script": "The gh CLI brings all of GitHub to your terminal. Create repos, open pull requests, and review issues by command. Install it with winget install GitHub.cli on Windows. On Mac run brew install gh. Run gh auth login once to connect your account. Then gh repo create makes a repo in seconds. Use gh pr create to open a PR from your branch. Your whole workflow without leaving the keyboard.",
+   "publisher": "winget install GitHub.cli / brew install gh"
+  },
+  {
+   "id": 582,
+   "title": "Sim Studio agent builder",
+   "hook": "Sim Studio is a clean canvas for wiring up AI agents fast.",
+   "script": "Sim Studio is open source for building agentic workflows. Clone the repo and start it with the provided docker setup. Open the editor and drag an Agent block onto the board. Connect tool blocks like web search or an API call. Set the model and the system prompt in the side panel. Run it and watch the agent route through your blocks. It feels like a flowchart that actually thinks.",
+   "publisher": "https://github.com/simstudioai/sim"
+  },
+  {
+   "id": 583,
+   "title": "Open Interpreter runs your computer",
+   "hook": "I let an AI control my entire computer with one terminal command.",
+   "script": "Run pip install open-interpreter in your terminal. Type interpreter to start the session. Set your model with the dash dash model flag. Ask it to rename every file in a folder by date. It writes the code, shows you the plan, and asks to run it. Approve it and watch your files reorganize themselves. It can edit photos, scrape sites, and control apps. ChatGPT that actually does things on your machine.",
+   "publisher": "https://github.com/OpenInterpreter/open-interpreter"
+  },
+  {
+   "id": 584,
+   "title": "jq (JSON)",
+   "hook": "Stop squinting at raw JSON. This slices it instantly.",
+   "script": "jq is the standard tool for parsing JSON in the terminal. Filter, reshape, and pretty print any JSON stream. Install it with winget install jqlang.jq on Windows. On Mac run brew install jq. Pipe an API response into jq dot for clean color output. Use jq dot items to drill into any field. Chain filters to extract exactly what you need. JSON finally bends to your will.",
+   "publisher": "winget install jqlang.jq / brew install jq"
+  },
+  {
+   "id": 585,
+   "title": "Google Veo in Flow",
+   "hook": "Google's video AI is now public and the quality is insane.",
+   "script": "Go to labs.google/flow and sign in with your Google account. Click New Project, then the text box at the bottom. Pick Veo as the model. Type \"a paper boat floating down a rainy street, cinematic.\" Hit generate and wait for the render. The lighting and detail look like a real camera. Export the clip directly from Flow.",
+   "publisher": "https://labs.google/flow"
+  },
+  {
+   "id": 586,
+   "title": "tmux",
+   "hook": "Close your terminal and your work keeps running.",
+   "script": "tmux lets you split panes and keep sessions alive forever. Disconnect, walk away, and reattach later untouched. Install it with brew install tmux on Mac. On Windows run it inside WSL with sudo apt install tmux. Start with tmux and split panes using Ctrl B then a key. Detach with Ctrl B then d. Reattach anytime with tmux attach. Your sessions survive even when you do not.",
+   "publisher": "brew install tmux / apt install tmux (WSL)"
+  },
+  {
+   "id": 587,
+   "title": "Google Sheets and Docs voice typing",
+   "hook": "Google Docs can type everything you say for free.",
+   "script": "Open a Google Doc and click the Tools menu. Choose Voice typing. A microphone button appears, click it and start talking. It types your words in real time. Say \"period\" or \"new line\" to add punctuation. It is shockingly accurate and totally free. Dictate a whole draft without touching the keyboard.",
+   "publisher": "https://docs.google.com"
+  },
+  {
+   "id": 588,
+   "title": "Bolt.new (prompt to full app)",
+   "hook": "I typed one sentence and this site built and deployed a working app in the browser.",
+   "script": "Go to bolt.new and type what you want, like \"a recipe app with search and favorites.\" It spins up a full Node project right in your browser, no install. Watch it write files and run npm install live. The preview updates as it builds. Click any file to edit by hand or just tell Bolt to change it. Hit the Deploy button to push it live in one click. Free to start and you walk away with real code.",
+   "publisher": "https://bolt.new"
+  },
+  {
+   "id": 589,
+   "title": "Chatbase support chatbot",
+   "hook": "I trained a customer support bot on my website in five minutes.",
+   "script": "Open Chatbase and paste your website URL. It crawls your pages and FAQ. The bot now answers questions in your brand voice. Test it with a few tricky questions. Tweak the tone in settings. Grab the embed code. Paste it on your site. A 24/7 support rep that never sleeps.",
+   "publisher": "https://chatbase.co"
+  },
+  {
+   "id": 590,
+   "title": "AI pitch deck with Tome",
+   "hook": "Tome built my investor pitch deck from a single paragraph.",
+   "script": "Open Tome and click generate. Paste a short description of your startup. AI writes and designs every slide. It adds your problem, solution, and market. Edit any slide with a text prompt. Drop in your logo and brand colors. Present right from the browser. A funding-ready deck without touching PowerPoint.",
+   "publisher": "https://tome.app"
+  },
+  {
+   "id": 591,
+   "title": "SuperAGI autonomous agent",
+   "hook": "I deployed an autonomous AI agent with a dashboard and it runs goals on its own.",
+   "script": "Clone the SuperAGI repo from GitHub. Run docker compose up to start the whole stack. Open localhost:3000 in your browser. Add your OpenAI key in the settings panel. Create a new agent and type a goal in plain English. Pick its tools like web search and file writing. Hit run and watch the live activity feed. It breaks the goal into steps and executes them itself.",
+   "publisher": "https://github.com/TransformerOptimus/SuperAGI"
+  },
+  {
+   "id": 592,
+   "title": "Windsurf (AI-native editor)",
+   "hook": "This editor's AI keeps working after you stop typing, here's the Cascade flow.",
+   "script": "Download Windsurf from windsurf.com and open your project folder. Press Ctrl+L to open Cascade, the agent panel. Type a goal like \"add dark mode toggle across the app.\" Cascade finds every relevant file on its own and proposes edits. Click Accept All or step through each diff. It remembers what it did so follow-ups like \"now persist it\" just work. Tab autocomplete predicts your next edit, not just the next word. The free tier gives you real agent runs.",
+   "publisher": "https://windsurf.com"
+  },
+  {
+   "id": 593,
+   "title": "Liner",
+   "hook": "This free extension highlights the web like a textbook and pulls AI answers from your highlights.",
+   "script": "Search Liner in the Chrome Web Store and click Add to Chrome. Sign in and open any article you want to study. Select text and pick a highlight color from the popup. Open your Liner dashboard to see every highlight saved by topic. Click Ask AI to summarize or question your highlighted notes. Use it on Google to surface the most trusted sources first. It syncs across your devices automatically. Free research tool that turns reading into knowledge.",
+   "publisher": ""
+  },
+  {
+   "id": 594,
+   "title": "Agno fast agents",
+   "hook": "This is the fastest way to build an AI agent in pure Python, no bloat.",
+   "script": "Run pip install agno in your terminal. Import Agent and a model like OpenAIChat. Create an agent in one line with a model and instructions. Add the DuckDuckGo tool so it can search the web. Call agent.print\\_response with your question. It searches, reasons, and answers in seconds. Agno agents start up faster than almost anything else. Minimal code, maximum speed.",
+   "publisher": "https://github.com/agno-agi/agno"
+  },
+  {
+   "id": 595,
+   "title": "DuckDuckGo browser (private browsing)",
+   "hook": "This browser deletes your trackers and your history with one tap.",
+   "script": "Download the DuckDuckGo browser from duckduckgo.com. Set it as your default when it asks. Browse normally and watch the tracker counter climb as it blocks them. Tap the fire button to torch all tabs and data instantly. Turn on Email Protection to get a free duck.com alias. Use App Tracking Protection on Android to stop apps phoning home. Search is private by default with no profile built on you. Free, fast, no account.",
+   "publisher": "https://duckduckgo.com"
+  },
+  {
+   "id": 596,
+   "title": "Mendeley",
+   "hook": "This free tool stores every paper you read and cites them for you in Word.",
+   "script": "Download Mendeley and create a free account. Drag your PDFs into the library and it pulls the details automatically. Highlight and annotate papers right inside the reader. Install the Word plugin to cite as you write. Pick any citation style and switch it in one click. Sync across devices so your library follows you. Never lose a source or fumble a citation again.",
+   "publisher": "https://www.mendeley.com"
+  },
+  {
+   "id": 597,
+   "title": "Claude Code with MCP servers",
+   "hook": "I connected my coding agent to my database and it queried it on its own.",
+   "script": "In your terminal, run claude mcp add to register a server. Add the Playwright or filesystem MCP with the one-line command from the docs. Now in Claude Code, ask \"check the live page for the broken link.\" It uses the connected tool to actually browse and report back. Add a Postgres MCP and it can read your real schema. Each tool extends what the agent can do beyond code. List them anytime with /mcp inside the session. Your agent gets superpowers from real tools.",
+   "publisher": "https://docs.anthropic.com/claude-code/mcp"
+  },
+  {
+   "id": 598,
+   "title": "AI YouTube script writer with VidIQ",
+   "hook": "This tool writes your next video script from the title alone.",
+   "script": "Open VidIQ and go to the AI tools. Click Script Generator. Paste your video title. Pick the length and tone. It writes a hook, body, and outro. Edit the sections to fit your voice. Record straight from the script.",
+   "publisher": "https://vidiq.com"
+  },
+  {
+   "id": 599,
+   "title": "Canva Magic Design",
+   "hook": "Upload one photo and Canva designs a whole template set for you.",
+   "script": "Open Canva and find Magic Design on the homepage. Upload a product photo or type a prompt. It returns dozens of matching templates instantly. Click one to open it in the editor. Use Magic Switch to resize it for any platform. Apply your brand kit colors with one tap. Download the pack when you like it. A full branded set generated from a single image.",
+   "publisher": "https://canva.com/magic-design"
+  },
+  {
+   "id": 600,
+   "title": "chocolatey",
+   "hook": "The original Windows package manager still rules for one thing.",
+   "script": "chocolatey installs apps system wide with full automation. Great for software that needs admin and machine wide setup. Install it with one PowerShell line from chocolatey.org. Then choco install with the package name. Use choco upgrade all to update your whole system. It has the largest Windows package catalog around. Mass install your dev stack in one go.",
+   "publisher": "choco install \\<pkg\\> (from chocolatey.org)"
+  }
+ ]
+}
