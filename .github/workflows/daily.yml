@@ -64,6 +64,16 @@ jobs:
           DRY_RUN: ${{ github.event.inputs.dry_run }}
         run: python post_to_instagram.py
 
+      - name: Cross-post to TikTok via Metricool
+        env:
+          METRICOOL_USER_TOKEN: ${{ secrets.METRICOOL_USER_TOKEN }}
+          METRICOOL_USER_ID: "4913287"
+          METRICOOL_BLOG_ID: "6377217"
+          METRICOOL_TZ: "Europe/Lisbon"
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.commit.outputs.sha }}/images/${{ steps.commit.outputs.date }}"
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: python post_to_tiktok.py
+
       - name: Prune old image folders (keep last 7 days)
         run: |
           cd images || exit 0
