@@ -9,3 +9,4 @@
 - Google Calendar connector auto meeting prep brief — 2026-06-17
 - Slack connector daily standup digest — 2026-06-19
 - #538 Mindtrip travel planning - 2026-06-23
+- #437 MetaGPT - 2026-06-26
