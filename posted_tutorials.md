@@ -10,3 +10,4 @@
 - Slack connector daily standup digest — 2026-06-19
 - #538 Mindtrip travel planning - 2026-06-23
 - #437 MetaGPT - 2026-06-26
+- #439 Predis.ai Carousel Builder - 2026-06-30
