@@ -12,3 +12,4 @@
 - #437 MetaGPT - 2026-06-26
 - #439 Predis.ai Carousel Builder - 2026-06-30
 - #528 AI B-Roll Generator (Runway / Luma) - 2026-07-03
+- #466 Rask AI Video Dubbing - 2026-07-07
