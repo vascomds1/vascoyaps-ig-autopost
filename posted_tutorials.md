@@ -13,3 +13,4 @@
 - #439 Predis.ai Carousel Builder - 2026-06-30
 - #528 AI B-Roll Generator (Runway / Luma) - 2026-07-03
 - #466 Rask AI Video Dubbing - 2026-07-07
+- #436 AI Pixel Art Sprites with Leonardo.ai - 2026-07-10
