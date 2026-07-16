@@ -31,6 +31,12 @@ def _brands_path():
 BRANDS = _brands_path()
 def f_brand(s): return ImageFont.truetype(BRANDS, s)
 
+def _solid_path():
+    import fontawesomefree as fa
+    return os.path.join(os.path.dirname(fa.__file__),
+                        "static/fontawesomefree/webfonts/fa-solid-900.ttf")
+def f_solid(s): return ImageFont.truetype(_solid_path(), s)
+
 # Anton = the brand "punch" display face (tall heavy condensed, ALL-CAPS).
 # Matches the PUNCH captions in the Vasco Yaps videos (STYLE.md: punch words in accent, connectors neutral).
 # Auto-downloaded on first run if not vendored in fonts/.
@@ -332,6 +338,104 @@ def bullets(draw, items, x, y, max_w, fsize=39, gap=34):
         y = ty + gap
     return y
 
+# ---------- repo cards (7-repo roundup format) ----------
+# GitHub linguist colors for the language bar; anything unknown gets slate.
+LANG_COLORS = {
+    "Python": "3572A5", "TypeScript": "3178c6", "JavaScript": "f1e05a", "Go": "00ADD8",
+    "Rust": "dea584", "C++": "f34b7d", "C": "555555", "C#": "178600", "Shell": "89e051",
+    "HTML": "e34c26", "CSS": "663399", "Jupyter Notebook": "DA5B0B", "Ruby": "701516",
+    "Java": "b07219", "Kotlin": "A97BFF", "Swift": "F05138", "Dart": "00B4AB",
+    "Lua": "000080", "Vue": "41b883", "Svelte": "ff3e00", "PHP": "4F5D95",
+    "Dockerfile": "384d54", "Makefile": "427819", "PowerShell": "012456",
+    "Markdown": "94a3b8", "MDX": "94a3b8", "Zig": "ec915c", "Elixir": "6e4a7e",
+}
+def _hexrgb(h): return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+def lang_color(name): return _hexrgb(LANG_COLORS.get(name, "94a3b8"))
+
+def fmt_count(n):
+    if n >= 1_000_000: s = f"{n/1_000_000:.1f}M"
+    elif n >= 1_000:   s = f"{n/1_000:.1f}K"
+    else:              return str(n)
+    return s.replace(".0", "")
+
+def _circle_avatar(path, size):
+    try:
+        av = Image.open(path).convert("RGB").resize((size, size))
+    except Exception:
+        av = Image.new("RGB", (size, size), T["accent"])
+    mask = Image.new("L", (size, size), 0)
+    ImageDraw.Draw(mask).ellipse([0, 0, size, size], fill=255)
+    return av, mask
+
+def gh_card(img, repo, x0, y0, x1):
+    """A clean white GitHub card: avatar, owner/repo, stars + forks, description,
+    and a language bar. All numbers come from the GitHub API, never the model."""
+    pad, av_sz = 44, 104
+    inner = (x1 - pad) - (x0 + pad)
+    d0 = ImageDraw.Draw(img)
+    fd = f_reg(33)
+    desc_lines = wrap(d0, repo.get("desc", ""), fd, inner)[:3]
+    desc_h = len(desc_lines) * int(33*1.32)
+    langs = repo.get("langs", [])[:4]
+    lang_h = (16 + 14 + 34) if langs else 0
+    y1 = y0 + pad + av_sz + (26 + desc_h if desc_lines else 0) + (24 + lang_h if langs else 0) + pad
+    img = panel(img, x0, y0, x1, y1)
+    d = ImageDraw.Draw(img)
+    ax, ay = x0 + pad, y0 + pad
+    av, mask = _circle_avatar(repo.get("avatar", ""), av_sz)
+    img.paste(av, (ax, ay), mask)
+    tx = ax + av_sz + 30
+    name = repo["full_name"]
+    size = 46
+    while size > 28 and d.textlength(name, font=f_bold(size)) > (x1 - pad) - tx:
+        size -= 2
+    d.text((tx, ay + 2), name, font=f_bold(size), fill=T["ink"])
+    sy = ay + size + 22
+    d.text((tx, sy), "", font=f_solid(30), fill=T["accent"])
+    sx = tx + 44
+    stars = fmt_count(repo.get("stars", 0))
+    d.text((sx, sy - 3), stars, font=f_semi(34), fill=T["ink"])
+    fx = sx + d.textlength(stars, font=f_semi(34)) + 44
+    d.text((fx, sy), "", font=f_solid(30), fill=T["mute"])
+    d.text((fx + 40, sy - 3), fmt_count(repo.get("forks", 0)), font=f_semi(34), fill=T["body"])
+    y = ay + av_sz + 26
+    for ln in desc_lines:
+        d.text((x0 + pad, y), ln, font=fd, fill=T["body"]); y += int(33*1.32)
+    if langs:
+        y += 24
+        bar = Image.new("RGB", (inner, 16), T["dot_off"])
+        bx = 0
+        for i, (lname, frac) in enumerate(langs):
+            wseg = inner - bx if i == len(langs) - 1 else int(inner * frac)
+            ImageDraw.Draw(bar).rectangle([bx, 0, bx + wseg, 16], fill=lang_color(lname))
+            bx += wseg
+        bmask = Image.new("L", (inner, 16), 0)
+        ImageDraw.Draw(bmask).rounded_rectangle([0, 0, inner, 16], 8, fill=255)
+        img.paste(bar, (x0 + pad, y), bmask)
+        y += 16 + 14
+        lx = x0 + pad
+        fl = f_semi(27)
+        for lname, frac in langs:
+            d.ellipse([lx, y + 6, lx + 14, y + 20], fill=lang_color(lname))
+            label = f"{lname} {int(round(frac*100))}%"
+            d.text((lx + 24, y), label, font=fl, fill=T["body"])
+            lx += 24 + d.textlength(label, font=fl) + 34
+    return img, y1
+
+def repo_slide(card, page, total):
+    global T; T = _pal("content")
+    img = background(); img = ghost_index(img, card["index"]); d = ImageDraw.Draw(img)
+    kicker(d, card["label"], 150)
+    y = punch_headline(img, MARGIN, 250, card["headline"], W-2*MARGIN, T["accent"], T["ink"], start=104, lh=0.95, mins=58)
+    y += 38; d = ImageDraw.Draw(img)
+    fj = f_semi(40)
+    for ln in wrap(d, card.get("use", ""), fj, W-2*MARGIN):
+        d.text((MARGIN, y), ln, font=fj, fill=T["body"]); y += int(40*1.32)
+    y += 40
+    img, _ = gh_card(img, card["repo"], MARGIN-28, y, W-MARGIN+28)
+    d = ImageDraw.Draw(img)
+    footer(d, page=page, total=total); return img
+
 def draw_substack(d, x, y, s, fill):
     bar = s * 0.205
     d.rectangle([x, y, x + s, y + bar], fill=fill)
@@ -425,7 +529,8 @@ def main():
     cover(data["cover"]).save(os.path.join(out_dir, "slide_01.jpg"), quality=92, subsampling=0)
     page = 2
     for card in data["cards"]:
-        content(card, page, total).save(os.path.join(out_dir, f"slide_{page:02d}.jpg"), quality=92, subsampling=0); page += 1
+        slide_fn = repo_slide if "repo" in card else content
+        slide_fn(card, page, total).save(os.path.join(out_dir, f"slide_{page:02d}.jpg"), quality=92, subsampling=0); page += 1
     cta(data["cta"]).save(os.path.join(out_dir, f"slide_{page:02d}.jpg"), quality=92, subsampling=0)
     print(f"Rendered {page} slides to {out_dir} (theme={MODE})")
 

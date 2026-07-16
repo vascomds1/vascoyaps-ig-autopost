@@ -1,5 +1,7 @@
 output/
 content.json
+avatars/
+fonts/
 __pycache__/
 *.pyc
 .DS_Store

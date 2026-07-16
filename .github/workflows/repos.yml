@@ -1,0 +1,87 @@
+name: Repo roundup carousel (7 repos)
+
+on:
+  # Manual for now. To make it recurring, uncomment and pick a slot that does
+  # not collide with news (Sun/Wed 13:30 UTC) or tutorials (Tue/Fri 16:30 UTC).
+  # schedule:
+  #   - cron: "30 16 * * 6"   # Saturdays 16:30 UTC = 17:30 Lisbon (summer)
+  workflow_dispatch:
+    inputs:
+      theme:
+        description: "Repo theme (e.g. Claude Code, AI agents, MCP servers)"
+        required: false
+        default: "Claude Code"
+      dry_run:
+        description: "Build but do not publish (1 = dry run)"
+        required: false
+        default: "0"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: repos-carousel
+  cancel-in-progress: false
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Pick repos and write copy
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_MODEL: ${{ secrets.CLAUDE_MODEL }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_THEME: ${{ github.event.inputs.theme }}
+        run: python generate_repos.py
+
+      - name: Render carousel slides
+        run: python build_carousel.py
+
+      - name: Commit slides to a dated folder
+        id: commit
+        run: |
+          DATE=$(date -u +%F)
+          DEST="images-repos/$DATE"
+          rm -rf "$DEST" && mkdir -p "$DEST"
+          cp output/slide_*.jpg "$DEST"/
+          cp content.json "$DEST"/content.json
+          git config user.name "vascoyaps-bot"
+          git config user.email "bot@vascoyaps.local"
+          git add "$DEST" posted_repos.md
+          git commit -m "repo roundup $DATE [skip ci]" || echo "nothing to commit"
+          git push
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "date=$DATE" >> "$GITHUB_OUTPUT"
+
+      - name: Publish to Instagram
+        env:
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.commit.outputs.sha }}/images-repos/${{ steps.commit.outputs.date }}"
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: python post_to_instagram.py
+
+      - name: Cross-post to TikTok via Metricool
+        env:
+          METRICOOL_USER_TOKEN: ${{ secrets.METRICOOL_USER_TOKEN }}
+          METRICOOL_USER_ID: "4913287"
+          METRICOOL_BLOG_ID: "6377217"
+          METRICOOL_TZ: "Europe/Lisbon"
+          IMAGE_BASE_URL: "https://raw.githubusercontent.com/${{ github.repository }}/${{ steps.commit.outputs.sha }}/images-repos/${{ steps.commit.outputs.date }}"
+          DRY_RUN: ${{ github.event.inputs.dry_run }}
+        run: python post_to_tiktok.py
+
+      - name: Prune old image folders (keep last 7)
+        run: |
+          cd images-repos || exit 0
+          ls -1d */ 2>/dev/null | sort | head -n -7 | xargs -r rm -rf

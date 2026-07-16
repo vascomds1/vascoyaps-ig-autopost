@@ -14,10 +14,14 @@ It runs on GitHub Actions (free), so nothing needs to be open on your computer.
 
 | File | What it does |
 |------|--------------|
-| `generate_copy.py` | Claude + web search writes `content.json` (cover, 6 cards, CTA, caption) |
-| `build_carousel.py` | Renders `content.json` into 8 PNG slides in `output/` |
+| `generate_copy.py` | Claude + web search writes `content.json` (cover, 6 news cards, CTA, caption) |
+| `generate_tutorial.py` | Reformats the next unused idea from `ideas.json` into a step carousel |
+| `generate_repos.py` | 7-repo roundup: Claude picks candidates, GitHub API supplies the real stats/avatars |
+| `build_carousel.py` | Renders `content.json` into PNG slides in `output/` (bullet cards or GitHub repo cards) |
 | `post_to_instagram.py` | Publishes the slides to Instagram as a carousel |
-| `.github/workflows/daily.yml` | The daily schedule that runs all three |
+| `.github/workflows/daily.yml` | News schedule (Sun/Wed) |
+| `.github/workflows/tutorial.yml` | Tutorial schedule (Tue/Fri) |
+| `.github/workflows/repos.yml` | Repo roundup (manual dispatch with a theme input; cron optional) |
 | `content.sample.json` | Example copy, useful for local test renders |
 
 Test a render locally: `python build_carousel.py content.sample.json output`
