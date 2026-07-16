@@ -3,7 +3,10 @@
 Vasco Yaps daily AI carousel renderer (news + tutorials).
 Reads content.json and renders 1080x1350 PNG slides.
 
-Theme: set env CAROUSEL_THEME = "brand" (default teal), "dark", or "warm".
+Theme: set env CAROUSEL_THEME = "grid" (default), "brand", "dark", or "warm".
+"grid" = dark brand cover for the hook, light editorial grid body/outro slides
+(high-contrast ink on off-white, white bullet card, teal wave signature mark).
+The other themes keep one palette across all slides.
 """
 import os, sys, json, math, importlib
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
@@ -136,8 +139,32 @@ THEMES = {
         "content_glows": [(0.90, 0.08, 420, (232, 160, 107), 26), (0.05, 0.96, 460, (124, 138, 107), 24)],
         "content_wave": (0.945, 26, (218, 117, 72), 4, 80, 2.2, 0.6),
     },
+    # Light editorial body used by the "grid" mode (cover stays on "brand").
+    # Ink on off-white for contrast; accent shifts to wave-600 so type stays readable on light.
+    "grid_light": {
+        "grid": True, "card": True,
+        "bg_top": (250, 253, 254), "bg_bot": (228, 244, 248),   # white -> wave-100 tint
+        "ink": (4, 24, 32), "body": (43, 72, 84), "mute": (108, 138, 150),
+        "accent": (8, 131, 149),                                # wave-600 (readable on light)
+        "grad_bar": ((8, 131, 149), (5, 191, 219)),
+        "grad_key": ((8, 131, 149), (5, 191, 219)),
+        "ghost": ((5, 191, 219), 34), "dot_off": (198, 224, 231),
+        "pill_grad": ((5, 191, 219), (61, 208, 229)), "pill_text": (4, 30, 40),
+        "icon": (4, 24, 32),
+        "grid_line": ((8, 131, 149), 13),
+        "content_glows": [(0.88, 0.10, 430, (122, 225, 239), 44), (0.08, 0.94, 470, (61, 208, 229), 26)],
+        "cover_glows": [(0.88, 0.10, 430, (122, 225, 239), 44), (0.08, 0.94, 470, (61, 208, 229), 26)],
+    },
 }
-T = THEMES.get(os.environ.get("CAROUSEL_THEME", "brand"), THEMES["brand"])
+
+MODE = os.environ.get("CAROUSEL_THEME", "grid")
+def _pal(kind):
+    """Palette for a slide kind ("cover" or "content"). In grid mode the cover
+    keeps the dark brand hook while body/outro slides go light."""
+    if MODE == "grid":
+        return THEMES["brand"] if kind == "cover" else THEMES["grid_light"]
+    return THEMES.get(MODE, THEMES["brand"])
+T = _pal("content")
 
 W, H = 1080, 1350
 MARGIN = 96
@@ -206,11 +233,24 @@ def fit_headline(draw, text, max_w, max_h, start=92, lh=1.04, mins=56):
     fnt = f_black(mins); return fnt, wrap(draw, text, fnt, max_w), mins*lh
 
 # ---------- furniture ----------
+def grid_lines(img, step=90):
+    col, a = T["grid_line"]
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    for x in range(step, W, step):
+        d.line([(x, 0), (x, H)], fill=col+(a,), width=1)
+    for y in range(step, H, step):
+        d.line([(0, y), (W, y)], fill=col+(a,), width=1)
+    base = img.convert("RGBA"); base.alpha_composite(layer)
+    return base.convert("RGB")
+
 def background(cover=False):
     img = vgrad(T["bg_top"], T["bg_bot"])
     glows = T["cover_glows"] if cover else T["content_glows"]
     for rx, ry, r, col, a in glows:
         img = glow(img, (W*rx, H*ry), r, col, a)
+    if T.get("grid"):
+        return grid_lines(img)
     if cover:
         for y0r, amp, col, wd, a, per, ph in T["cover_waves"]:
             img = wave(img, H*y0r, amp, col, wd, a, per, ph)
@@ -219,10 +259,28 @@ def background(cover=False):
         img = wave(img, H*y0r, amp, col, wd, a, per, ph)
     return img
 
+def wavemark(draw, x, y, w=58, amp=8, color=None, width=5, periods=1.5):
+    """The Vasco Yaps signature mark: a small teal wave squiggle. Rendered in the
+    same spot on EVERY slide (via the kicker) so the profile grid reads as one brand."""
+    color = color or T["accent"]
+    pts = [(x+i, y + amp*math.sin((i/w)*periods*2*math.pi)) for i in range(0, w+1, 2)]
+    draw.line(pts, fill=color, width=width, joint="curve")
+
 def kicker(draw, text, y):
-    bar = grad_h(54, 8, *T["grad_bar"])
-    draw._image.paste(bar, (MARGIN, y+10))
+    wavemark(draw, MARGIN, y+14)
     tracked(draw, (MARGIN+78, y-6), text.upper(), f_bold(31), T["accent"], tracking=4)
+
+def panel(img, x0, y0, x1, y1, r=28):
+    """White card with a soft shadow and a faint teal border (light slides only)."""
+    base = img.convert("RGBA")
+    sh = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(sh).rounded_rectangle([x0+4, y0+12, x1+4, y1+12], r, fill=(8, 60, 76, 40))
+    base.alpha_composite(sh.filter(ImageFilter.GaussianBlur(14)))
+    ly = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    ImageDraw.Draw(ly).rounded_rectangle([x0, y0, x1, y1], r, fill=(255, 255, 255, 255),
+                                         outline=(5, 191, 219, 110), width=2)
+    base.alpha_composite(ly)
+    return base.convert("RGB")
 
 def ghost_index(img, n):
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -282,6 +340,7 @@ def draw_substack(d, x, y, s, fill):
 
 # ---------- slides ----------
 def cover(c):
+    global T; T = _pal("cover")
     img = background(cover=True); d = ImageDraw.Draw(img)
     kicker(d, c["kicker"], 150)
     title = " ".join(c["title_lines"])
@@ -293,23 +352,53 @@ def cover(c):
     footer(d, swipe=True); return img
 
 def content(card, page, total=8):
+    global T; T = _pal("content")
     img = background(); img = ghost_index(img, card["index"]); d = ImageDraw.Draw(img)
     kicker(d, card["label"], 150)
     y = punch_headline(img, MARGIN, 250, card["headline"], W-2*MARGIN, T["accent"], T["ink"], start=104, lh=0.95, mins=58)
-    y += 66; d = ImageDraw.Draw(img)
-    avail = (H - 150) - y
-    fsize, gap = fit_bullets(d, card["bullets"], W-2*MARGIN, avail)
-    bullets(d, card["bullets"], MARGIN, y, W-2*MARGIN, fsize=fsize, gap=gap)
+    y += 56; d = ImageDraw.Draw(img)
+    if T.get("card"):
+        pad = 46
+        avail = (H - 170) - y - 2*pad
+        max_w = W - 2*MARGIN
+        fsize, gap = fit_bullets(d, card["bullets"], max_w, avail)
+        hgt = _bullets_height(d, card["bullets"], max_w, fsize, gap) - gap
+        img = panel(img, MARGIN-28, y, W-MARGIN+28, y + hgt + 2*pad)
+        d = ImageDraw.Draw(img)
+        bullets(d, card["bullets"], MARGIN+18, y+pad, max_w-36, fsize=fsize, gap=gap)
+    else:
+        avail = (H - 150) - y
+        fsize, gap = fit_bullets(d, card["bullets"], W-2*MARGIN, avail)
+        bullets(d, card["bullets"], MARGIN, y, W-2*MARGIN, fsize=fsize, gap=gap)
     footer(d, page=page, total=total); return img
 
 def cta(c):
+    global T; T = _pal("content")
     img = background(cover=True); d = ImageDraw.Draw(img)
     kicker(d, c.get("kicker", "THAT'S TODAY IN AI"), 150)
-    y = 250; fa = f_anton(118); lh = int(118 * 0.95)
-    d.text((MARGIN, y), c.get("line1", "Follow").upper(), font=fa, fill=T["ink"]); y += lh
-    d.text((MARGIN, y), c.get("handle", "@vascoyaps").upper(), font=fa, fill=T["accent"]); y += lh + 56
-    d.text((MARGIN, y), "AI news, decoded daily.", font=f_reg(40), fill=T["mute"])
-    y += 100
+    # Save-first outro: big save line, then a question that invites a choice.
+    line1 = c.get("line1", "Save this").upper()
+    line2 = (c.get("line2") or c.get("handle", "@vascoyaps")).upper()
+    size = 118
+    while size > 64 and max(d.textlength(ln, font=f_anton(size)) for ln in (line1, line2)) > W-2*MARGIN:
+        size -= 4
+    fa = f_anton(size); lh = int(size * 0.95)
+    y = 250
+    d.text((MARGIN, y), line1, font=fa, fill=T["ink"]); y += lh
+    d.text((MARGIN, y), line2, font=fa, fill=T["accent"]); y += lh + 48
+    sub = c.get("subtitle", "AI news, decoded daily.")
+    fs = f_reg(40)
+    for ln in wrap(d, sub, fs, W-2*MARGIN):
+        d.text((MARGIN, y), ln, font=fs, fill=T["mute"]); y += int(40*1.36)
+    y += 26
+    q = c.get("question")
+    if q:
+        fq = f_semi(46)
+        for ln in wrap(d, q, fq, W-2*MARGIN):
+            d.text((MARGIN, y), ln, font=fq, fill=T["ink"]); y += int(46*1.3)
+        y += 44
+    else:
+        y += 24
     isz = 64; cell = 150; cy = y + isz / 2
     glyphs = {"instagram": "\uf16d", "tiktok": "\ue07b", "youtube": "\uf16a", "x-twitter": "\ue61b"}
     for i, plat in enumerate(SOCIALS):
@@ -319,8 +408,8 @@ def cta(c):
             draw_substack(d, cx + (isz - s) / 2, cy - s / 2, s, T["icon"])
         else:
             d.text((cx + isz / 2, cy), glyphs[plat], font=f_brand(isz), fill=T["icon"], anchor="mm")
-    y += isz + 64
-    pill = "  " + c.get("pill", "Save this  \u00b7  Send it to a friend") + "  "
+    y += isz + 56
+    pill = "  " + c.get("pill", "Follow @vascoyaps") + "  "
     fp = f_bold(36); pw = int(d.textlength(pill, font=fp)) + 20; ph = 84
     rad = Image.new("L", (pw, ph), 0); ImageDraw.Draw(rad).rounded_rectangle([0, 0, pw, ph], ph//2, fill=255)
     img.paste(grad_h(pw, ph, *T["pill_grad"]), (MARGIN, y), rad); d = ImageDraw.Draw(img)
@@ -338,7 +427,7 @@ def main():
     for card in data["cards"]:
         content(card, page, total).save(os.path.join(out_dir, f"slide_{page:02d}.jpg"), quality=92, subsampling=0); page += 1
     cta(data["cta"]).save(os.path.join(out_dir, f"slide_{page:02d}.jpg"), quality=92, subsampling=0)
-    print(f"Rendered {page} slides to {out_dir} (theme={os.environ.get('CAROUSEL_THEME','brand')})")
+    print(f"Rendered {page} slides to {out_dir} (theme={MODE})")
 
 if __name__ == "__main__":
     main()

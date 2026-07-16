@@ -45,18 +45,19 @@ def recent_slugs():
 SCHEMA_EXAMPLE = {
     "cover": {
         "kicker": "AI NEWS  \u00b7  " + TODAY,
-        "title_lines": ["AI just had", "its biggest", "day", "of the year."],
-        "subtitle": "One-sentence promise of what the 6 stories cover. Concrete and specific."
+        "title_lines": ["6 AI moves", "that change", "how you work."],
+        "subtitle": "One-sentence promise of what the 6 stories mean for the reader. Concrete and specific."
     },
     "cards": [
         {"label": "APPLE", "index": 1, "slug": "apple-wwdc-siri",
          "headline": "Punchy claim, 4-7 words",
-         "bullets": ["First supporting fact.", "Second fact with a number.", "Why it matters in one line."]}
+         "bullets": ["First supporting fact.", "Second fact with a number.", "What this means for you, in one line."]}
     ],
     "cta": {
-        "kicker": "THAT'S TODAY IN AI", "line1": "Follow", "handle": "@vascoyaps",
+        "kicker": "THAT'S TODAY IN AI", "line1": "Save this", "line2": "for later.",
         "subtitle": "AI news, decoded daily.",
-        "pill": "Save this  \u00b7  Send it to a friend"
+        "question": "Which story changes your work the most? Tell me below (1 to 6).",
+        "pill": "Follow @vascoyaps"
     },
     "caption": "Instagram caption text with hashtags."
 }
@@ -84,13 +85,14 @@ Then output a single Instagram carousel as STRICT JSON, no prose, matching exact
 {json.dumps(SCHEMA_EXAMPLE, indent=2)}
 
 Rules:
-- cover.title_lines: 3 to 4 short lines that read as one bold statement; the LAST element is the phrase that gets highlighted (keep it punchy, <= 4 words). Keep each line short enough to fit a big headline.
+- cover.title_lines: 3 to 4 short lines that make ONE specific promise or consequence for the viewer. Lead with the outcome ("what you get") or the tension ("what changes for you / what you are missing"). Patterns that work: "6 AI moves that change how you work", "You will pay more for AI after today", "The AI rules just changed for your business". NEVER a generic status line like "AI just had a big day". The LAST element is the phrase that gets highlighted (punchy, <= 4 words). Keep each line short enough to fit a big headline.
 - cover.kicker: keep exactly "AI NEWS  \u00b7  {TODAY}".
 - Exactly 6 cards. index 1..6. label = 1-2 word uppercase category (e.g. APPLE, FUNDING, REGULATION).
 - slug: a short stable lowercase-kebab id for the story (e.g. "anthropic-ipo", "gemini-3-5-pro", "eu-ai-act"). Reuse the SAME slug if you are revisiting a story with a new development, so the log stays consistent.
 - headline: 4 to 6 words, concrete and specific, no period needed. Keep it short so it never wraps past 2 lines.
-- bullets: exactly 3 per card. Each ONE short sentence, max 110 characters (hard limit, aim for ~90). No semicolons. Include at least one real number/stat per card where possible. Last bullet says why it matters.
-- caption: a strong hook line, a 1-2 sentence summary, a follow CTA for @vascoyaps, then 8-10 relevant hashtags. Emojis ok but sparing.
+- bullets: exactly 3 per card. Each ONE short sentence, max 110 characters (hard limit, aim for ~90). No semicolons. Include at least one real number/stat per card where possible. The LAST bullet must speak to the reader directly ("you"/"your"): a concrete consequence or action, never a restatement of the news.
+- cta: keep line1/line2/pill as shown. cta.question: ONE short question that invites a choice or an answer in the comments (like the example). Vary it day to day.
+- caption: a proof or contrast line first (a real number or stakes from today's stories), a 1-2 sentence summary, a "save this" instruction naming what they will come back for, the same question from the cta, a follow CTA for @vascoyaps, then 8-10 relevant hashtags. Emojis ok but sparing.
 - Absolutely no em or en dashes anywhere.
 
 Return ONLY the JSON object."""

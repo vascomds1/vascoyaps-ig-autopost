@@ -69,9 +69,11 @@ SCHEMA_EXAMPLE = {
         {"label": "STEP 1", "index": 1, "headline": "Short action, 3-6 words",
          "bullets": ["What to do, one short sentence.", "A concrete detail or tip."]}
     ],
-    "cta": {"kicker": "SAVE THIS FOR LATER", "line1": "Follow", "handle": "@vascoyaps",
-            "pill": "Save this  \u00b7  Build it today"},
-    "caption": "Instagram caption with a save-prompt and hashtags."
+    "cta": {"kicker": "SAVE THIS FOR LATER", "line1": "Save this", "line2": "build it today.",
+            "subtitle": "Practical AI, out loud.",
+            "question": "Which step are you trying first? Tell me below.",
+            "pill": "Follow @vascoyaps"},
+    "caption": "Instagram caption with a save-prompt, a question, and hashtags."
 }
 
 SYSTEM = (
@@ -102,13 +104,13 @@ Output STRICT JSON only, matching exactly this shape:
 Rules:
 - topic: a short title for the log (the tool or tip name). No id number.
 - cover.kicker: keep exactly "{KICKER}".
-- cover.title_lines: turn the hook into a punchy headline of 3 short lines. The LAST element is the highlighted phrase (<= 4 words). Keep each line short.
+- cover.title_lines: turn the hook into a punchy headline of 3 short lines that states the PAYOFF the viewer gets (the result, in "you" terms, not the tool name). The LAST element is the highlighted phrase (<= 4 words). Keep each line short.
 - cover.subtitle: one line naming the concrete payoff from the hook/script. No invention.
 - cards: 3 to 6 steps taken DIRECTLY from the script, in order. No filler, no invented steps. index 1..N, labelled STEP 1, STEP 2, and so on. Make the final step the payoff ("now you have X").
 - headline: the step's action in 3 to 6 words, no period.
 - bullets: 1 to 2 per card. Each ONE short sentence, max 110 characters. Concrete and faithful to the script.
-- cta: keep as shown.
-- caption: a hook line, a one-line summary of what they get, a clear "save this and try it" line{', then the publisher link/prompt on its own line' if pub else ''}, then 6 to 10 relevant hashtags. Sparing emojis ok.
+- cta: keep line1/line2/subtitle/pill as shown. cta.question: ONE short question inviting a choice or a comment (e.g. "Which step are you trying first?", "What would you build with this?"). Fit it to the idea.
+- caption: a hook line, a one-line summary of what they get, a clear "save this before you try it" line, the same question from the cta{', then the publisher link/prompt on its own line' if pub else ''}, then 6 to 10 relevant hashtags. Sparing emojis ok.
 - No em or en dashes anywhere.
 
 Return ONLY the JSON object."""

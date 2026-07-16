@@ -19,9 +19,10 @@
      "bullets": ["Colorado's AI Act goes live in 22 days (June 30).", "The EU AI Act lands in 55 days (August 2), with fines up to 7% of global revenue.", "If your business ships AI, this stopped being theoretical today."]}
   ],
   "cta": {
-    "kicker": "THAT'S TODAY IN AI", "line1": "Follow", "handle": "@vascoyaps",
+    "kicker": "THAT'S TODAY IN AI", "line1": "Save this", "line2": "for later.",
     "subtitle": "AI news, decoded daily. No hype, just what actually matters.",
-    "pill": "Save this  ·  Send it to a friend"
+    "question": "Which story changes your work the most? Tell me below (1 to 6).",
+    "pill": "Follow @vascoyaps"
   },
   "caption": "AI just had its biggest day of the year. Tim Cook's final keynote, Claude landing on the iPhone, and the largest IPO in history, all in one Monday. Here are the 6 stories that matter. Follow @vascoyaps for AI news decoded daily. #AInews #ArtificialIntelligence #Claude #Apple #WWDC2026 #Anthropic #AItools #techtok #AIexplained"
 }

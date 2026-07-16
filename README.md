@@ -70,7 +70,9 @@ In the repo: **Settings > Secrets and variables > Actions > New repository secre
 The cron is `30 13 * * *` (13:30 UTC), which is **14:30 Lisbon time during summer (WEST)**. GitHub cron is always UTC and does not auto-adjust for daylight saving, so in winter (WET) this would fire at 13:30 Lisbon. To change the time, edit the `cron` line in `.github/workflows/daily.yml`.
 
 ## Changing the design
-All visuals live in `build_carousel.py` (palette near the top: `AQUA`, `BLUE`, `VIOLET`, `INK_TOP/BOT`). The copy structure and voice live in `generate_copy.py`.
+All visuals live in `build_carousel.py` (palettes in the `THEMES` dict near the top). The copy structure and voice live in `generate_copy.py` / `generate_tutorial.py`.
+
+The default theme is **`grid`** (since 2026-07-16): a dark teal brand cover for the hook, then light off-white editorial body/outro slides with a white bullet card and the teal wave signature mark on every slide. The outro is save-first with an engagement question. Set `CAROUSEL_THEME=brand` to revert to the old all-dark look (`dark` and `warm` also exist).
 
 ## Notes
 - Instagram carousels allow up to 10 images; this posts 8.
