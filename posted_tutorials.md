@@ -15,3 +15,4 @@
 - #466 Rask AI Video Dubbing - 2026-07-07
 - #436 AI Pixel Art Sprites with Leonardo.ai - 2026-07-10
 - #456 LM Studio - 2026-07-14
+- #577 Phidata Agent with UI - 2026-07-17
