@@ -16,3 +16,4 @@
 - #436 AI Pixel Art Sprites with Leonardo.ai - 2026-07-10
 - #456 LM Studio - 2026-07-14
 - #577 Phidata Agent with UI - 2026-07-17
+- #469 WhisperX word timestamps - 2026-07-21
