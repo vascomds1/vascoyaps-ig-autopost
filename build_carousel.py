@@ -75,17 +75,24 @@ def _wrap_words(draw, words, font, max_w):
     if cur: lines.append(cur)
     return lines
 
-def punch_headline(img, x, y, text, max_w, accent, ink, start=130, lh=0.95, mins=58, color=True):
-    """Draw an ALL-CAPS Anton headline, wrapped, with punch words in `accent`."""
-    d = ImageDraw.Draw(img)
-    words = text.upper().split()
+def _fit_punch(d, words, max_w, start, mins, lh, max_h=None):
+    """Largest Anton size whose widest word fits max_w and (if given) whose
+    wrapped block fits max_h."""
     s = start
     while s > mins:
         fnt = f_anton(s)
         if max(d.textlength(w, font=fnt) for w in words) <= max_w:
-            break
+            if max_h is None or len(_wrap_words(d, words, fnt, max_w)) * int(s*lh) <= max_h:
+                break
         s -= 2
-    fnt = f_anton(max(s, mins)); sp = d.textlength(" ", font=fnt)
+    return f_anton(max(s, mins))
+
+def punch_headline(img, x, y, text, max_w, accent, ink, start=130, lh=0.95, mins=58, color=True, max_h=None):
+    """Draw an ALL-CAPS Anton headline, wrapped, with punch words in `accent`."""
+    d = ImageDraw.Draw(img)
+    words = text.upper().split()
+    fnt = _fit_punch(d, words, max_w, start, mins, lh, max_h)
+    sp = d.textlength(" ", font=fnt)
     for line in _wrap_words(d, words, fnt, max_w):
         cx = x
         for w in line:
@@ -444,16 +451,26 @@ def draw_substack(d, x, y, s, fill):
 
 # ---------- slides ----------
 def cover(c):
+    # Hook cover = kicker + big punch headline ONLY (2026-07-29: subtitle and
+    # footer/swipe removed; long titles collided with them). Headline is fitted
+    # to the available height and vertically centered below the kicker.
     global T; T = _pal("cover")
     img = background(cover=True); d = ImageDraw.Draw(img)
     kicker(d, c["kicker"], 150)
     title = " ".join(c["title_lines"])
-    y = punch_headline(img, MARGIN, 300, title, W-2*MARGIN, T["accent"], T["ink"], start=140, lh=0.95, mins=72)
-    y += 46
-    d = ImageDraw.Draw(img); sf = f_semi(40)
-    for ln in wrap(d, c["subtitle"], sf, W-2*MARGIN-40):
-        d.text((MARGIN, y), ln, font=sf, fill=T["mute"]); y += int(40*1.36)
-    footer(d, swipe=True); return img
+    words = title.upper().split()
+    top, bottom, lh = 260, H - 130, 0.95
+    fnt = _fit_punch(d, words, W-2*MARGIN, 140, 64, lh, bottom - top)
+    lines = _wrap_words(d, words, fnt, W-2*MARGIN)
+    y = top + max(0, (bottom - top - len(lines)*int(fnt.size*lh)) // 2)
+    sp = d.textlength(" ", font=fnt)
+    for line in lines:
+        cx = MARGIN
+        for w in line:
+            d.text((cx, y), w, font=fnt, fill=T["accent"] if is_punch(w) else T["ink"])
+            cx += d.textlength(w, font=fnt) + sp
+        y += int(fnt.size * lh)
+    return img
 
 def content(card, page, total=8):
     global T; T = _pal("content")
@@ -462,12 +479,13 @@ def content(card, page, total=8):
     y = punch_headline(img, MARGIN, 250, card["headline"], W-2*MARGIN, T["accent"], T["ink"], start=104, lh=0.95, mins=58)
     y += 56; d = ImageDraw.Draw(img)
     if T.get("card"):
-        pad = 46
-        avail = (H - 170) - y - 2*pad
+        # Extra bottom padding so the last text line never hugs the card border.
+        pad, pad_bot = 46, 84
+        avail = (H - 170) - y - pad - pad_bot
         max_w = W - 2*MARGIN
         fsize, gap = fit_bullets(d, card["bullets"], max_w, avail)
         hgt = _bullets_height(d, card["bullets"], max_w, fsize, gap) - gap
-        img = panel(img, MARGIN-28, y, W-MARGIN+28, y + hgt + 2*pad)
+        img = panel(img, MARGIN-28, y, W-MARGIN+28, y + hgt + pad + pad_bot)
         d = ImageDraw.Draw(img)
         bullets(d, card["bullets"], MARGIN+18, y+pad, max_w-36, fsize=fsize, gap=gap)
     else:
