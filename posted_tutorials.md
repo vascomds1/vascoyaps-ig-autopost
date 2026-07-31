@@ -19,3 +19,4 @@
 - #469 WhisperX word timestamps - 2026-07-21
 - #505 Pitch Deck Builder - 2026-07-24
 - #500 ChatGPT Daily Journaling Prompt - 2026-07-28
+- #514 Akiflow - 2026-07-31
