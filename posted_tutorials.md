@@ -20,3 +20,4 @@
 - #505 Pitch Deck Builder - 2026-07-24
 - #500 ChatGPT Daily Journaling Prompt - 2026-07-28
 - #514 Akiflow - 2026-07-31
+- #520 Zed AI Editor - 2026-08-04
