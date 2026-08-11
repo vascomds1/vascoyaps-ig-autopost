@@ -22,3 +22,4 @@
 - #514 Akiflow - 2026-07-31
 - #520 Zed AI Editor - 2026-08-04
 - #440 Semantic Scholar - 2026-08-07
+- #482 Perplexity Spaces - 2026-08-11
