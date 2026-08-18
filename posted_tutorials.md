@@ -24,3 +24,4 @@
 - #440 Semantic Scholar - 2026-08-07
 - #482 Perplexity Spaces - 2026-08-11
 - #492 Dify AI App Platform - 2026-08-14
+- #483 Obsidian Text Generator Plugin - 2026-08-18
