@@ -26,3 +26,4 @@
 - #492 Dify AI App Platform - 2026-08-14
 - #483 Obsidian Text Generator Plugin - 2026-08-18
 - #473 AI customer-support agent in Python - 2026-08-21
+- #516 GIMP free Photoshop alternative - 2026-08-25
