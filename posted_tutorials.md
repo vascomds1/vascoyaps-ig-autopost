@@ -27,3 +27,4 @@
 - #483 Obsidian Text Generator Plugin - 2026-08-18
 - #473 AI customer-support agent in Python - 2026-08-21
 - #516 GIMP free Photoshop alternative - 2026-08-25
+- #494 Plausible Analytics Self-Host - 2026-08-29
