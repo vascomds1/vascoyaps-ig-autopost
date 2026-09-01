@@ -28,3 +28,4 @@
 - #473 AI customer-support agent in Python - 2026-08-21
 - #516 GIMP free Photoshop alternative - 2026-08-25
 - #494 Plausible Analytics Self-Host - 2026-08-29
+- #518 Framer AI Website Builder - 2026-09-01
