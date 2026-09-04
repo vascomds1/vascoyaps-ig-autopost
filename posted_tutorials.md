@@ -29,3 +29,4 @@
 - #516 GIMP free Photoshop alternative - 2026-08-25
 - #494 Plausible Analytics Self-Host - 2026-08-29
 - #518 Framer AI Website Builder - 2026-09-01
+- #460 Resemble AI Voice Clone - 2026-09-04
