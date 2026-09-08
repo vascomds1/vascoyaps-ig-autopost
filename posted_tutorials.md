@@ -30,3 +30,4 @@
 - #494 Plausible Analytics Self-Host - 2026-08-29
 - #518 Framer AI Website Builder - 2026-09-01
 - #460 Resemble AI Voice Clone - 2026-09-04
+- #565 Speechify for studying - 2026-09-08
