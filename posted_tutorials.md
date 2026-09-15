@@ -32,3 +32,4 @@
 - #460 Resemble AI Voice Clone - 2026-09-04
 - #565 Speechify for studying - 2026-09-08
 - #519 AI commit messages with Claude Code - 2026-09-11
+- #423 AppFlowy - 2026-09-15
