@@ -33,3 +33,4 @@
 - #565 Speechify for studying - 2026-09-08
 - #519 AI commit messages with Claude Code - 2026-09-11
 - #423 AppFlowy - 2026-09-15
+- #525 Revo Uninstaller - 2026-09-18
